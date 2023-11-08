@@ -1,2 +1,1 @@
-export { RegistrationForm } from "./ui/index";
-export { useRegistrationForm } from "./lib/useRegistrationFrom";
+export { useSignUpForm } from "./lib/useSignUpForm";

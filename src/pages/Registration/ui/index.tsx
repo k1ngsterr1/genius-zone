@@ -1,5 +1,9 @@
-import React from "react";
+import SignUpForm from "@widgets/form/ui";
 
-export const Registration = () => {
-  return <div>Registration</div>;
+export const RegistrationPage = () => {
+  return (
+    <div className="wrapper">
+      <SignUpForm />
+    </div>
+  );
 };

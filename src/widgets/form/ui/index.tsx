@@ -1,27 +1,10 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { Button, Input } from "@shared/index";
-
-interface FormData {
-  username: string;
-  email: string;
-  password: string;
-}
+import { Input, Button } from "@shared/index";
+import { useSignUpForm } from "@widgets/form/lib/useSignUpForm";
 
 export const SignUpForm: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid, isSubmitting },
-  } = useForm<FormData>({
-    mode: "onChange",
-    criteriaMode: "all",
-  });
-
-  const onSubmit = async (data: FormData) => {
-    console.log(data);
-    // Handle form submission, e.g., via API
-  };
+  const { register, handleSubmit, errors, isValid, isSubmitting, onSubmit } =
+    useSignUpForm();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -33,7 +16,6 @@ export const SignUpForm: React.FC = () => {
         />
         {errors.username && <span>{errors.username.message}</span>}
       </div>
-
       <div>
         <Input
           {...register("email", {
@@ -48,7 +30,6 @@ export const SignUpForm: React.FC = () => {
         />
         {errors.email && <span>{errors.email.message}</span>}
       </div>
-
       <div>
         <Input
           {...register("password", {
@@ -63,7 +44,6 @@ export const SignUpForm: React.FC = () => {
         />
         {errors.password && <span>{errors.password.message}</span>}
       </div>
-
       <Button
         text="Sign Up"
         onClick={handleSubmit(onSubmit)}
