@@ -1,0 +1,12 @@
+.input {
+  width: 100%;
+  height: clamp(27.5px, 2.8644000000000003vw, 110px);
+  border: 2px solid;
+  @apply text-gray-600
+  @apply border-gray-600;
+  transition: 0.3s all;
+  &:focus {
+    border: 2px solid;
+    @apply border-custom-blue;
+  }
+}

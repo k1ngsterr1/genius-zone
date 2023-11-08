@@ -1,22 +1,18 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
 import path from "path";
+import react from "@vitejs/plugin-react";
 
-// Convert file URL to path
-const fileURLToPath = (url) => {
-  return path.resolve(new URL(url).pathname);
-};
-
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@shared": fileURLToPath(new URL("./src/shared", import.meta.url)),
-      "@widgets": fileURLToPath(new URL("./src/widgets", import.meta.url)),
-      "@entities": fileURLToPath(new URL("./src/entities", import.meta.url)),
-      "@features": fileURLToPath(new URL("./src/features", import.meta.url)),
-      "@pages": fileURLToPath(new URL("./src/pages", import.meta.url)),
-      "@assets": fileURLToPath(new URL("./src/assets", import.meta.url)),
+      "@shared": path.resolve(__dirname, "src/shared"),
+      "@widgets": path.resolve(__dirname, "src/widgets"),
+      "@entities": path.resolve(__dirname, "src/entities"),
+      "@features": path.resolve(__dirname, "src/features"),
+      "@pages": path.resolve(__dirname, "src/pages"),
+      "@assets": path.resolve(__dirname, "src/assets"),
     },
   },
 });
