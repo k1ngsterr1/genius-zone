@@ -1,5 +1,9 @@
-import React from "react";
+import { MyRoutes } from "@pages/index";
 
 export const App = () => {
-  return <div className="app-wrapper">App</div>;
+  return (
+    <div className="app-wrapper">
+      <MyRoutes />
+    </div>
+  );
 };
