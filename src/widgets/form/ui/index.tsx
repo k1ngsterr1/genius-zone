@@ -2,21 +2,28 @@ import React from "react";
 import { Input, Button } from "@shared/index";
 import { useSignUpForm } from "@widgets/form/lib/useSignUpForm";
 
+import "./styles.scss";
+
 export const SignUpForm: React.FC = () => {
   const { register, handleSubmit, errors, isValid, isSubmitting, onSubmit } =
     useSignUpForm();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="form flex flex-col items-center justify-center"
+    >
+      <div className="form__input">
         <Input
           {...register("username", { required: "Username is required" })}
           type="text"
           placeholder="Username"
         />
-        {errors.username && <span>{errors.username.message}</span>}
+        {errors.username && (
+          <span className="input--error">{errors.username.message}</span>
+        )}
       </div>
-      <div>
+      <div className="form__input mt-8">
         <Input
           {...register("email", {
             required: "Email is required",
@@ -30,7 +37,7 @@ export const SignUpForm: React.FC = () => {
         />
         {errors.email && <span>{errors.email.message}</span>}
       </div>
-      <div>
+      <div className="form__input">
         <Input
           {...register("password", {
             required: "Password is required",
