@@ -6,8 +6,15 @@ import { useSignUpForm } from "@widgets/form/lib/useSignUpForm";
 import "./styles.scss";
 
 export const SignUpForm: React.FC = () => {
-  const { register, handleSubmit, errors, isValid, isSubmitting, onSubmit } =
-    useSignUpForm();
+  const {
+    register,
+    handleSubmit,
+    errors,
+    isValid,
+    isSubmitting,
+    watchedPassword,
+    onSubmit,
+  } = useSignUpForm();
 
   return (
     <form
@@ -16,9 +23,9 @@ export const SignUpForm: React.FC = () => {
     >
       <div className="form__input">
         <Input
-          {...register("username", { required: "Username is required" })}
+          {...register("username", { required: "Заполните полное имя" })}
           type="text"
-          placeholder="Username"
+          placeholder="Полное имя"
           isError={Boolean(errors.username)} // Pass isError prop based on the error state
         />
         {errors.username && (
@@ -28,14 +35,15 @@ export const SignUpForm: React.FC = () => {
       <div className="form__input mt-4">
         <Input
           {...register("email", {
-            required: "Email is required",
+            required: "Заполните электронную почту",
             pattern: {
               value: /^\S+@\S+$/i,
-              message: "Please enter a valid email address",
+              message: "Пожалуйста введите электронную почту правильно",
             },
           })}
           type="email"
           placeholder="Email"
+          isError={Boolean(errors.email)}
         />
         {errors.email && (
           <span className="form__input--error">{errors.email.message}</span>
@@ -44,14 +52,29 @@ export const SignUpForm: React.FC = () => {
       <div className="form__input mt-4">
         <Input
           {...register("password", {
-            required: "Password is required",
+            required: "Заполните пароль",
             minLength: {
               value: 6,
-              message: "Password must be at least 6 characters",
+              message: "Пароль должен содержать не менее 6-ти символов",
             },
           })}
           type="password"
-          placeholder="Password"
+          placeholder="Пароль"
+          isError={Boolean(errors.password)}
+        />
+        {errors.password && (
+          <span className="form__input--error">{errors.password.message}</span>
+        )}
+      </div>
+      <div className="form__input mt-4">
+        <Input
+          {...register("confirmPassword", {
+            validate: (value) =>
+              value === watchedPassword || "Пароли не совпадают",
+          })}
+          type="password"
+          placeholder="Повторите пароль"
+          isError={Boolean(errors.confirmPassword)}
         />
         {errors.password && (
           <span className="form__input--error">{errors.password.message}</span>

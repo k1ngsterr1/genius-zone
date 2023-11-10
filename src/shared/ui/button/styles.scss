@@ -1,21 +1,30 @@
 .regular-button {
-  width: clamp(115px, 11.9784vw, 460px);
-  height: clamp(27.5px, 2.8644000000000003vw, 110px);
+  width: clamp(100px, 10.416vw, 400px);
+  height: clamp(22px, 2.2915200000000002vw, 88px);
   @apply bg-custom-blue;
   font-size: clamp(9px, 0.93744vw, 36px);
   color: white;
   @apply border-custom-blue;
   transition: 0.3s all;
+  margin-right: 16px;
   &:hover {
+    background-color: #0f20b9;
   }
 }
 
 .outline-button {
-  width: clamp(115px, 11.9784vw, 460px);
-  height: clamp(27.5px, 2.8644000000000003vw, 110px);
+  width: clamp(100px, 10.416vw, 400px);
+  height: clamp(22px, 2.2915200000000002vw, 88px);
   background: transparent;
   font-size: clamp(9px, 0.93744vw, 36px);
   @apply text-custom-black;
   @apply border-custom-blue;
   border: 2px solid;
+  transition: 0.3s all;
+  &:hover {
+    border: 2px solid;
+    @apply border-custom-blue;
+    color: white;
+    @apply bg-custom-blue;
+  }
 }

@@ -7,13 +7,10 @@ import { Button } from "@shared/ui/button";
 export const Header = () => {
   return (
     <header className="header flex items-center justify-between">
-      <div className="header__container flex items-center justify-between mt-8">
+      <div className="header__container flex items-center justify-between mt-16">
         <Logo />
+
         <div className="header__links flex items-center justify-between">
-          <div className="buttons flex items-center justify-between">
-            <Button text="Войти" className="regular-button" />
-            <Button text="Регистрация" className="outline-button" />
-          </div>
           <Link to="/" className="header__links--link">
             Главная
           </Link>
@@ -23,6 +20,10 @@ export const Header = () => {
           <Link to="/gift" className="header__links--link">
             Преподование
           </Link>
+          <div className="buttons flex items-center justify-between ml-4">
+            <Button text="Войти" className="regular-button" />
+            <Button text="Регистрация" className="outline-button" />
+          </div>
         </div>
       </div>
     </header>
