@@ -4,11 +4,16 @@
 
   &__container {
     width: 86.6%;
-    border: 2px solid red;
     margin: auto;
   }
 
   &__links {
-    width: 20%;
+    width: 30%;
+
+    &--link {
+      font-size: clamp(11px, 1.1457600000000001vw, 44px);
+      font-weight: 600;
+      @apply text-custom-black;
+    }
   }
 }
