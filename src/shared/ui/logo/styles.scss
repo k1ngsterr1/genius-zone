@@ -5,6 +5,7 @@
   &__image {
     width: clamp(26px, 2.70816vw, 104px);
     height: clamp(26px, 2.70816vw, 104px);
+    cursor: pointer;
   }
 
   &__text {

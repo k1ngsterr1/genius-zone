@@ -1,5 +1,6 @@
 import React from "react";
-import { Input, Button } from "@shared/index";
+import { Input } from "@shared/index";
+import { RegistrationButton } from "@shared/ui/registration-button";
 import { useSignUpForm } from "@widgets/form/lib/useSignUpForm";
 
 import "./styles.scss";
@@ -11,7 +12,7 @@ export const SignUpForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="form flex flex-col items-center justify-center"
+      className="form flex flex-col items-center justify-center mt-16"
     >
       <div className="form__input">
         <Input
@@ -51,7 +52,7 @@ export const SignUpForm: React.FC = () => {
         />
         {errors.password && <span>{errors.password.message}</span>}
       </div>
-      <Button
+      <RegistrationButton
         text="Sign Up"
         onClick={handleSubmit(onSubmit)}
         active={isValid && !isSubmitting ? "active" : "inactive"}
