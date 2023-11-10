@@ -18,7 +18,7 @@ export const RegistrationButton: React.FC<ButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`button ${
+      className={`button mt-8 ${
         isActive ? "button--active" : "button--inactive"
       } flex justify-center items-center`}
       disabled={!isActive} // The button will be disabled if not active

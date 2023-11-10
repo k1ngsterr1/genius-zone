@@ -8,6 +8,27 @@
 
     &--error {
       color: red;
+      font-size: clamp(8px, 0.83328vw, 32px);
+    }
+  }
+
+  .input--error {
+    width: 100%;
+    height: clamp(27.5px, 2.8644000000000003vw, 110px);
+    border: none;
+    outline: none;
+    border: 2px solid red;
+    padding-left: clamp(8px, 0.83328vw, 32px);
+    @apply text-gray-600;
+    transition: 0.3s all;
+    &:focus {
+      color: #0b1887;
+      @apply text-custom-blue;
+      border: 2px solid #0b1887;
+    }
+
+    &-error {
+      color: red;
     }
   }
 }

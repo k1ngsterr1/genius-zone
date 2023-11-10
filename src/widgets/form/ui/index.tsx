@@ -19,12 +19,13 @@ export const SignUpForm: React.FC = () => {
           {...register("username", { required: "Username is required" })}
           type="text"
           placeholder="Username"
+          isError={Boolean(errors.username)} // Pass isError prop based on the error state
         />
         {errors.username && (
-          <span className="input--error">{errors.username.message}</span>
+          <span className="form__input--error">{errors.username.message}</span>
         )}
       </div>
-      <div className="form__input mt-8">
+      <div className="form__input mt-4">
         <Input
           {...register("email", {
             required: "Email is required",
@@ -36,9 +37,11 @@ export const SignUpForm: React.FC = () => {
           type="email"
           placeholder="Email"
         />
-        {errors.email && <span>{errors.email.message}</span>}
+        {errors.email && (
+          <span className="form__input--error">{errors.email.message}</span>
+        )}
       </div>
-      <div className="form__input">
+      <div className="form__input mt-4">
         <Input
           {...register("password", {
             required: "Password is required",
@@ -50,7 +53,9 @@ export const SignUpForm: React.FC = () => {
           type="password"
           placeholder="Password"
         />
-        {errors.password && <span>{errors.password.message}</span>}
+        {errors.password && (
+          <span className="form__input--error">{errors.password.message}</span>
+        )}
       </div>
       <RegistrationButton
         text="Sign Up"

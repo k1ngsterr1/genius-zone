@@ -2,11 +2,14 @@ import React from "react";
 
 import "./styles.scss";
 
-type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {};
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  isError?: boolean;
+}
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ ...props }, ref) => {
-    return <input className="input text-gray-600" ref={ref} {...props} />;
+  ({ isError, ...props }, ref) => {
+    const inputClassName = isError ? "input input--error" : "input";
+    return <input className={inputClassName} ref={ref} {...props} />;
   }
 );
 
