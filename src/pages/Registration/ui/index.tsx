@@ -1,13 +1,11 @@
-import store from "@shared/lib/redux/store";
-import SignUpForm from "@widgets/form/ui";
-import { Provider } from "react-redux";
+import { Header } from "@features/header/ui";
+import { RegistrationScreen } from "@widgets/Registration";
 
 export const RegistrationPage = () => {
   return (
-    <div className="wrapper">
-      <Provider store={store}>
-        <SignUpForm />
-      </Provider>
+    <div className="page">
+      <Header />
+      <RegistrationScreen />
     </div>
   );
 };

@@ -8,7 +8,11 @@ interface ButtonProps {
   active: "active" | "inactive";
 }
 
-export const Button: React.FC<ButtonProps> = ({ text, onClick, active }) => {
+export const RegistrationButton: React.FC<ButtonProps> = ({
+  text,
+  onClick,
+  active,
+}) => {
   const isActive = active === "active";
 
   return (
