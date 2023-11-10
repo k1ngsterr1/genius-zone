@@ -2,6 +2,13 @@
   width: 100%;
   height: auto;
 
-  &__content {
+  &__container {
+    width: 86.6%;
+    border: 2px solid red;
+    margin: auto;
+  }
+
+  &__links {
+    width: 20%;
   }
 }
