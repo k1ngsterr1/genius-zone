@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "@shared/index";
 import { RegistrationButton } from "@shared/ui/registration-button";
 import { useSignUpForm } from "@widgets/form/lib/useSignUpForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 import "./styles.scss";
 
@@ -15,6 +17,12 @@ export const SignUpForm: React.FC = () => {
     watchedPassword,
     onSubmit,
   } = useSignUpForm();
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
 
   return (
     <form
@@ -62,6 +70,7 @@ export const SignUpForm: React.FC = () => {
           placeholder="Пароль"
           isError={Boolean(errors.password)}
         />
+        <FontAwesomeIcon icon={faEye} />
         {errors.password && (
           <span className="form__input--error">{errors.password.message}</span>
         )}
@@ -81,10 +90,25 @@ export const SignUpForm: React.FC = () => {
         )}
       </div>
       <RegistrationButton
-        text="Sign Up"
+        text="Создать аккаунт"
         onClick={handleSubmit(onSubmit)}
         active={isValid && !isSubmitting ? "active" : "inactive"}
       />
+      <p className="form__paragraph mt-4">
+        Выполняя вход, вы соглашаетесь с нашими{" "}
+        <span className="blue underline cursor-pointer">
+          Условиями использования
+        </span>{" "}
+        и{" "}
+        <span className="blue underline cursor-pointer">
+          Политикой конфиденциальности.
+        </span>
+      </p>
+      <figure className="separator mt-4" />
+      <p className="form__paragraph mt-4">
+        Уже есть учетная запись?{" "}
+        <span className="blue underline cursor-pointer">Вход</span>
+      </p>
     </form>
   );
 };

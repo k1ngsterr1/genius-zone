@@ -4,7 +4,7 @@
   margin: auto;
 
   &__input {
-    width: 100%;
+    width: 90%;
 
     &--error {
       color: red;
@@ -30,5 +30,11 @@
     &-error {
       color: red;
     }
+  }
+
+  &__paragraph {
+    width: 80%;
+    font-size: clamp(7.5px, 0.7812vw, 30px);
+    text-align: center;
   }
 }
