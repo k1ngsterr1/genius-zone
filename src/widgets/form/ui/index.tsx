@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Input } from "@shared/index";
+import { usePasswordVisibility } from "@shared/lib/hooks/usePasswordVisibility";
 import { RegistrationButton } from "@shared/ui/registration-button";
 import { useSignUpForm } from "@widgets/form/lib/useSignUpForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,11 +19,14 @@ export const SignUpForm: React.FC = () => {
     onSubmit,
   } = useSignUpForm();
 
-  const [isVisible, setIsVisible] = useState(false);
-
-  const toggleVisibility = () => {
-    setIsVisible(!isVisible);
-  };
+  const {
+    isVisible: isPasswordVisible,
+    toggleVisibility: togglePasswordVisibility,
+  } = usePasswordVisibility();
+  const {
+    isVisible: isConfirmPasswordVisible,
+    toggleVisibility: toggleConfirmPasswordVisibility,
+  } = usePasswordVisibility();
 
   return (
     <form
@@ -66,11 +70,15 @@ export const SignUpForm: React.FC = () => {
               message: "Пароль должен содержать не менее 6-ти символов",
             },
           })}
-          type="password"
+          type={isPasswordVisible ? "text" : "password"}
           placeholder="Пароль"
           isError={Boolean(errors.password)}
         />
-        <FontAwesomeIcon icon={faEye} />
+        <FontAwesomeIcon
+          icon={isPasswordVisible ? faEyeSlash : faEye}
+          onClick={togglePasswordVisibility}
+          className="form__input--eye"
+        />
         {errors.password && (
           <span className="form__input--error">{errors.password.message}</span>
         )}
@@ -81,9 +89,14 @@ export const SignUpForm: React.FC = () => {
             validate: (value) =>
               value === watchedPassword || "Пароли не совпадают",
           })}
-          type="password"
+          type={isConfirmPasswordVisible ? "text" : "password"}
           placeholder="Повторите пароль"
           isError={Boolean(errors.confirmPassword)}
+        />
+        <FontAwesomeIcon
+          icon={isConfirmPasswordVisible ? faEyeSlash : faEye}
+          onClick={toggleConfirmPasswordVisibility}
+          className="form__input--eye"
         />
         {errors.password && (
           <span className="form__input--error">{errors.password.message}</span>

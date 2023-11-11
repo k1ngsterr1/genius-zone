@@ -5,10 +5,24 @@
 
   &__input {
     width: 90%;
+    position: relative;
 
     &--error {
       color: red;
       font-size: clamp(8px, 0.83328vw, 32px);
+    }
+
+    &--eye {
+      position: absolute;
+      left: clamp(243px, 25.31088vw, 972px);
+      top: clamp(9.5px, 0.9895200000000001vw, 38px);
+      right: clamp(15px, 1.5624vw, 60px);
+      cursor: pointer;
+      @apply text-gray-400;
+      transition: 0.3s all;
+      &:hover {
+        @apply text-custom-blue;
+      }
     }
   }
 
