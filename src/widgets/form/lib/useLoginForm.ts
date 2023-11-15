@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export interface LoginFormData {
@@ -8,6 +8,8 @@ export interface LoginFormData {
 }
 
 export function useLoginForm() {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -25,7 +27,7 @@ export function useLoginForm() {
 
       console.log("Login successful:", response.data);
 
-      redirect("/");
+      navigate("/");
     } catch (error: any) {
       if (error.response) {
         console.error("Login failed with status:", error.response.status);
