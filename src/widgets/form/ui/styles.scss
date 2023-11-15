@@ -18,6 +18,7 @@
       left: clamp(243px, 25.31088vw, 972px);
       top: clamp(9.5px, 0.9895200000000001vw, 38px);
       right: clamp(15px, 1.5624vw, 60px);
+      font-size: clamp(9px, 0.93744vw, 36px);
       cursor: pointer;
       @apply text-gray-400;
       transition: 0.3s all;
