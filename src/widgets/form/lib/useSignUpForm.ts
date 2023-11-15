@@ -29,33 +29,31 @@ export function useSignUpForm() {
 
   const watchedPassword = watch("password");
 
-  // ! Axios Fetch Submit
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await axios.post(
+        "https://probable-sole-crucial.ngrok-free.app/api/account/register/",
+        data
+      );
 
-  // const onSubmit = async (data: FormData) => {
-  //   try {
-  //     const response = await axios.post(
-  //       "https://probable-sole-crucial.ngrok-free.app/api/account/register/",
-  //       data
-  //     );
+      console.log("Registration successful:", response.data);
+      dispatch(saveEmail(data.email));
 
-  //     console.log("Registration successful:", response.data);
-  //     dispatch(saveEmail(data.email));
-
-  //     navigate("/verification");
-  //   } catch (error: any) {
-  //     if (error.response) {
-  //       console.error(
-  //         "Registration failed with status:",
-  //         error.response.status
-  //       );
-  //       console.error("Failed response data", error.response.data);
-  //     } else if (error.request) {
-  //       console.error("No response received:", error.request);
-  //     } else {
-  //       console.error("Error during setup:", error.message);
-  //     }
-  //   }
-  // };
+      navigate("/verification");
+    } catch (error: any) {
+      if (error.response) {
+        console.error(
+          "Registration failed with status:",
+          error.response.status
+        );
+        console.error("Failed response data", error.response.data);
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+      } else {
+        console.error("Error during setup:", error.message);
+      }
+    }
+  };
 
   // ! JavaScript Fetch Submit
 
