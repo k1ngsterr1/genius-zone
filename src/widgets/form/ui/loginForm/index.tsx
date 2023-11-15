@@ -3,6 +3,7 @@ import { usePasswordVisibility } from "@shared/lib/hooks/usePasswordVisibility";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useLoginForm } from "@widgets/form/lib/useLoginForm";
+import { Link } from "react-router-dom";
 
 import "../styles.scss";
 
@@ -67,9 +68,9 @@ export const LoginForm = () => {
       <figure className="separator mt-4" />
       <p className="form__paragraph mt-4">
         У вас еще нет учетной записи?
-        <span className="blue underline cursor-pointer">
-          Зарегестрироваться
-        </span>
+        <Link to="/registration" className="blue underline cursor-pointer">
+          Зарегистрироваться
+        </Link>
       </p>
     </form>
   );

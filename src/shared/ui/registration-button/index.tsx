@@ -4,7 +4,7 @@ import "./styles.scss";
 
 interface ButtonProps {
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
   active: "active" | "inactive";
 }
 
@@ -21,7 +21,7 @@ export const RegistrationButton: React.FC<ButtonProps> = ({
       className={`button mt-8 ${
         isActive ? "button--active" : "button--inactive"
       } flex justify-center items-center`}
-      disabled={!isActive} // The button will be disabled if not active
+      disabled={!isActive}
     >
       {text}
     </button>

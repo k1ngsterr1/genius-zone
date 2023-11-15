@@ -1,5 +1,9 @@
-// src/features/signup/model/useSignUpForm.ts
 import { useForm } from "react-hook-form";
+import { redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { saveEmail } from "@shared/lib/redux/store/emailSlice";
+
+import axios from "axios";
 
 export interface FormData {
   username: string;
@@ -9,6 +13,8 @@ export interface FormData {
 }
 
 export function useSignUpForm() {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -23,27 +29,27 @@ export function useSignUpForm() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      const response = await fetch(
+      const response = await axios.post(
         "https://probable-sole-crucial.ngrok-free.app/api/account/register/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
+        data
       );
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      console.log("Registration successful:", response.data);
+      dispatch(saveEmail(data.email));
 
-      const result = await response.json();
-      console.log(result);
-      // Handle the success case - perhaps navigate to a thank you page or clear the form
-    } catch (error) {
-      console.error("There was a problem with the fetch operation:", error);
-      // Handle the error case - show user feedback, log the error, etc.
+      redirect("/verification");
+    } catch (error: any) {
+      if (error.response) {
+        console.error(
+          "Registration failed with status:",
+          error.response.status
+        );
+        console.error("Failed response data", error.response.data);
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+      } else {
+        console.error("Error during setup:", error.message);
+      }
     }
   };
 

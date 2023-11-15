@@ -5,6 +5,7 @@ import { RegistrationButton } from "@shared/ui/registration-button";
 import { useSignUpForm } from "@widgets/form/lib/useSignUpForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 import "./styles.scss";
 
@@ -38,7 +39,7 @@ export const SignUpForm: React.FC = () => {
           {...register("username", { required: "Заполните полное имя" })}
           type="text"
           placeholder="Полное имя"
-          isError={Boolean(errors.username)} // Pass isError prop based on the error state
+          isError={Boolean(errors.username)}
         />
         {errors.username && (
           <span className="form__input--error">{errors.username.message}</span>
@@ -98,8 +99,10 @@ export const SignUpForm: React.FC = () => {
           onClick={toggleConfirmPasswordVisibility}
           className="form__input--eye"
         />
-        {errors.password && (
-          <span className="form__input--error">{errors.password.message}</span>
+        {errors.confirmPassword && (
+          <span className="form__input--error">
+            {errors.confirmPassword.message}
+          </span>
         )}
       </div>
       <RegistrationButton
@@ -109,18 +112,22 @@ export const SignUpForm: React.FC = () => {
       />
       <p className="form__paragraph mt-4">
         Выполняя вход, вы соглашаетесь с нашими{" "}
-        <span className="blue underline cursor-pointer">
-          Условиями использования
-        </span>{" "}
-        и{" "}
-        <span className="blue underline cursor-pointer">
+        <Link to="/user-conditions" className="blue underline cursor-pointer">
+          Условиями использования{""}
+        </Link>
+        {""}
+        {""} и {""}
+        {""}
+        <Link to="/policy" className="blue underline cursor-pointer">
           Политикой конфиденциальности.
-        </span>
+        </Link>
       </p>
       <figure className="separator mt-4" />
       <p className="form__paragraph mt-4">
         Уже есть учетная запись?{" "}
-        <span className="blue underline cursor-pointer">Вход</span>
+        <Link className="blue underline cursor-pointer" to="/login">
+          Вход
+        </Link>
       </p>
     </form>
   );
