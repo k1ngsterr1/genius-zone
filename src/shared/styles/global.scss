@@ -38,11 +38,27 @@
 }
 
 .separator {
-  width: 400px;
+  width: clamp(200px, 20.832vw, 800px);
   height: 1px;
   @apply bg-gray-300;
 }
 
 .blue {
   @apply text-custom-blue;
+}
+
+@media screen and (max-width: 448px) {
+  .wrapper {
+    width: 90%;
+  }
+
+  .main-heading {
+    @apply text-custom-black;
+    font-family: Inter;
+    font-size: clamp(15px, 7.0092vw, 60px);
+    text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
 }

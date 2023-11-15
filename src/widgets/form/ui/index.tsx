@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input } from "@shared/index";
 import { usePasswordVisibility } from "@shared/lib/hooks/usePasswordVisibility";
 import { RegistrationButton } from "@shared/ui/registration-button";
@@ -32,7 +32,7 @@ export const SignUpForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="form flex flex-col items-center justify-center mt-16"
+      className="form flex flex-col items-center justify-center mt-16 max-[640px]:mt-8"
     >
       <div className="form__input">
         <Input

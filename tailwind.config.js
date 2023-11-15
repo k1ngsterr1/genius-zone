@@ -8,6 +8,9 @@ export default {
         "custom-black": "#282828",
       },
     },
+    screens: {
+      mini: "448px",
+    },
   },
   plugins: [],
 };

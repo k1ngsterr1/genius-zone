@@ -54,3 +54,37 @@
     text-align: center;
   }
 }
+
+@media screen and (max-width: 640px) {
+  .form {
+    width: 90%;
+
+    &__input {
+      width: 90%;
+      height: auto;
+
+      &--error {
+        color: red;
+        font-size: clamp(8px, 3.73824vw, 32px);
+      }
+
+      &--eye {
+        font-size: clamp(10px, 4.6728vw, 40px);
+        position: absolute;
+        left: 90%;
+        top: 35%;
+        right: 15%;
+        font-size: clamp(7.5px, 3.5046vw, 30px);
+        cursor: pointer;
+        @apply text-gray-400;
+        transition: 0.3s all;
+        &:hover {
+          @apply text-custom-blue;
+        }
+      }
+    }
+
+    .input--error {
+    }
+  }
+}

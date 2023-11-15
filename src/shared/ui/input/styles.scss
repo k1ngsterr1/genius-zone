@@ -13,3 +13,11 @@
     border: 2px solid #0b1887;
   }
 }
+
+@media screen and (max-width: 640px) {
+  .input {
+    width: 100%;
+    height: clamp(25px, 11.681999999999999vw, 100px);
+    padding-left: clamp(8px, 3.73824vw, 32px);
+  }
+}

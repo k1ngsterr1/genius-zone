@@ -22,3 +22,16 @@
     border-radius: 2px;
   }
 }
+
+@media screen and (max-width: 640px) {
+  .button {
+    width: 90%;
+    height: clamp(25px, 11.681999999999999vw, 100px);
+    @apply text-lg;
+    @apply bg-gray-300;
+    color: white;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+}
