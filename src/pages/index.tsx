@@ -7,6 +7,7 @@ import { HomePage } from "./Home/ui";
 import { RegistrationPage } from "./Registration/ui";
 import { LoginPage } from "./Login";
 import { VerificationPage } from "./Verification/ui";
+import { ChangePasswordPage } from "./ChangePassword";
 
 export const MyRoutes: FC = () => {
   return (
@@ -21,6 +22,10 @@ export const MyRoutes: FC = () => {
         <Route
           path={ROUTE_CONSTANTS.VERIFICATION}
           element={<VerificationPage />}
+        />
+        <Route
+          path={ROUTE_CONSTANTS.CHANGE_PASSWORD}
+          element={<ChangePasswordPage />}
         />
       </Routes>
     </Router>

@@ -85,6 +85,13 @@
     }
 
     .input--error {
+      width: 100%;
+      height: clamp(25px, 11.681999999999999vw, 100px);
+      padding-left: clamp(8px, 3.73824vw, 32px);
+    }
+
+    &__paragraph {
+      font-size: clamp(7.5px, 3.5046vw, 30px);
     }
   }
 }

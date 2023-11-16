@@ -19,7 +19,7 @@ export const LoginForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="form flex flex-col items-center justify-center mt-16"
+      className="form flex flex-col items-center justify-center mt-16 max-[640px]:mt-8"
     >
       <div className="form__input mt-4">
         <Input
@@ -63,7 +63,9 @@ export const LoginForm = () => {
       />
       <p className="form__paragraph mt-4">
         Или забыли {""}
-        <span className="blue underline cursor-pointer">пароль</span>
+        <Link className="blue underline cursor-pointer" to="/change-password">
+          пароль
+        </Link>
       </p>
       <figure className="separator mt-4" />
       <p className="form__paragraph mt-4">
