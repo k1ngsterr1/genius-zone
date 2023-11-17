@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export interface ChangePasswordFormData {
-  password: string;
-  confirmPassword: string;
+  old_password: string;
+  new_password: string;
 }
 
 export function usePasswordChange() {
@@ -12,15 +12,12 @@ export function usePasswordChange() {
 
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
   } = useForm<ChangePasswordFormData>({
     mode: "onChange",
     criteriaMode: "all",
   });
-
-  const watchedPassword = watch("password");
 
   const onSubmit = async (data: ChangePasswordFormData) => {
     try {
@@ -47,7 +44,6 @@ export function usePasswordChange() {
   return {
     register,
     handleSubmit,
-    watchedPassword,
     errors,
     isValid,
     isSubmitting,

@@ -3,24 +3,18 @@ import { usePasswordVisibility } from "@shared/lib/hooks/usePasswordVisibility";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { usePasswordChange } from "@widgets/form/lib/useChangePassword";
+
 import "../styles.scss";
 
 export const ChangePasswordForm = () => {
-  const {
-    register,
-    handleSubmit,
-    errors,
-    isSubmitting,
-    isValid,
-    onSubmit,
-    watchedPassword,
-  } = usePasswordChange();
+  const { register, handleSubmit, errors, isSubmitting, isValid, onSubmit } =
+    usePasswordChange();
 
   const {
     isVisible: isPasswordVisible,
     toggleVisibility: togglePasswordVisibility,
   } = usePasswordVisibility();
-  
+
   const {
     isVisible: isConfirmPasswordVisible,
     toggleVisibility: toggleConfirmPasswordVisibility,
@@ -30,40 +24,45 @@ export const ChangePasswordForm = () => {
     <form className="form flex flex-col items-center justify-center mt-16 max-[640px]:mt-8">
       <div className="form__input mt-4">
         <Input
-          {...register("password", {
-            required: "Заполните пароль",
+          {...register("old_password", {
+            required: "Введите старый пароль",
           })}
           type={isPasswordVisible ? "text" : "password"}
-          placeholder="Пароль"
-          isError={Boolean(errors.password)}
+          placeholder="Введите старый пароль"
+          isError={Boolean(errors.old_password)}
         />
         <FontAwesomeIcon
           icon={isPasswordVisible ? faEyeSlash : faEye}
           onClick={togglePasswordVisibility}
           className="form__input--eye"
         />
-        {errors.password && (
-          <span className="form__input--error">{errors.password.message}</span>
+        {errors.old_password && (
+          <span className="form__input--error">
+            {errors.old_password.message}
+          </span>
         )}
       </div>
       <div className="form__input mt-4">
         <Input
-          {...register("confirmPassword", {
-            validate: (value) =>
-              value === watchedPassword || "Пароли не совпадают",
+          {...register("new_password", {
+            required: "Заполните пароль",
+            minLength: {
+              value: 6,
+              message: "Пароль должен содержать не менее 6-ти символов",
+            },
           })}
-          type={isConfirmPasswordVisible ? "text" : "password"}
-          placeholder="Повторите пароль"
-          isError={Boolean(errors.confirmPassword)}
+          type={isPasswordVisible ? "text" : "password"}
+          placeholder="Введите новый пароль"
+          isError={Boolean(errors.new_password)}
         />
         <FontAwesomeIcon
           icon={isConfirmPasswordVisible ? faEyeSlash : faEye}
           onClick={toggleConfirmPasswordVisibility}
           className="form__input--eye"
         />
-        {errors.confirmPassword && (
+        {errors.new_password && (
           <span className="form__input--error">
-            {errors.confirmPassword.message}
+            {errors.new_password.message}
           </span>
         )}
       </div>
