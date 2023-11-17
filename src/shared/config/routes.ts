@@ -3,5 +3,5 @@ export const ROUTE_CONSTANTS = {
   CHANGE_PASSWORD: "/change-password",
   REGISTRATION: "/registration",
   LOGIN: "/login",
-  VERIFICATION: "/verification",
+  VERIFICATION: "/verification/:token",
 };

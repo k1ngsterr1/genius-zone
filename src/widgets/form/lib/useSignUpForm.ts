@@ -7,10 +7,11 @@ import { saveEmail } from "@shared/lib/redux/store/emailSlice";
 import axios from "axios";
 
 export interface FormData {
-  username: string;
+  first_name: string;
+  last_name: string;
   email: string;
   password: string;
-  confirmPassword: string;
+  password_conf: string;
 }
 
 export function useSignUpForm() {

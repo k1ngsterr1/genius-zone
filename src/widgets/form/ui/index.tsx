@@ -36,13 +36,26 @@ export const SignUpForm: React.FC = () => {
     >
       <div className="form__input">
         <Input
-          {...register("username", { required: "Заполните полное имя" })}
+          {...register("first_name", { required: "Заполните ваше имя" })}
           type="text"
-          placeholder="Полное имя"
-          isError={Boolean(errors.username)}
+          placeholder="Имя"
+          isError={Boolean(errors.first_name)}
         />
-        {errors.username && (
-          <span className="form__input--error">{errors.username.message}</span>
+        {errors.first_name && (
+          <span className="form__input--error">
+            {errors.first_name.message}
+          </span>
+        )}
+      </div>
+      <div className="form__input mt-4">
+        <Input
+          {...register("last_name", { required: "Заполните фамилию" })}
+          type="text"
+          placeholder="Фамилия"
+          isError={Boolean(errors.last_name)}
+        />
+        {errors.last_name && (
+          <span className="form__input--error">{errors.last_name.message}</span>
         )}
       </div>
       <div className="form__input mt-4">
@@ -86,22 +99,22 @@ export const SignUpForm: React.FC = () => {
       </div>
       <div className="form__input mt-4">
         <Input
-          {...register("confirmPassword", {
+          {...register("password_conf", {
             validate: (value) =>
               value === watchedPassword || "Пароли не совпадают",
           })}
           type={isConfirmPasswordVisible ? "text" : "password"}
           placeholder="Повторите пароль"
-          isError={Boolean(errors.confirmPassword)}
+          isError={Boolean(errors.password_conf)}
         />
         <FontAwesomeIcon
           icon={isConfirmPasswordVisible ? faEyeSlash : faEye}
           onClick={toggleConfirmPasswordVisibility}
           className="form__input--eye"
         />
-        {errors.confirmPassword && (
+        {errors.password_conf && (
           <span className="form__input--error">
-            {errors.confirmPassword.message}
+            {errors.password_conf.message}
           </span>
         )}
       </div>

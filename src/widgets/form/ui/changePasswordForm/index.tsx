@@ -20,6 +20,7 @@ export const ChangePasswordForm = () => {
     isVisible: isPasswordVisible,
     toggleVisibility: togglePasswordVisibility,
   } = usePasswordVisibility();
+  
   const {
     isVisible: isConfirmPasswordVisible,
     toggleVisibility: toggleConfirmPasswordVisibility,
