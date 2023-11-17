@@ -4,7 +4,7 @@ import "./styles.scss";
 interface ButtonProps {
   className: string;
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const Button: React.FC<ButtonProps> = ({ className, text, onClick }) => {

@@ -3,12 +3,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "@shared/lib/redux/store";
 import { Button } from "@shared/ui/button";
 import { useVerifyEmail } from "@widgets/form/lib/useVerifyEmail";
-import { useState } from "react";
 import illustration from "@assets/secure.svg";
 
 export const VerificationScreen = () => {
   const email = useSelector((state: RootState) => state.emailReducer.email);
-  const { verifyEmail, error } = useVerifyEmail();
+  const { verifyEmail, error } = useVerifyEmail(email);
 
   return (
     <div className="wrapper">
@@ -17,12 +16,13 @@ export const VerificationScreen = () => {
         На вашу почту <span className="blue">{email}</span> пришло письмо с
         подтверждением
       </h1>
+      {error && <p className="text-red-500">{error}</p>}{" "}
+      {/* Display error message */}
       <Button
         text="Подтвердить"
         className="button button--active mt-8"
-        onClick={verifyEmail} // Attach the verifyEmail function to onClick
+        onClick={verifyEmail}
       />
-      {error && <p className="text-red-500">{error}</p>}{" "}
       <p className="paragraph mt-4">
         Не пришло письмо?{" "}
         <span
