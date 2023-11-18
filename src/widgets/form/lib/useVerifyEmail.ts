@@ -26,7 +26,6 @@ export function useVerifyEmail(email: string) {
       }
     } catch (error: any) {
       if (error.response) {
-        // Set the error state to the error message you want to display
         setError(`Verify failed: ${error.response.data.error}`);
       } else if (error.request) {
         setError("No response received.");

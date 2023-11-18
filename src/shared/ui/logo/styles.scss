@@ -17,3 +17,25 @@
     line-height: normal;
   }
 }
+
+@media screen and (max-width: 640px) {
+  .logo-container {
+    width: auto;
+    height: auto;
+    cursor: pointer;
+
+    &__image {
+      width: clamp(20px, 9.3456vw, 80px);
+      height: clamp(20px, 9.3456vw, 80px);
+    }
+
+    &__text {
+      @apply text-custom-black;
+      font-family: Inter;
+      font-size: clamp(10px, 4.6728vw, 40px);
+      font-style: normal;
+      font-weight: 800;
+      line-height: normal;
+    }
+  }
+}

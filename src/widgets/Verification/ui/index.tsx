@@ -17,7 +17,6 @@ export const VerificationScreen = () => {
         подтверждением
       </h1>
       {error && <p className="text-red-500">{error}</p>}{" "}
-      {/* Display error message */}
       <Button
         text="Подтвердить"
         className="button button--active mt-8"

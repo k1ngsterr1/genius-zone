@@ -2,14 +2,21 @@ import { Logo } from "@shared/index";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@shared/ui/button";
 
+import { useOpenMenu } from "@shared/lib/hooks/useOpenMenu";
+import { useSelector } from "react-redux";
+
+import Hamburger from "hamburger-react";
+
 import "./styles.scss";
 
 export const Header = () => {
   const navigate = useNavigate();
+  const isMenuOpen = useSelector((state: any) => state.menu.isOpen);
+  const openMenu = useOpenMenu(isMenuOpen);
 
   return (
     <header className="header flex items-center justify-between">
-      <div className="header__container flex items-center justify-between mt-16">
+      <div className="header__container flex items-center justify-between mt-16  max-[640px]:hidden">
         <Logo />
         <div className="header__links flex items-center justify-between">
           <Link to="/" className="header__links--link">
@@ -34,6 +41,10 @@ export const Header = () => {
             />
           </div>
         </div>
+      </div>
+      <div className="header__mob-container flex items-center justify-between max-[640px]:flex min-[640px]:hidden">
+        <Logo />
+        <Hamburger color="#0B1887" onToggle={openMenu} />
       </div>
     </header>
   );

@@ -18,6 +18,8 @@ export function useSignUpForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  let errorText;
+
   const {
     register,
     handleSubmit,
@@ -43,6 +45,9 @@ export function useSignUpForm() {
       navigate("/verification");
     } catch (error: any) {
       if (error.response) {
+        errorText = error.data;
+        // ! Сделать вывод ошибок
+        console.log("Error Text:", errorText);
         console.error(
           "Registration failed with status:",
           error.response.status
