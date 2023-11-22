@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Input } from "@shared/index";
 import { usePasswordVisibility } from "@shared/lib/hooks/usePasswordVisibility";
 import { RegistrationButton } from "@shared/ui/registration-button";

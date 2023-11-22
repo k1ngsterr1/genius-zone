@@ -33,5 +33,19 @@
     cursor: pointer;
     border-radius: 2px;
     transition: 0.3s;
+
+    &--active {
+      @apply bg-custom-blue;
+      border-radius: 2px;
+      &:hover {
+        background-color: #0f20b9;
+      }
+    }
+
+    &--inactive {
+      @apply text-lg;
+      @apply bg-gray-300;
+      border-radius: 2px;
+    }
   }
 }

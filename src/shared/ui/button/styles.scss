@@ -28,3 +28,13 @@
     @apply bg-custom-blue;
   }
 }
+
+@media screen and (max-width: 640px) {
+  .regular-button,
+  .outline-button {
+    width: clamp(150px, 70.092vw, 600px);
+    height: clamp(27.5px, 12.8502vw, 110px);
+    font-size: clamp(10px, 4.6728vw, 40px);
+    margin-right: 0px;
+  }
+}
