@@ -1,5 +1,4 @@
 import { ChangePasswordForm } from "@widgets/form/ui/changePasswordForm";
-import React from "react";
 
 export const ChangePasswordScreen = () => {
   return (
