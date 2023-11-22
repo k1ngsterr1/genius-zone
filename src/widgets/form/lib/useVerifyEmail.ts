@@ -10,7 +10,7 @@ export function useVerifyEmail(email: string) {
   const verifyEmail = async () => {
     try {
       const response = await axios.post(
-        "https://probable-sole-crucial.ngrok-free.app/api/account/check_status/",
+        `${import.meta.env.VITE_BASE_URL}check_status/`,
         { email }
       );
 

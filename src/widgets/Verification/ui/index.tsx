@@ -1,4 +1,3 @@
-// VerificationScreen.tsx
 import { useSelector } from "react-redux";
 import { RootState } from "@shared/lib/redux/store";
 import { Button } from "@shared/ui/button";
@@ -11,12 +10,16 @@ export const VerificationScreen = () => {
 
   return (
     <div className="wrapper">
-      <img src={illustration} alt="illustration" className="w-1/4 h-auto" />
-      <h1 className="main-heading mt-8 w-2/4">
+      <img
+        src={illustration}
+        alt="illustration"
+        className="w-[25%] h-auto max-[1024px]:w-[50%]"
+      />
+      <h1 className="email w-[45%] text-center mt-8">
         На вашу почту <span className="blue">{email}</span> пришло письмо с
         подтверждением
       </h1>
-      {error && <p className="text-red-500">{error}</p>}{" "}
+      {error && <p className="text-red-500">{error}</p>}
       <Button
         text="Подтвердить"
         className="button button--active mt-8"

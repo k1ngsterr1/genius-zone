@@ -35,7 +35,7 @@ export function useSignUpForm() {
   const onSubmit = async (data: FormData) => {
     try {
       const response = await axios.post(
-        "https://probable-sole-crucial.ngrok-free.app/api/account/register/",
+        `${import.meta.env.VITE_BASE_URL}api/account/register/`,
         data
       );
 
@@ -46,7 +46,6 @@ export function useSignUpForm() {
     } catch (error: any) {
       if (error.response) {
         errorText = error.data;
-        // ! Сделать вывод ошибок
         console.log("Error Text:", errorText);
         console.error(
           "Registration failed with status:",

@@ -22,7 +22,7 @@ export function usePasswordChange() {
   const onSubmit = async (data: ChangePasswordFormData) => {
     try {
       const response = await axios.put(
-        "https://probable-sole-crucial.ngrok-free.app/api/account/change-password/",
+        `${import.meta.env.VITE_BASE_URL}change-password/`,
         data
       );
       console.log("Password Changed Successful:", response.data);

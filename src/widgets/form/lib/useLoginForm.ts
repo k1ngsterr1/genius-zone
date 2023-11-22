@@ -21,7 +21,7 @@ export function useLoginForm() {
   const onSubmit = async (data: LoginFormData) => {
     try {
       const response = await axios.post(
-        "https://probable-sole-crucial.ngrok-free.app/api/account/login/",
+        `${import.meta.env.VITE_BASE_URL}/login/`,
         data
       );
 

@@ -1,5 +1,9 @@
-import React from "react";
+import { Header } from "@features/header/ui";
 
 export const UserPage = () => {
-  return <div className="page"></div>;
+  return (
+    <div className="page">
+      <Header />
+    </div>
+  );
 };

@@ -47,6 +47,16 @@
   @apply text-custom-blue;
 }
 
+.email {
+  @apply text-custom-black;
+  font-family: Inter;
+  font-size: clamp(15px, 1.5624vw, 60px);
+  text-align: center;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
 @media screen and (max-width: 448px) {
   .wrapper {
     width: 90%;
@@ -56,6 +66,17 @@
     @apply text-custom-black;
     font-family: Inter;
     font-size: clamp(15px, 7.0092vw, 60px);
+    text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .email {
+    width: 60%;
+    @apply text-custom-black;
+    font-family: Inter;
+    font-size: 20px;
     text-align: center;
     font-style: normal;
     font-weight: 700;
