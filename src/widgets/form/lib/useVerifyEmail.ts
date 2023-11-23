@@ -21,16 +21,15 @@ export function useVerifyEmail(email: string) {
         navigate("/");
       } else {
         console.log("Response Status:", response.data.status);
-        setError(`Verification failed: ${response.data.error}`);
-        console.error("Verification failed:", response.data.error);
+        setError(`Не удалось подтвердить почту: ${response.data.error}`);
       }
     } catch (error: any) {
       if (error.response) {
-        setError(`Verify failed: ${error.response.data.error}`);
+        setError(`Не удалось подтвердить почту: ${error.response.data.error}`);
       } else if (error.request) {
-        setError("No response received.");
+        setError("Не получен ответ");
       } else {
-        setError("An error occurred during verification.");
+        setError("Произошла ошибка во время верификации");
       }
     }
   };

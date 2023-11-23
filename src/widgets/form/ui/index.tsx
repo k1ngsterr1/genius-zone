@@ -6,6 +6,7 @@ import { useSignUpForm } from "@widgets/form/lib/useSignUpForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { ErrorTab } from "@shared/ui/ErrorTab";
 
 import "./styles.scss";
 
@@ -18,6 +19,7 @@ export const SignUpForm: React.FC = () => {
     isSubmitting,
     watchedPassword,
     onSubmit,
+    error,
   } = useSignUpForm();
 
   const {
@@ -118,6 +120,7 @@ export const SignUpForm: React.FC = () => {
           </span>
         )}
       </div>
+      {error && <ErrorTab text={error} />}
       <RegistrationButton
         text="Создать аккаунт"
         onClick={handleSubmit(onSubmit)}

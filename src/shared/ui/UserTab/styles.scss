@@ -1,0 +1,21 @@
+.user-tab {
+  width: auto;
+  height: auto;
+  cursor: pointer;
+
+  &:hover &__name {
+    @apply text-custom-blue;
+  }
+
+  &__image {
+    width: clamp(25px, 2.604vw, 100px);
+    height: clamp(25px, 2.604vw, 100px);
+  }
+
+  &__name {
+    font-size: clamp(10px, 1.0416vw, 40px);
+    font-family: Inter;
+    font-weight: 700;
+    @apply text-custom-black;
+  }
+}

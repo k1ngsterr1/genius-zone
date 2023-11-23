@@ -2,6 +2,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "@shared/lib/redux/store";
 import { Button } from "@shared/ui/button";
 import { useVerifyEmail } from "@widgets/form/lib/useVerifyEmail";
+import { ErrorTab } from "@shared/ui/ErrorTab";
+
 import illustration from "@assets/secure.svg";
 
 export const VerificationScreen = () => {
@@ -19,7 +21,7 @@ export const VerificationScreen = () => {
         На вашу почту <span className="blue">{email}</span> пришло письмо с
         подтверждением
       </h1>
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <ErrorTab text={error} />}
       <Button
         text="Подтвердить"
         className="button button--active mt-8"

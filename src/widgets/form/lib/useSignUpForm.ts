@@ -1,5 +1,5 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { saveEmail } from "@shared/lib/redux/store/emailSlice";
@@ -17,8 +17,7 @@ export interface FormData {
 export function useSignUpForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  let errorText;
+  const [error, setError] = useState("");
 
   const {
     register,
@@ -45,17 +44,24 @@ export function useSignUpForm() {
       navigate("/verification");
     } catch (error: any) {
       if (error.response) {
-        errorText = error.data;
-        console.log("Error Text:", errorText);
-        console.error(
-          "Registration failed with status:",
-          error.response.status
+        setError(
+          `Регистрация не удалась:
+          ${error.response.status}`
         );
+
         console.error("Failed response data", error.response.data);
+        setError(
+          `Ошибка:
+          ${error.response.data.email}`
+        );
       } else if (error.request) {
         console.error("No response received:", error.request);
+        setError(
+          `Не получен ответ:
+          ${error.request}`
+        );
       } else {
-        console.error("Error during setup:", error.message);
+        setError(`Ошибка во время установки: ${error.message}`);
       }
     }
   };
@@ -68,5 +74,6 @@ export function useSignUpForm() {
     isSubmitting,
     onSubmit,
     watchedPassword,
+    error,
   };
 }

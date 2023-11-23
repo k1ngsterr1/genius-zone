@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+// import { useDispatch } from "react-redux";
+// import { logIn } from "@shared/lib/redux/store/authSlice";
 import axios from "axios";
 
 export interface LoginFormData {
@@ -9,6 +11,7 @@ export interface LoginFormData {
 
 export function useLoginForm() {
   const navigate = useNavigate();
+  // const dispatch = useDispatch();
 
   const {
     register,
@@ -21,11 +24,13 @@ export function useLoginForm() {
   const onSubmit = async (data: LoginFormData) => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/login/`,
+        `${import.meta.env.VITE_BASE_URL}api/account/login/`,
         data
       );
 
       console.log("Login successful:", response.data);
+      // Dispatch logIn action with user data
+      // dispatch(logIn({ firstName, lastName, userImage }));
 
       navigate("/");
     } catch (error: any) {

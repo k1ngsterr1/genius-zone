@@ -1,0 +1,32 @@
+.error-tab {
+  width: auto;
+  height: auto;
+  padding: clamp(8px, 0.83328vw, 32px);
+  border: 2px solid;
+  border-radius: 2px;
+  @apply bg-red-200;
+  @apply border-red-400;
+
+  &__text {
+    font-size: clamp(9px, 0.93744vw, 36px);
+    font-family: Inter;
+    @apply text-red-600;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .error-tab {
+    width: auto;
+    height: auto;
+    padding: clamp(8px, 3.73824vw, 32px);
+    border: 2px solid;
+    border-radius: 2px;
+    @apply bg-red-200;
+    @apply border-red-400;
+    &__text {
+      font-size: clamp(9px, 4.20552vw, 36px);
+      font-family: Inter;
+      @apply text-red-600;
+    }
+  }
+}
