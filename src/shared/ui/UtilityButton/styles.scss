@@ -1,0 +1,38 @@
+.utility-button {
+  width: clamp(100px, 10.416vw, 400px);
+  height: auto;
+
+  &__filled-btn {
+    width: clamp(100px, 10.416vw, 400px);
+    height: auto;
+    color: white;
+    font-family: Inter;
+    font-size: clamp(9px, 0.93744vw, 36px);
+    padding-top: clamp(4px, 0.41664vw, 16px);
+    padding-bottom: clamp(4px, 0.41664vw, 16px);
+    border-radius: 2px;
+    transition: 0.3s all;
+    @apply bg-custom-blue;
+    &:hover {
+      background-color: #0f20b9;
+    }
+  }
+  &__transparent-inactive {
+    font-family: Inter;
+    font-weight: 700;
+    font-size: clamp(10px, 1.0416vw, 40px);
+    @apply text-custom-black;
+    transition: 0.3s all;
+    &:hover {
+      color: #0f20b9;
+    }
+  }
+
+  &__transparent-active {
+    font-family: Inter;
+    font-weight: 700;
+    font-size: clamp(10px, 1.0416vw, 40px);
+    @apply text-custom-blue;
+    text-decoration: underline;
+  }
+}

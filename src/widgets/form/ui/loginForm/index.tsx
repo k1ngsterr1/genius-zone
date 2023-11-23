@@ -4,12 +4,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useLoginForm } from "@widgets/form/lib/useLoginForm";
 import { Link } from "react-router-dom";
+import { ErrorTab } from "@shared/ui/ErrorTab";
 
 import "../styles.scss";
 
 export const LoginForm = () => {
-  const { register, handleSubmit, errors, isSubmitting, isValid, onSubmit } =
-    useLoginForm();
+  const {
+    register,
+    handleSubmit,
+    errors,
+    isSubmitting,
+    isValid,
+    onSubmit,
+    error,
+  } = useLoginForm();
 
   const {
     isVisible: isPasswordVisible,
@@ -56,6 +64,7 @@ export const LoginForm = () => {
           <span className="form__input--error">{errors.password.message}</span>
         )}
       </div>
+      {error && <ErrorTab text={error} />}
       <RegistrationButton
         text="Войти"
         onClick={handleSubmit(onSubmit)}

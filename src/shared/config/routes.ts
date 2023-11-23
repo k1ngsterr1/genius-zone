@@ -4,4 +4,5 @@ export const ROUTE_CONSTANTS = {
   REGISTRATION: "/registration",
   LOGIN: "/login",
   VERIFICATION: "/verification",
+  USER: "/user",
 };

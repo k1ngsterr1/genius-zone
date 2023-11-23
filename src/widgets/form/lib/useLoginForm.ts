@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { logIn } from "@shared/lib/redux/store/authSlice";
+import { useDispatch } from "react-redux";
+import { logIn } from "@shared/lib/redux/store/authSlice";
+import Cookies from "js-cookie";
 import axios from "axios";
 
 export interface LoginFormData {
@@ -10,8 +12,9 @@ export interface LoginFormData {
 }
 
 export function useLoginForm() {
+  const [error, setError] = useState("");
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -29,18 +32,28 @@ export function useLoginForm() {
       );
 
       console.log("Login successful:", response.data);
-      // Dispatch logIn action with user data
-      // dispatch(logIn({ firstName, lastName, userImage }));
+
+      const firstName = response.data.user.first_name.toString();
+      const lastName = response.data.user.last_name.toString();
+      const userImage = response.data.user.photo.toString();
+
+      dispatch(
+        logIn({
+          firstName: firstName,
+          lastName: lastName,
+          userImage: userImage,
+        })
+      );
 
       navigate("/");
     } catch (error: any) {
       if (error.response) {
         console.error("Login failed with status:", error.response.status);
-        console.error("Failed response data", error.response.data);
+        setError(`Ошибка логина: ${error.response.status}`);
       } else if (error.request) {
-        console.error("No response received:", error.request);
+        setError(`Ошибка ответа: ${error.request}`);
       } else {
-        console.error("Error during setup:", error.message);
+        setError(`Ошибка во время установки: ${error.message}`);
       }
     }
   };
@@ -51,5 +64,6 @@ export function useLoginForm() {
     errors,
     isSubmitting,
     onSubmit,
+    error,
   };
 }

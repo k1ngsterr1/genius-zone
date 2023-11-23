@@ -43,7 +43,7 @@ export const Header = () => {
               className="outline-button"
               onClick={() => navigate("/registration")}
             />
-            <UserTab firstName="" lastName="" userImage="" />
+            {/* <UserTab firstName="" lastName="" userImage="" /> */}
           </div>
         </div>
       </div>

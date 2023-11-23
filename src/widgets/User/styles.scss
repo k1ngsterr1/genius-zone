@@ -1,0 +1,42 @@
+.user-profile {
+  width: auto;
+  height: 100%;
+
+  &__image {
+    width: 160px;
+    height: 160px;
+    border-radius: 9px;
+  }
+  &__name {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: Inter;
+    @apply text-custom-black;
+  }
+
+  &__location {
+    font-size: 16px;
+    @apply text-gray-500;
+  }
+
+  &__text-heading {
+    font-size: 20px;
+    font-weight: 500;
+    font-family: Inter;
+    @apply text-custom-black;
+  }
+
+  &__tab {
+    width: auto;
+    height: auto;
+    &__text {
+      font-size: 17px;
+      font-family: Inter;
+      @apply text-custom-black;
+    }
+    &__icon {
+      font-size: 20px;
+      @apply text-custom-blue;
+    }
+  }
+}

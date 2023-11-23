@@ -9,16 +9,11 @@ const authSlice = createSlice({
     userImage: null,
   },
   reducers: {
-    saveUserData: (state, action) => {
-      state.firstName = action.payload;
-      state.lastName = action.payload;
-      state.userImage = action.payload;
-    },
     logIn: (state, action) => {
       state.isLogggedIn = true;
-      state.firstName = action.payload;
-      state.lastName = action.payload;
-      state.userImage = action.payload;
+      state.firstName = action.payload.firstName;
+      state.lastName = action.payload.lastName;
+      state.userImage = action.payload.userImage;
     },
     logOut: (state) => {
       state.isLogggedIn = false;
@@ -29,5 +24,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { logIn, logOut, saveUserData } = authSlice.actions;
+export const { logIn, logOut } = authSlice.actions;
 export default authSlice.reducer;
