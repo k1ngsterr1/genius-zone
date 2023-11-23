@@ -1,0 +1,31 @@
+.course-tab {
+  width: 450px;
+  height: auto;
+  padding: 20px;
+  border-radius: 8px;
+  @apply bg-slate-100;
+  @apply shadow-md;
+
+  &__row {
+    width: 100%;
+    height: auto;
+
+    &__heading {
+      font-size: 21px;
+      font-weight: 800;
+      font-family: Inter;
+    }
+
+    &__image {
+      width: 58px;
+      height: 58px;
+      border-radius: 4px;
+    }
+  }
+  &__description {
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Inter;
+  }
+}

@@ -3,12 +3,13 @@ import { UtilityButton } from "@shared/ui/UtilityButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBriefcase, faStar } from "@fortawesome/free-solid-svg-icons";
 import { Separator } from "@shared/ui/Separator";
+import { CourseTab } from "@widgets/CoureTab";
 
 import "./styles.scss";
 
 export const UserScreen = () => {
   return (
-    <main className="wrapper">
+    <main className="wrapper--row">
       <div className="user-profile flex flex-col items-start">
         <img src={image} alt="user-image" className="user-profile__image" />
         <span className="user-profile__name mt-4">Ruslan Makhmatov</span>
@@ -49,6 +50,9 @@ export const UserScreen = () => {
             type={"transparent-inactive"}
           />
         </div>
+      </div>
+      <div className="courses-container flex flex-col">
+        <CourseTab />
       </div>
     </main>
   );

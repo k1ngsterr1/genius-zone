@@ -25,6 +25,16 @@
   align-items: center;
   margin: auto;
   @apply mt-32;
+
+  &--row {
+    width: 86.6%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    @apply mt-32;
+  }
 }
 
 .main-heading {
