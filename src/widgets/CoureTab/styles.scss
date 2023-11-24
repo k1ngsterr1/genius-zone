@@ -11,7 +11,7 @@
     height: auto;
 
     &__heading {
-      font-size: clamp(10.5px, 1.09368vw, 42px);
+      font-size: clamp(10px, 1.0416vw, 40px);
       font-weight: 800;
       font-family: Inter;
     }
@@ -24,7 +24,7 @@
   }
   &__description {
     width: 100%;
-    font-size: clamp(8px, 0.83328vw, 32px);
+    font-size: clamp(7px, 0.72912vw, 28px);
     font-weight: 400;
     font-family: Inter;
   }

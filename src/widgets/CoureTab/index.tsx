@@ -6,20 +6,22 @@ import { FavoriteButton } from "@shared/ui/FavoriteButton";
 import "./styles.scss";
 
 interface CourseTabProps {
-  courseName?: string;
-  courseDescription?: string;
-  courseImage?: string;
-  marginTop?: string;
+  courseName: string;
+  courseDescription: string;
+  courseImage: string;
+  margin: string;
+  buttonText: string;
 }
 
 export const CourseTab = ({
   courseName,
   courseDescription,
   courseImage,
-  marginTop,
+  margin,
+  buttonText,
 }) => {
   return (
-    <div className={`course-tab ${marginTop}`}>
+    <div className={`course-tab ${margin}`}>
       <div className="course-tab__row flex items-center justify-between">
         <h1 className="course-tab__row__heading">
           Введние в программирование (C++)
@@ -30,14 +32,14 @@ export const CourseTab = ({
         Тесты, прилагаемые к условиям задач, даны только для примера. Их
         успешное прохождение ещё не гарантия правильной работы вашего кода и
       </p>
-      <div className="flex items-center">
+      <div className="flex items-center justify-between mt-4">
         <UtilityButton
           type="filled-btn"
-          text="Записаться"
-          marginTop="mt-4"
+          text={buttonText}
+          marginTop="mt-0"
           onClick={() => console.log("lol")}
         />
-        <FavoriteButton type="" />
+        <FavoriteButton type="filled" />
       </div>
     </div>
   );

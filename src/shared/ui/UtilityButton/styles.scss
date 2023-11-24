@@ -1,5 +1,5 @@
 .utility-button {
-  width: clamp(100px, 10.416vw, 400px);
+  width: clamp(85px, 8.8536vw, 340px);
   height: auto;
 
   &__filled-btn {
@@ -7,10 +7,10 @@
     height: auto;
     color: white;
     font-family: Inter;
-    font-size: clamp(9px, 0.93744vw, 36px);
+    font-size: clamp(8.5px, 0.88536vw, 34px);
     padding-top: clamp(4px, 0.41664vw, 16px);
     padding-bottom: clamp(4px, 0.41664vw, 16px);
-    border-radius: 2px;
+    border-radius: 4px;
     transition: 0.3s all;
     @apply bg-custom-blue;
     &:hover {

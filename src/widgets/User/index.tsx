@@ -55,9 +55,14 @@ export const UserScreen = () => {
       <div className="w-[73%] courses-container flex flex-col">
         <h1 className="main-heading">Моё обучение</h1>
         <div className="w-full flex items-center justify-between mt-8">
-          <CourseTab />
-          <CourseTab marginTop={"ml-12"} />
-          <CourseTab marginTop={"ml-12"} />
+          <CourseTab buttonText={"Продолжить"} />
+          <CourseTab margin={"ml-12"} buttonText={"Продолжить"} />
+          <CourseTab margin={"ml-12"} buttonText={"Продолжить"} />
+        </div>
+        <div className="w-full flex items-center justify-between mt-8">
+          <CourseTab buttonText={"Продолжить"} />
+          <CourseTab margin={"ml-12"} buttonText={"Продолжить"} />
+          <CourseTab margin={"ml-12"} buttonText={"Продолжить"} />
         </div>
       </div>
     </main>
