@@ -5,7 +5,7 @@ import "./styles.scss";
 interface SeparatorProps {
   width: string;
   margin: string;
-  color: string;
+  color?: string;
 }
 
 export const Separator: React.FC<SeparatorProps> = ({

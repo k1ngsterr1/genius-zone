@@ -74,7 +74,7 @@ export const UserScreen = () => {
             <CourseTab margin={"ml-12"} buttonText={"Продолжить"} />
             <CourseTab margin={"ml-12"} buttonText={"Продолжить"} />
           </div>
-          <Separator width="w-[100%]" margin="mt-12 mb-12" />
+          <Separator width="w-[100%]" margin="mt-12 mb-12" color="" />
           <h2 className="main-heading">Вам может понравится</h2>
           <div className="w-full flex items-center justify-between mt-8">
             <CategoryTab name="Разработка на C++" level="Продвинутый" />
