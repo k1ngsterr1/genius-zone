@@ -37,7 +37,7 @@ export const Footer = () => {
         </nav>
         <Separator width="w-[100%]" margin="mt-6 mb-6" color="bg-white-100" />
         <span className="footer__container__text mb-4">
-          Genius Zone All Rights Reserved ©
+          Genius Zone All Rights Reserved 2023. ©
         </span>
       </div>
     </footer>
