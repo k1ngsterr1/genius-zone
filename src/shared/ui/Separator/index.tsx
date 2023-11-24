@@ -13,5 +13,5 @@ export const Separator: React.FC<SeparatorProps> = ({
   margin,
   color,
 }) => {
-  return <hr className={`horizontal-separator ${width} ${margin}`} />;
+  return <hr className={`horizontal-separator ${width} ${margin} ${color}`} />;
 };

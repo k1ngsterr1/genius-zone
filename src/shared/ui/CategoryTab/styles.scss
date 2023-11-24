@@ -1,0 +1,35 @@
+.category-tab {
+  width: auto;
+  height: auto;
+  padding: clamp(8px, 0.83328vw, 32px);
+  border-radius: 5px;
+  cursor: pointer;
+  @apply bg-custom-light-blue;
+  transition: 0.3s all;
+  &:hover {
+    background: #9fa8f7;
+    @apply shadow-md;
+  }
+
+  &:hover &__text {
+    @apply text-custom-hover-blue;
+  }
+  &:hover &__level {
+    @apply text-custom-hover-blue;
+  }
+
+  &__text {
+    font-size: clamp(9px, 0.93744vw, 36px);
+    font-weight: 900;
+    font-family: Inter;
+    @apply text-custom-blue;
+    transition: 0.3s all;
+  }
+
+  &__level {
+    font-size: clamp(7px, 0.72912vw, 28px);
+    font-family: Inter;
+    @apply text-custom-blue;
+    transition: 0.3s all;
+  }
+}
