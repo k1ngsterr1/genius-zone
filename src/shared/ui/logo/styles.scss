@@ -16,6 +16,10 @@
     font-weight: 800;
     line-height: normal;
   }
+
+  .white {
+    color: white !important;
+  }
 }
 
 @media screen and (max-width: 640px) {
@@ -36,6 +40,9 @@
       font-style: normal;
       font-weight: 800;
       line-height: normal;
+    }
+    .white {
+      color: white !important;
     }
   }
 }

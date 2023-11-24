@@ -1,0 +1,48 @@
+.footer {
+  width: 100%;
+  height: auto;
+  margin: auto;
+  @apply bg-custom-blue;
+
+  &__container {
+    width: 86.6%;
+    height: auto;
+    margin: auto;
+
+    &__nav {
+      width: 100%;
+      height: auto;
+
+      &--link {
+        font-size: clamp(11px, 1.1457600000000001vw, 44px);
+        font-weight: 600;
+        @apply text-white;
+        transition: 0.3s all;
+        &:hover {
+          @apply text-gray-300;
+        }
+      }
+
+      &__icons {
+        height: auto;
+
+        &--icon {
+          font-size: clamp(16px, 1.66656vw, 64px);
+          color: white;
+          cursor: pointer;
+          transition: 0.3s all;
+          &:hover {
+            @apply text-gray-300;
+          }
+        }
+      }
+    }
+
+    &__text {
+      font-size: clamp(8px, 0.83328vw, 32px);
+      @apply text-gray-100;
+      opacity: 0.5;
+      margin: auto;
+    }
+  }
+}

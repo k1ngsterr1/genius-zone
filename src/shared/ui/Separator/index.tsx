@@ -4,9 +4,14 @@ import "./styles.scss";
 
 interface SeparatorProps {
   width: string;
-  marginTop: string;
+  margin: string;
+  color: string;
 }
 
-export const Separator: React.FC<SeparatorProps> = ({ width, marginTop }) => {
-  return <hr className={`horizontal-separator ${width} ${marginTop}`} />;
+export const Separator: React.FC<SeparatorProps> = ({
+  width,
+  margin,
+  color,
+}) => {
+  return <hr className={`horizontal-separator ${width} ${margin}`} />;
 };
