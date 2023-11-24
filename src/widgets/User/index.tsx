@@ -1,4 +1,5 @@
 import image from "@assets/ruslan.jpg";
+
 import { UtilityButton } from "@shared/ui/UtilityButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBriefcase, faStar } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +10,7 @@ import "./styles.scss";
 
 export const UserScreen = () => {
   return (
-    <main className="wrapper--row">
+    <main className="wrapper--row mb-12">
       <div className="user-profile flex flex-col items-start">
         <img src={image} alt="user-image" className="user-profile__image" />
         <span className="user-profile__name mt-4">Ruslan Makhmatov</span>
@@ -51,8 +52,13 @@ export const UserScreen = () => {
           />
         </div>
       </div>
-      <div className="courses-container flex flex-col">
-        <CourseTab />
+      <div className="w-[73%] courses-container flex flex-col">
+        <h1 className="main-heading">Моё обучение</h1>
+        <div className="w-full flex items-center justify-between mt-8">
+          <CourseTab />
+          <CourseTab marginTop={"ml-12"} />
+          <CourseTab marginTop={"ml-12"} />
+        </div>
       </div>
     </main>
   );

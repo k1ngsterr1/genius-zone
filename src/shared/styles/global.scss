@@ -31,9 +31,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     margin: auto;
     @apply mt-32;
+    @apply mb-32;
   }
 }
 
@@ -41,7 +41,6 @@
   @apply text-custom-black;
   font-family: Inter;
   font-size: clamp(15px, 1.5624vw, 60px);
-  text-align: center;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
