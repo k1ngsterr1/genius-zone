@@ -17,6 +17,25 @@
       background-color: #0f20b9;
     }
   }
+
+  &__outline-btn {
+    width: clamp(100px, 10.416vw, 400px);
+    height: auto;
+    font-family: Inter;
+    font-size: clamp(8.5px, 0.88536vw, 34px);
+    padding-top: clamp(4px, 0.41664vw, 16px);
+    padding-bottom: clamp(4px, 0.41664vw, 16px);
+    border-radius: 4px;
+    transition: 0.3s all;
+    border: 3px solid;
+    @apply border-custom-blue;
+    @apply text-custom-blue;
+    &:hover {
+      color: white;
+      @apply bg-custom-blue;
+    }
+  }
+
   &__transparent-inactive {
     font-family: Inter;
     font-weight: 700;

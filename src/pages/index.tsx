@@ -9,6 +9,7 @@ import { LoginPage } from "./Login";
 import { VerificationPage } from "./Verification/ui";
 import { ChangePasswordPage } from "./ChangePassword";
 import { UserPage } from "./User/ui";
+import { CoursePage } from "./Course/ui";
 
 export const MyRoutes: FC = () => {
   return (
@@ -28,6 +29,7 @@ export const MyRoutes: FC = () => {
           path={ROUTE_CONSTANTS.CHANGE_PASSWORD}
           element={<ChangePasswordPage />}
         />
+        <Route path={ROUTE_CONSTANTS.COURSE} element={<CoursePage />} />
         <Route path={ROUTE_CONSTANTS.USER} element={<UserPage />} />
       </Routes>
     </Router>
