@@ -1,10 +1,7 @@
 import { useState } from "react";
-import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import ListItemText from "@mui/material/ListItemText";
-import Collapse from "@mui/material/Collapse";
 import SchoolIcon from "@mui/icons-material/School";
 import BookIcon from "@mui/icons-material/Book";
 import { UtilityButton } from "@shared/ui/UtilityButton";
@@ -13,6 +10,8 @@ import { UserProfile } from "@shared/ui/UserProfile";
 import "./styles.scss";
 
 export const CreateCourseSide = () => {
+  const [isActive, setIsActive] = useState();
+
   return (
     <aside className="course-edit-side sticky top-20">
       <UserProfile />

@@ -35,7 +35,6 @@ export const KebabMenu: React.FC<KebabMenuProps> = ({
       }}
     >
       <MenuItem onClick={handleClose}>Редактировать</MenuItem>
-      <MenuItem onClick={handleClose}>Создать копию</MenuItem>
       <MenuItem onClick={handleClose}>Удалить</MenuItem>
     </Menu>
   );
