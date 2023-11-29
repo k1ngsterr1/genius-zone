@@ -13,7 +13,7 @@ interface CourseTabProps {
   buttonText: string;
 }
 
-export const CourseTab = ({
+export const CourseTab: React.FC<CourseTabProps> = ({
   courseName,
   courseDescription,
   courseImage,
