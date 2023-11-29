@@ -9,11 +9,13 @@ export const CoursePage = () => {
   const isMenuOpen = useSelector((state: RootState) => state.menu.isOpen);
 
   return (
-    <div className="page">
-      <Header />
-      {isMenuOpen && <Menu />}
-      <CourseScreen />
+    <>
+      <div className="page">
+        <Header />
+        {isMenuOpen && <Menu />}
+        <CourseScreen />
+      </div>
       <Footer />
-    </div>
+    </>
   );
 };

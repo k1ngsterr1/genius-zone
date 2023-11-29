@@ -1,11 +1,12 @@
-import { Header } from "@features/header/ui";
-import { Menu } from "@widgets/Menu";
+import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@shared/lib/redux/store";
-import { UserScreen } from "@widgets/User";
+import { Header } from "@features/header/ui";
 import { Footer } from "@features/Footer/ui";
+import { Menu } from "@widgets/Menu";
+import { CreateNewCourseScreen } from "@widgets/CreateNewCourse/ui";
 
-export const UserPage = () => {
+export const CreateNewCourse = () => {
   const isMenuOpen = useSelector((state: RootState) => state.menu.isOpen);
 
   return (
@@ -13,7 +14,7 @@ export const UserPage = () => {
       <div className="page">
         <Header />
         {isMenuOpen && <Menu />}
-        <UserScreen />
+        <CreateNewCourseScreen />
       </div>
       <Footer />
     </>

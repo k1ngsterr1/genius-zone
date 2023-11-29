@@ -7,4 +7,5 @@ export const ROUTE_CONSTANTS = {
   USER: "/user",
   COURSE: "/courses",
   COURSE_EDIT: "/create-course",
+  CREATE_COURSE: "/create-course/new",
 };
