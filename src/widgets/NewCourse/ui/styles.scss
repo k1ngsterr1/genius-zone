@@ -1,22 +1,37 @@
 .new-course {
   height: auto;
   padding: clamp(10px, 1.0416vw, 40px);
-  @apply bg-slate-100;
+  border-radius: 4px;
+  cursor: pointer;
+  @apply bg-slate-50;
   @apply shadow-sm;
+  @apply mt-8;
+  transition: 0.3s all;
+  &:hover {
+    @apply bg-custom-lightest-blue;
+    @apply shadow-md;
+  }
 
   &__image {
-    width: clamp(24px, 2.49984vw, 96px);
-    height: clamp(24px, 2.49984vw, 96px);
+    width: 75px;
+    height: 75px;
   }
 
   &__content {
-    width: auto;
+    width: 100%;
     height: auto;
+    display: flex;
+    flex-direction: column;
 
-    &__title {
-      font-size: 22px;
-      font-weight: 700;
-      @apply text-custom-black;
+    &__title-container {
+      width: 100%;
+      height: auto;
+
+      &__title {
+        font-size: 22px;
+        font-weight: 700;
+        @apply text-custom-black;
+      }
     }
   }
 }
