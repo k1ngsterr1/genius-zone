@@ -6,7 +6,14 @@
     @apply mt-12 #{!important};
 
     &:hover {
-      @apply bg-custom-light-blue;
+      @apply bg-custom-lightest-blue text-custom-blue #{!important};
+    }
+  }
+
+  &__notification-btn {
+    @apply mt-2 #{!important};
+    &:hover {
+      @apply bg-custom-lightest-blue text-custom-blue #{!important};
     }
   }
 

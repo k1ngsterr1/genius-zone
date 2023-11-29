@@ -3,12 +3,14 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import StarIcon from "@mui/icons-material/Star";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 import SchoolIcon from "@mui/icons-material/School";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { UtilityButton } from "@shared/ui/UtilityButton";
+import { UserProfile } from "@shared/ui/UserProfile";
 
 import "./styles.scss";
 
@@ -19,11 +21,12 @@ export const CoursesAside = () => {
     setOpen(!open);
   };
   return (
-    <aside className="course-side-tab">
+    <aside className="course-side-tab sticky top-20">
+      <UserProfile />
       <UtilityButton
         text="Создать курс"
         type="outline-btn"
-        marginTop="mt-0"
+        marginTop="mt-8"
         onClick={() => console.log("click")}
       />
       <ListItem
@@ -84,6 +87,20 @@ export const CoursesAside = () => {
           </ListItem>
         </List>
       </Collapse>
+      <ListItem
+        button
+        className="course-side-tab__notification-btn"
+        TouchRippleProps={{
+          style: {
+            color: "blue",
+          },
+        }}
+      >
+        <ListItemIcon>
+          <NotificationsActiveIcon className="course-side-tab__icon" />
+        </ListItemIcon>
+        <ListItemText primary="Уведомления" />
+      </ListItem>
     </aside>
   );
 };
