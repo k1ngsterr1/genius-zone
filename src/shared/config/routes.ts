@@ -5,4 +5,5 @@ export const ROUTE_CONSTANTS = {
   LOGIN: "/login",
   VERIFICATION: "/verification",
   USER: "/user",
+  COURSE: "/course",
 };
