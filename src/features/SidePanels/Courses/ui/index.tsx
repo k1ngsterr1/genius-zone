@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import StarIcon from "@mui/icons-material/Star";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";

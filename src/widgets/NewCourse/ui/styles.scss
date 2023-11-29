@@ -1,0 +1,22 @@
+.new-course {
+  height: auto;
+  padding: clamp(10px, 1.0416vw, 40px);
+  @apply bg-slate-100;
+  @apply shadow-sm;
+
+  &__image {
+    width: clamp(24px, 2.49984vw, 96px);
+    height: clamp(24px, 2.49984vw, 96px);
+  }
+
+  &__content {
+    width: auto;
+    height: auto;
+
+    &__title {
+      font-size: 22px;
+      font-weight: 700;
+      @apply text-custom-black;
+    }
+  }
+}

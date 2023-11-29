@@ -1,4 +1,4 @@
-.course-side-tab {
+.course-edit-side {
   width: auto;
   height: 100%;
 
@@ -10,7 +10,7 @@
     }
   }
 
-  &__notification-btn {
+  &__lessons-btn {
     @apply mt-2 #{!important};
     &:hover {
       @apply bg-custom-lightest-blue text-custom-blue #{!important};
