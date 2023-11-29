@@ -3,7 +3,7 @@ import { Footer } from "@features/Footer/ui";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBriefcase, faStar } from "@fortawesome/free-solid-svg-icons";
 import { Separator } from "@shared/ui/Separator";
-import { CourseTab } from "@widgets/CoureTab";
+import { CourseTab } from "@widgets/CourseTab";
 
 import image from "@assets/ruslan.jpg";
 

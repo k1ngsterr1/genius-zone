@@ -2,7 +2,7 @@ import { CoursesAside } from "@features/SidePanels/Courses/ui";
 import SearchBar from "@features/SearchBar/ui";
 
 import "./styles.scss";
-import { CourseTab } from "@widgets/CoureTab";
+import { CourseTab } from "@widgets/CourseTab";
 
 export const CourseScreen = () => {
   return (
