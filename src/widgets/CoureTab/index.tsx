@@ -9,7 +9,7 @@ interface CourseTabProps {
   courseName: string;
   courseDescription: string;
   courseImage: string;
-  margin: string;
+  margin?: string;
   buttonText: string;
 }
 
