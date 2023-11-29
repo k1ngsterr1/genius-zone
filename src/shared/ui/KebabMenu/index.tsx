@@ -1,9 +1,17 @@
+// KebabMenu.jsx
 import React from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-export const KebabMenu = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+interface KebabMenuProps {
+  anchorEl: any;
+  setAnchorEl: any;
+}
+
+export const KebabMenu: React.FC<KebabMenuProps> = ({
+  anchorEl,
+  setAnchorEl,
+}) => {
   const open = Boolean(anchorEl);
 
   const handleClose = () => {
@@ -11,19 +19,24 @@ export const KebabMenu = () => {
   };
 
   return (
-    <div>
-      <Menu
-        id="long-menu"
-        className=""
-        anchorEl={anchorEl}
-        keepMounted
-        open={open}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={handleClose}>Редактировать</MenuItem>
-        <MenuItem onClick={handleClose}>Создать копию</MenuItem>
-        <MenuItem onClick={handleClose}>Удалить</MenuItem>
-      </Menu>
-    </div>
+    <Menu
+      id="long-menu"
+      anchorEl={anchorEl}
+      keepMounted
+      open={open}
+      onClose={handleClose}
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "right",
+      }}
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+    >
+      <MenuItem onClick={handleClose}>Редактировать</MenuItem>
+      <MenuItem onClick={handleClose}>Создать копию</MenuItem>
+      <MenuItem onClick={handleClose}>Удалить</MenuItem>
+    </Menu>
   );
 };

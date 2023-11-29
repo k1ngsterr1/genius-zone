@@ -1,3 +1,4 @@
+// NewCourse.jsx
 import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -17,8 +18,14 @@ export const NewCourse: React.FC<NewCourseProps> = ({
   image,
   description,
 }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event: any) => {
+    setAnchorEl(event.currentTarget);
+  };
+
   return (
-    <div className="new-course flex justfy-between items-center">
+    <div className="new-course flex justify-between items-center">
       <img src={newImage} className="new-course__image" alt={title} />
       <div className="new-course__content flex flex-column items-start ml-8">
         <div className="new-course__content__title-container flex items-center justify-between">
@@ -29,10 +36,11 @@ export const NewCourse: React.FC<NewCourseProps> = ({
             aria-label="more"
             aria-controls="long-menu"
             aria-haspopup="true"
+            onClick={handleClick}
           >
             <MoreVertIcon />
           </IconButton>
-          <KebabMenu />
+          <KebabMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
         </div>
         <p className="new-course__description w-[60%]">{description}</p>
       </div>
