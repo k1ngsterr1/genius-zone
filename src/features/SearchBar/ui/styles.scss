@@ -1,4 +1,4 @@
 .search-bar {
-  width: 300px !important;
+  width: clamp(150px, 15.624vw, 600px) !important;
   @apply mt-5 #{!important};
 }
