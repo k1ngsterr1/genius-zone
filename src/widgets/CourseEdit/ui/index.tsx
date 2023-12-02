@@ -5,6 +5,7 @@ export const CourseEditScreen = () => {
   return (
     <div className="wrapper--row mt-12">
       <EditCourseTab />
+      aa
     </div>
   );
 };
