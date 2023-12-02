@@ -1,5 +1,5 @@
 import React from "react";
 
 export const CourseEditScreen = () => {
-  return <div>index</div>;
+  return <div className="wrapper mt-12">index</div>;
 };

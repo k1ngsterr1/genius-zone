@@ -1,5 +1,6 @@
 import { Footer } from "@features/Footer/ui";
 import { Header } from "@features/header/ui";
+import { CourseEditScreen } from "@widgets/CourseEdit/ui";
 import { Menu } from "@widgets/Menu";
 import { useSelector } from "react-redux";
 
@@ -11,7 +12,7 @@ export const NewCourseEdit = () => {
       <div className="page">
         <Header />
         {isMenuOpen && <Menu />}
-        <CreateNewCourseScreen />
+        <CourseEditScreen />
       </div>
       <Footer />{" "}
     </>
