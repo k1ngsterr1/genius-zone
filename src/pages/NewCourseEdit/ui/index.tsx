@@ -14,7 +14,7 @@ export const NewCourseEdit = () => {
         {isMenuOpen && <Menu />}
         <CourseEditScreen />
       </div>
-      <Footer />{" "}
+      <Footer />
     </>
   );
 };

@@ -3,7 +3,7 @@
   height: clamp(22px, 2.2915200000000002vw, 88px);
   background-color: #0b1887 !important;
   font-size: clamp(9px, 0.93744vw, 36px);
-  color: white;
+  color: white !important;
   @apply border-custom-blue;
   transition: 0.3s all;
   margin-right: 16px;
