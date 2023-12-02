@@ -1,4 +1,9 @@
 .course-side-tab {
   width: auto;
   height: 100vh;
+
+  &__img {
+    width: 220px;
+    height: 100px;
+  }
 }

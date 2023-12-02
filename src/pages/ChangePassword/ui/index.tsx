@@ -1,8 +1,8 @@
 import { Header } from "@features/header/ui";
-import { ChangePasswordScreen } from "@widgets/ChangePassword";
 import { Menu } from "@widgets/Menu";
 import { RootState } from "@shared/lib/redux/store";
 import { useSelector } from "react-redux";
+import { ChangePasswordScreen } from "@widgets/ChangePassword";
 
 export const ChangePasswordPage = () => {
   const isMenuOpen = useSelector((state: RootState) => state.menu.isOpen);

@@ -34,7 +34,7 @@ export function useSignUpForm() {
   const onSubmit = async (data: FormData) => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}api/account/register/`,
+        `https://pixel2protocolv1-production.up.railway.app/register`,
         data
       );
 
