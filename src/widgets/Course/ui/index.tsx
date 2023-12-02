@@ -10,7 +10,7 @@ export const CourseScreen = () => {
       <main className="wrapper--row mb-12">
         <CoursesAside />
         <section className="w-[73%] courses-container flex flex-col">
-          <h1 className="main-heading">Курсы</h1>
+          <h1 className="main-heading">Курсыz</h1>
           <SearchBar onSearch={() => console.log("zhopa")} />
           <h2 className="text-2xl text-custom-black mt-8">Популряные</h2>
           <div className="w-full flex justify-between items-center mt-8">
