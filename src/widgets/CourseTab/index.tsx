@@ -9,11 +9,11 @@ interface CourseTabProps {
   courseName: string;
   courseDescription: string;
   courseImage: string;
-  margin: string;
+  margin?: string;
   buttonText: string;
 }
 
-export const CourseTab = ({
+export const CourseTab: React.FC<CourseTabProps> = ({
   courseName,
   courseDescription,
   courseImage,

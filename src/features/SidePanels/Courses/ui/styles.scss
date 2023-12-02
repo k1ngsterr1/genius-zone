@@ -1,19 +1,19 @@
 .course-side-tab {
   width: auto;
-<<<<<<< HEAD
-  height: 100vh;
-
-  &__img {
-    width: 220px;
-    height: 100px;
-=======
   height: 100%;
 
   &__course-btn {
     @apply mt-12 #{!important};
 
     &:hover {
-      @apply bg-custom-light-blue;
+      @apply bg-custom-lightest-blue text-custom-blue #{!important};
+    }
+  }
+
+  &__notification-btn {
+    @apply mt-2 #{!important};
+    &:hover {
+      @apply bg-custom-lightest-blue text-custom-blue #{!important};
     }
   }
 
@@ -33,6 +33,5 @@
     &:hover {
       @apply bg-custom-lightest-blue text-custom-blue #{!important};
     }
->>>>>>> a1c7cd596b6707aade23a99bd7a22489787bd642
   }
 }

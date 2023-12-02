@@ -3,8 +3,14 @@
   height: auto;
   padding: clamp(10px, 1.0416vw, 40px);
   border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s all;
   @apply bg-slate-100;
   @apply shadow-md;
+  &:hover {
+    @apply shadow-lg;
+    @apply bg-custom-lightest-blue;
+  }
 
   &__row {
     width: 100%;

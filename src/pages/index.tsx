@@ -10,6 +10,8 @@ import { VerificationPage } from "./Verification/ui";
 import { ChangePasswordPage } from "./ChangePassword";
 import { UserPage } from "./User/ui";
 import { CoursePage } from "./Course/ui";
+import { CreateCoursePage } from "./CreateCourse/ui";
+import { CreateNewCourse } from "./CreateNewCourse/ui";
 
 export const MyRoutes: FC = () => {
   return (
@@ -30,6 +32,14 @@ export const MyRoutes: FC = () => {
           element={<ChangePasswordPage />}
         />
         <Route path={ROUTE_CONSTANTS.COURSE} element={<CoursePage />} />
+        <Route
+          path={ROUTE_CONSTANTS.COURSE_EDIT}
+          element={<CreateCoursePage />}
+        />
+        <Route
+          path={ROUTE_CONSTANTS.CREATE_COURSE}
+          element={<CreateNewCourse />}
+        />
         <Route path={ROUTE_CONSTANTS.USER} element={<UserPage />} />
       </Routes>
     </Router>

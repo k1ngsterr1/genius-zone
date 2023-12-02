@@ -1,0 +1,42 @@
+.user-profile {
+  width: auto;
+  height: 100%;
+
+  &__image {
+    width: clamp(100px, 10.416vw, 400px);
+    height: clamp(110px, 11.457600000000001vw, 440px);
+    border-radius: clamp(4.5px, 0.46872vw, 18px);
+  }
+  &__name {
+    font-size: clamp(12px, 1.24992vw, 48px);
+    font-weight: 700;
+    font-family: Inter;
+    @apply text-custom-black;
+  }
+
+  &__location {
+    font-size: clamp(8px, 0.83328vw, 32px);
+    @apply text-gray-500;
+  }
+
+  &__text-heading {
+    font-size: clamp(10px, 1.0416vw, 40px);
+    font-weight: 500;
+    font-family: Inter;
+    @apply text-custom-black;
+  }
+
+  &__tab {
+    width: auto;
+    height: auto;
+    &__text {
+      font-size: clamp(8.5px, 0.88536vw, 34px);
+      font-family: Inter;
+      @apply text-custom-black;
+    }
+    &__icon {
+      font-size: clamp(10px, 1.0416vw, 40px);
+      @apply text-custom-blue;
+    }
+  }
+}

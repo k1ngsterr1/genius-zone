@@ -9,7 +9,7 @@ import { Separator } from "@shared/ui/Separator";
 
 export const Footer = () => {
   return (
-    <footer className="footer flex flex-col">
+    <footer className="footer flex flex-col ">
       <div className="footer__container flex flex-col">
         <nav className="footer__container__nav flex items-center justify-between mt-8">
           <Logo color="white" />
