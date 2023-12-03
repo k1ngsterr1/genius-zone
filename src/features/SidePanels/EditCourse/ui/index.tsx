@@ -1,3 +1,4 @@
+import { UtilityButton } from "@shared/ui/UtilityButton";
 import "./styles.scss";
 
 interface EditCourseProps {
@@ -17,6 +18,13 @@ export const EditCourseTab: React.FC<EditCourseProps> = ({
         className="course-edit-side__image"
       />
       <p className="course-edit-side__course-name mt-6">{courseName}</p>
+      <UtilityButton
+        text="Опубликовать"
+        type="filled-btn"
+        marginTop="mt-3"
+        onClick={() => console.log("Опубликовать")}
+      />
+      <h2 className="text-lg text-custom-black">Модули:</h2>
     </aside>
   );
 };

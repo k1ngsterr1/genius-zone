@@ -1,0 +1,21 @@
+.module {
+  width: 100%;
+  transition: 0.3s all;
+
+  &__number {
+    font-family: Inter;
+    font-weight: 500;
+    font-size: 21px;
+    @apply text-custom-black;
+  }
+
+  &__name {
+    font-family: Inter;
+    font-weight: 500;
+    font-size: 21px;
+    @apply text-custom-black;
+  }
+  &__hover {
+    @apply bg-custom-lightest-blue;
+  }
+}
