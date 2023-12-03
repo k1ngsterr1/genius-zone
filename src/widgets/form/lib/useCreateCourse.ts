@@ -11,7 +11,7 @@ export function useCreateCourse() {
     try {
       console.log("trying");
       const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}api/courses/courses`,
+        `${import.meta.env.VITE_BASE_URL}api/courses/courses/`,
         data
       );
       console.log("Course Created Successfully:", response.data);

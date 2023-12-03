@@ -28,10 +28,17 @@ export function useLoginForm() {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}api/account/login/`,
-        data
+        data,
+        { withCredentials: true }
       );
 
       console.log("Login successful:", response.data);
+
+      const accessToken = response.data.access;
+      console.log(accessToken);
+      if (accessToken) {
+        Cookies.set("accessToken", accessToken);
+      }
 
       const firstName = response.data.user.first_name.toString();
       const lastName = response.data.user.last_name.toString();
