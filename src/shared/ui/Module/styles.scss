@@ -1,21 +1,28 @@
 .module {
-  width: 100%;
+  width: 49%;
+  height: clamp(27.5px, 2.8644000000000003vw, 110px);
+  cursor: pointer;
+  border-radius: 4px;
+  @apply pr-4;
   transition: 0.3s all;
+
+  &:hover {
+    @apply bg-custom-lightest-blue;
+  }
 
   &__number {
     font-family: Inter;
     font-weight: 500;
-    font-size: 21px;
+    font-size: clamp(10px, 1.0416vw, 40px);
     @apply text-custom-black;
+    transition: 0.3s;
   }
 
   &__name {
     font-family: Inter;
     font-weight: 500;
-    font-size: 21px;
+    font-size: clamp(10px, 1.0416vw, 40px);
     @apply text-custom-black;
-  }
-  &__hover {
-    @apply bg-custom-lightest-blue;
+    transition: 0.3s;
   }
 }

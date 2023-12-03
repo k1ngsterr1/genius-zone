@@ -24,6 +24,13 @@ export const CourseEditScreen = () => {
           />
           <BasicDateCalendar />
         </div>
+        <h2 className="text-2xl font-medium text-custom-black mt-16">
+          Описание действия
+        </h2>
+        <p className="paragraph w-[50%] text-center mt-4 text-gray-500 text-xl">
+          Создайте новые модули и укажите дату курса, чтобы сделать его видимыми
+          для других пользователей, учтите, что все поля должны быть заполнеными
+        </p>
       </section>
     </div>
   );

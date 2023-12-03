@@ -1,4 +1,6 @@
 import { UtilityButton } from "@shared/ui/UtilityButton";
+import { Module } from "@shared/ui/Module";
+
 import "./styles.scss";
 
 interface EditCourseProps {
@@ -24,7 +26,12 @@ export const EditCourseTab: React.FC<EditCourseProps> = ({
         marginTop="mt-3"
         onClick={() => console.log("Опубликовать")}
       />
-      <h2 className="text-lg text-custom-black">Модули:</h2>
+      <h2 className="text-xl text-custom-black font-bold mt-5">Модули:</h2>
+      <Module number="1.1" name="Типы данных" marginTop="mt-4" />
+      <Module number="1.2" name="Функции" marginTop="mt-1" />
+      <Module number="1.3" name="Алгоритмы" marginTop="mt-1" />
+      <Module number="1.3" name="Методы" marginTop="mt-1" />
+      <Module number="1.4" name="Void" marginTop="mt-1" />
     </aside>
   );
 };
