@@ -11,6 +11,9 @@ export const CourseEditScreen = () => {
     <div className="wrapper--row mt-12">
       <EditCourseTab image={cpp} courseName="Введение в программирование C++" />
       <section className="w-[73%] course-edit-container flex flex-col items-center">
+        <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
+          Создание курса
+        </h2>
         <div className="course-edit-container__tab flex flex-col items-center justify-center">
           <p className="paragraph text-center w-[50%] text-gray-400">
             Ваш курс пока абсолютно пустой. Создайте первый модуль, чтобы
