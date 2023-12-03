@@ -1,0 +1,9 @@
+.course-edit-container {
+  &__tab {
+    width: 70%;
+    height: auto;
+    padding: clamp(16px, 1.66656vw, 64px);
+    border-radius: clamp(4px, 0.41664vw, 16px);
+    @apply bg-gray-100;
+  }
+}

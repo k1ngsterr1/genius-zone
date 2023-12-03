@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export interface CourseData {
   title: string;
@@ -7,12 +8,17 @@ export interface CourseData {
 
 export function useCreateCourse() {
   const createCourse = async (data: CourseData) => {
-    // event?.preventDefault();
     try {
-      console.log("trying");
+      const token = Cookies.get("accessToken");
+      console.log(token);
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}api/courses/courses/`,
-        data
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log("Course Created Successfully:", response.data);
     } catch (error: any) {

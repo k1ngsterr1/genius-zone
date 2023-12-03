@@ -37,6 +37,7 @@ export function useLoginForm() {
       const accessToken = response.data.access;
       console.log(accessToken);
       if (accessToken) {
+        console.log("Cookies set");
         Cookies.set("accessToken", accessToken);
       }
 
@@ -52,7 +53,7 @@ export function useLoginForm() {
         })
       );
 
-      navigate("/");
+      navigate("/create-course/new");
     } catch (error: any) {
       if (error.response) {
         console.error("Login failed with status:", error.response.status);

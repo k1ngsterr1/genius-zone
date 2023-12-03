@@ -1,22 +1,28 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DatePicker from "@mui/lab/DatePicker";
+import Button from "@mui/material/Button";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-export default function ResponsiveDatePicker() {
-  const [value, setValue] = React.useState(new Date());
+export default function BasicDatePicker() {
+  const [value, setValue] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
-        views={["day"]}
+        open={open}
+        className="mt-8"
+        onOpen={() => setOpen(true)}
+        onClose={() => setOpen(false)}
         value={value}
-        onChange={(newValue: any) => {
+        onChange={(newValue) => {
           setValue(newValue);
+          setOpen(false);
         }}
-        renderInput={(params: any) => <TextField {...params} />}
       />
+      <Button onClick={() => setOpen(true)}>Открыть календарь</Button>
     </LocalizationProvider>
   );
 }
