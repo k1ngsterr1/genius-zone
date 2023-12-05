@@ -2,7 +2,7 @@ import { useState, FormEvent } from "react";
 import { CreateCourseSide } from "@features/SidePanels/CreateCourse/ui";
 import { TextField } from "@mui/material";
 import { Button } from "@shared/ui/button";
-import { useCreateCourse } from "@widgets/form/lib/useCreateCourse";
+import { useCreateCourse } from "@shared/lib/hooks/useCreateCourse";
 
 import "./styles.scss";
 
