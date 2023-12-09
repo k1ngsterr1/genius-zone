@@ -1,19 +1,28 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useRef } from "react";
 import { CreateCourseSide } from "@features/SidePanels/CreateCourse/ui";
 import { TextField } from "@mui/material";
 import { Button } from "@shared/ui/button";
 import { useCreateCourse } from "@shared/lib/hooks/useCreateCourse";
+import { useImageUpload } from "@shared/lib/hooks/useUploadImage";
 
 import "./styles.scss";
 
 export const CreateNewCourseScreen = () => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const { createCourse } = useCreateCourse();
+  const { image, previewUrl, handleImageChange, clearImage } = useImageUpload();
+
+  const handleButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); // Prevent the default form submission
-    await createCourse({ title, description }); // Call createCourse with the form data
+    event.preventDefault();
+    await createCourse({ title, description }, image);
   };
 
   return (
@@ -43,6 +52,45 @@ export const CreateNewCourseScreen = () => {
             className="new-courses-container__input mt-8"
             onChange={(e) => setDescription(e.target.value)}
           />
+          <input
+            accept="image/*"
+            style={{ display: "none" }}
+            id="raised-button-file"
+            multiple
+            name="preview"
+            className="regular-button blue"
+            type="file"
+            onChange={handleImageChange}
+            ref={fileInputRef}
+          />
+          <label htmlFor="raised-button-file">
+            <Button
+              text="Добавить фото"
+              className="regular-button blue mt-8"
+              type="button"
+              onClick={handleButtonClick}
+            />
+          </label>
+          {previewUrl && (
+            <div>
+              <div className="w-[23%] border-custom-blue border-2 rounded flex flex-col items-center justify-center bg-custom-lightest-blue mt-8">
+                <p className="text-lg text-custom-black font-medium p-4 text-center">
+                  Фотография для вашего курса:
+                </p>
+                <img
+                  src={previewUrl}
+                  alt="Preview"
+                  className="new-course-container__preview pb-4"
+                />
+              </div>
+              <Button
+                text="Убрать фото"
+                className="regular-button blue mt-8"
+                type="button"
+                onClick={clearImage}
+              />
+            </div>
+          )}
           <Button
             text="Создать курс"
             className="regular-button blue mt-8"

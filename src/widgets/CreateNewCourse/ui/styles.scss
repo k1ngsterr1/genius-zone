@@ -2,4 +2,9 @@
   &__input {
     width: 50%;
   }
+
+  .new-course-container__preview {
+    width: clamp(100px, 10.416vw, 400px);
+    height: clamp(100px, 10.416vw, 400px);
+  }
 }

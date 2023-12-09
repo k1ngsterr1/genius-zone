@@ -27,7 +27,7 @@ export function useLoginForm() {
   const onSubmit = async (data: LoginFormData) => {
     try {
       const response = await axios.post(
-        `${import.meta.env.BASE_URL}api/account/login/`,
+        `https://inquisitive-creature-production.up.railway.app/api/account/login/`,
         data,
         { withCredentials: true }
       );

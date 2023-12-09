@@ -5,28 +5,35 @@ export interface CourseData {
   title: string;
   description: string;
 }
-
 export function useCreateCourse() {
-  const createCourse = async (data: CourseData) => {
+  const createCourse = async (data: CourseData, image: File | null) => {
     try {
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("description", data.description);
+      if (image) {
+        formData.append("preview", image, image.name); // The file is appended here
+      }
+
       const token = Cookies.get("accessToken");
-      console.log(token);
       const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}api/courses/courses/`,
-        data,
+        `https://inquisitive-creature-production.up.railway.app/api/courses/courses/`,
+        formData, // FormData is sent instead of a plain object
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            // Content-Type header should not be set manually for FormData
           },
         }
       );
       console.log("Course Created Successfully:", response.data);
     } catch (error: any) {
-      console.error("There is an error with course creating:", error.response);
+      console.error(
+        "There is an error with course creating:",
+        error.response ? error.response : error
+      );
     }
   };
 
-  return {
-    createCourse,
-  };
+  return { createCourse };
 }
