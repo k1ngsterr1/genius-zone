@@ -1,4 +1,3 @@
-// KebabMenu.jsx
 import React from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -6,11 +5,13 @@ import MenuItem from "@mui/material/MenuItem";
 interface KebabMenuProps {
   anchorEl: any;
   setAnchorEl: any;
+  onCourseDelete: () => void;
 }
 
 export const KebabMenu: React.FC<KebabMenuProps> = ({
   anchorEl,
   setAnchorEl,
+  onCourseDelete,
 }) => {
   const open = Boolean(anchorEl);
 
@@ -35,7 +36,7 @@ export const KebabMenu: React.FC<KebabMenuProps> = ({
       }}
     >
       <MenuItem onClick={handleClose}>Редактировать</MenuItem>
-      <MenuItem onClick={handleClose}>Удалить</MenuItem>
+      <MenuItem onClick={onCourseDelete}>Удалить</MenuItem>
     </Menu>
   );
 };

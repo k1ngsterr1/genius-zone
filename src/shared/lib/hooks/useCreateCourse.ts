@@ -5,6 +5,7 @@ export interface CourseData {
   title: string;
   description: string;
 }
+
 export function useCreateCourse() {
   const createCourse = async (data: CourseData, image: File | null) => {
     try {
@@ -18,11 +19,10 @@ export function useCreateCourse() {
       const token = Cookies.get("accessToken");
       const response = await axios.post(
         `https://inquisitive-creature-production.up.railway.app/api/courses/courses/`,
-        formData, // FormData is sent instead of a plain object
+        formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            // Content-Type header should not be set manually for FormData
           },
         }
       );
