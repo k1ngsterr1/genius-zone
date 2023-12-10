@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { turnOffLoader, turnOnLoader } from "../redux/store/loaderSlice";
+import { turnOffLoader } from "../redux/store/loaderSlice";
 import { useDispatch } from "react-redux";
 
 interface Course {
