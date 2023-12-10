@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { ROUTE_CONSTANTS } from "../shared/config/routes";
+import { ROUTE_CONSTANTS } from "@shared/config/routes";
 
 // Pages
 import { HomePage } from "./Home/ui";

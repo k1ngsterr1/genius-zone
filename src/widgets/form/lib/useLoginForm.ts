@@ -32,26 +32,23 @@ export function useLoginForm() {
         { withCredentials: true }
       );
 
-      console.log("Login successful:", response.data);
-
       const accessToken = response.data.access;
-      console.log(accessToken);
+
       if (accessToken) {
         console.log("Cookies set");
         Cookies.set("accessToken", accessToken);
       }
 
-      const firstName = response.data.user.first_name.toString();
-      const lastName = response.data.user.last_name.toString();
-      const userImage = response.data.user.photo.toString();
+      const userData = {
+        firstName: response.data.user.first_name,
+        lastName: response.data.user.last_name,
+        userImage: response.data.user.photo,
+      };
 
-      dispatch(
-        logIn({
-          firstName: firstName,
-          lastName: lastName,
-          userImage: userImage,
-        })
-      );
+      console.log("userdata:", userData);
+
+      localStorage.setItem("userData", JSON.stringify(userData));
+      dispatch(logIn());
 
       navigate("/create-course/new");
     } catch (error: any) {

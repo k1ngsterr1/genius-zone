@@ -9,17 +9,11 @@ const authSlice = createSlice({
     userImage: null,
   },
   reducers: {
-    logIn: (state, action) => {
+    logIn: (state) => {
       state.isLogggedIn = true;
-      state.firstName = action.payload.firstName;
-      state.lastName = action.payload.lastName;
-      state.userImage = action.payload.userImage;
     },
     logOut: (state) => {
       state.isLogggedIn = false;
-      state.firstName = null;
-      state.lastName = null;
-      state.userImage = null;
     },
   },
 });
