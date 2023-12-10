@@ -4,9 +4,13 @@ import { ErrorTab } from "@shared/ui/ErrorTab";
 import { Loader } from "@shared/ui/Loader";
 import useLoadCourses from "@shared/lib/hooks/useLoadCourses";
 import SearchBar from "@features/SearchBar/ui";
+import { useSelector } from "react-redux";
+import { RootState } from "@shared/lib/redux/store";
 
 export const CreateCourseScreen = () => {
-  const { courses, setCourses, loading, error } = useLoadCourses();
+  const { courses, setCourses, error } = useLoadCourses();
+
+  const isLoading = useSelector((state: RootState) => state.loader.isLoading);
 
   const handleCourseDelete = (deletedCourseId: string) => {
     const updatedCourses = courses.filter(
@@ -21,14 +25,14 @@ export const CreateCourseScreen = () => {
       <section className="w-[73%] course-edit-container flex flex-col">
         <h1 className="main-heading">Ваши курсы</h1>
         <SearchBar onSearch={() => console.log("zhopa")} />
-        {loading && (
+        {isLoading && (
           <div className="flex justify-center items-center h-full">
             <Loader />
           </div>
         )}
         {error && <ErrorTab text="Ошибка с загрузкой курсов" />}
 
-        {!loading &&
+        {!isLoading &&
           !error &&
           courses.map((course) => (
             <NewCourse

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { turnOffLoader, turnOnLoader } from "../redux/store/loaderSlice";
+import { useDispatch } from "react-redux";
 
 interface Course {
   title: string;
@@ -9,8 +11,10 @@ interface Course {
 }
 
 function useLoadCourses() {
+  const dispatch = useDispatch();
+
   const [courses, setCourses] = useState<Course[]>([]);
-  const [loading, setLoading] = useState(true);
+
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -23,14 +27,14 @@ function useLoadCourses() {
       } catch (error: any) {
         setError(error);
       } finally {
-        setLoading(false);
+        dispatch(turnOffLoader());
       }
     }
 
     fetchCourses();
   }, []);
 
-  return { courses, setCourses, loading, error };
+  return { courses, setCourses, error };
 }
 
 export default useLoadCourses;

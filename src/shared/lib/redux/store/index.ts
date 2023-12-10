@@ -3,6 +3,7 @@ import buttonReducer from "./buttonSlice";
 import emailReducer from "./emailSlice";
 import menuReducer from "./menuSlice";
 import authReducer from "./authSlice";
+import loadReducer from "./loaderSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     emailReducer: emailReducer,
     menu: menuReducer,
     auth: authReducer,
+    loader: loadReducer,
   },
 });
 
