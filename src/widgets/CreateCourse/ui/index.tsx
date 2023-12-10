@@ -31,7 +31,6 @@ export const CreateCourseScreen = () => {
           </div>
         )}
         {error && <ErrorTab text="Ошибка с загрузкой курсов" />}
-
         {!isLoading &&
           !error &&
           courses.map((course) => (

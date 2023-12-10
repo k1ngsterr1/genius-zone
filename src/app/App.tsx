@@ -6,8 +6,7 @@ import { Loader } from "@shared/ui/Loader";
 import { RootState } from "@shared/lib/redux/store";
 
 export const App = () => {
-  const verifyAuth = useVerifyAuth();
-  const isLoading = useSelector((state: RootState) => state.loader.isLoading);
+  const { verifyAuth, isLoading } = useVerifyAuth();
 
   useEffect(() => {
     verifyAuth();

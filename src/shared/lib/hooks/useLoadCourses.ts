@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { turnOffLoader } from "../redux/store/loaderSlice";
 import { useDispatch } from "react-redux";
+import { turnOffLoader, turnOnLoader } from "../redux/store/loaderSlice";
+import axios from "axios";
 
 interface Course {
   title: string;
@@ -12,7 +12,6 @@ interface Course {
 
 function useLoadCourses() {
   const dispatch = useDispatch();
-
   const [courses, setCourses] = useState<Course[]>([]);
 
   const [error, setError] = useState(null);
@@ -20,6 +19,7 @@ function useLoadCourses() {
   useEffect(() => {
     async function fetchCourses() {
       try {
+        dispatch(turnOnLoader());
         const response = await axios.get(
           "https://inquisitive-creature-production.up.railway.app/api/courses/courses/"
         );
