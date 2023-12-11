@@ -5,8 +5,21 @@ import "./styles.scss";
 
 interface EditCourseProps {
   image: string;
+  number: string;
   courseName: string;
 }
+
+interface ModuleItem {
+  number: string;
+  name: string;
+  marginTop?: string;
+}
+
+const moduleItems: ModuleItem[] = [
+  { number: "01", name: "Module One", marginTop: "mt-4" },
+  { number: "02", name: "Module Two", marginTop: "mt-4" },
+  // ... other modules
+];
 
 export const EditCourseTab: React.FC<EditCourseProps> = ({
   image,
@@ -27,11 +40,6 @@ export const EditCourseTab: React.FC<EditCourseProps> = ({
         onClick={() => console.log("Опубликовать")}
       />
       <h2 className="text-xl text-custom-black font-bold mt-5">Модули:</h2>
-      <Module number="1.1" name="Типы данных" marginTop="mt-4" />
-      <Module number="1.2" name="Функции" marginTop="mt-1" />
-      <Module number="1.3" name="Алгоритмы" marginTop="mt-1" />
-      <Module number="1.3" name="Методы" marginTop="mt-1" />
-      <Module number="1.4" name="Void" marginTop="mt-1" />
     </aside>
   );
 };

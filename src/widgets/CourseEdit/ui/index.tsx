@@ -43,7 +43,6 @@ export const CourseEditScreen = () => {
     <div className="wrapper--row mt-12">
       {courseData ? (
         <>
-          {" "}
           <EditCourseTab
             image={courseData.preview}
             courseName={courseData.title}
