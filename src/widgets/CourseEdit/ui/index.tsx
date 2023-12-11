@@ -1,15 +1,56 @@
-import React from "react";
-import cpp from "@assets/cpp.jpg";
 import { EditCourseTab } from "@features/SidePanels/EditCourse/ui";
 import { UtilityButton } from "@shared/ui/UtilityButton";
+import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
+import { useSelector } from "react-redux";
+import { ErrorTab } from "@shared/ui/ErrorTab";
+import { Loader } from "@shared/ui/Loader";
+import { useParams } from "react-router-dom";
 import BasicDateCalendar from "@shared/ui/Calendar/ui";
 
+import cpp from "@assets/cpp.jpg";
+
 import "./styles.scss";
+import { RootState } from "@shared/lib/redux/store";
 
 export const CourseEditScreen = () => {
+  const courseID = useParams();
+
+  const { courseData, error } = useLoadSpecificCourse(courseID);
+
+  const isLoading = useSelector((state: RootState) => state.loader.isLoading);
+
+  if (isLoading) {
+    return (
+      <>
+        <Loader />
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <ErrorTab text={error.message} />
+      </>
+    );
+  }
+
+  if (!courseData) {
+    <div>There is no course data</div>;
+  }
+
   return (
     <div className="wrapper--row mt-12">
-      <EditCourseTab image={cpp} courseName="Введение в программирование C++" />
+      {courseData ? (
+        <>
+          <EditCourseTab
+            image={courseData.preview}
+            courseName={courseData.title}
+          />
+        </>
+      ) : (
+        <div>error</div>
+      )}
       <section className="w-[73%] course-edit-container flex flex-col items-center">
         <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
           Создание курса

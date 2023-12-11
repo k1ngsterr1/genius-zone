@@ -9,5 +9,5 @@ export const ROUTE_CONSTANTS = {
   COURSE: "/courses",
   COURSE_EDIT: "/create-course",
   CREATE_COURSE: "/create-course/new",
-  CREATE_COURSE_EDIT: "/create-course/edit",
+  CREATE_COURSE_EDIT: "/create-course/:courseID/edit",
 };

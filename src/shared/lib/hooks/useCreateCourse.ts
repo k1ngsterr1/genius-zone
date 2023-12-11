@@ -1,17 +1,22 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export interface CourseData {
   title: string;
   description: string;
+  id: string;
 }
 
 export function useCreateCourse() {
+  const navigate = useNavigate();
+
   const createCourse = async (data: CourseData, image: File | null) => {
     try {
       const formData = new FormData();
       formData.append("title", data.title);
       formData.append("description", data.description);
+
       if (image) {
         formData.append("preview", image, image.name); // The file is appended here
       }
@@ -26,7 +31,12 @@ export function useCreateCourse() {
           },
         }
       );
+
+      const courseID = response.data.id;
+
       console.log("Course Created Successfully:", response.data);
+
+      navigate(`/create-course/${courseID}/edit`);
     } catch (error: any) {
       console.error(
         "There is an error with course creating:",

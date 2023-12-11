@@ -6,11 +6,17 @@ import SchoolIcon from "@mui/icons-material/School";
 import BookIcon from "@mui/icons-material/Book";
 import { UtilityButton } from "@shared/ui/UtilityButton";
 import { UserProfile } from "@shared/ui/UserProfile";
+import { useNavigate } from "react-router-dom";
 
 import "./styles.scss";
 
 export const CreateCourseSide = () => {
   const [isActive, setIsActive] = useState();
+  const navigate = useNavigate();
+
+  function createCourse() {
+    navigate("/create-course/new");
+  }
 
   return (
     <aside className="course-edit-side sticky top-20">
@@ -19,7 +25,7 @@ export const CreateCourseSide = () => {
         text="Новый курс"
         type="outline-btn"
         marginTop="mt-8"
-        onClick={() => console.log("click")}
+        onClick={() => createCourse()}
       />
       <ListItem
         button
