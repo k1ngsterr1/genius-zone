@@ -14,7 +14,6 @@ import { RootState } from "@shared/lib/redux/store";
 
 export const CourseEditScreen = () => {
   const courseID = useParams<{ courseID: string }>();
-  console.log("courseID client:", courseID.courseID);
 
   const { courseData, error } = useLoadSpecificCourse(courseID.courseID);
 
