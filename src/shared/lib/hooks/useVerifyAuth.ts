@@ -21,8 +21,6 @@ export function useVerifyAuth() {
       );
 
       if (response.status === 200) {
-        console.log("response");
-        console.log(isLoading);
         const userData = response.data.user;
         dispatch(logIn(userData));
       }

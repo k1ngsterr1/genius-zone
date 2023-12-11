@@ -39,10 +39,13 @@ export function useLoginForm() {
         Cookies.set("accessToken", accessToken);
       }
 
+      console.log(response.data);
+
       const userData = {
         firstName: response.data.user.first_name,
         lastName: response.data.user.last_name,
         userImage: response.data.user.photo,
+        userID: response.data.usr.id,
       };
 
       console.log("userdata:", userData);
@@ -50,7 +53,7 @@ export function useLoginForm() {
       localStorage.setItem("userData", JSON.stringify(userData));
       dispatch(logIn());
 
-      navigate("/create-course/new");
+      navigate("/user");
     } catch (error: any) {
       if (error.response) {
         console.error("Login failed with status:", error.response.status);

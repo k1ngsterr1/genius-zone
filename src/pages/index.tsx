@@ -13,6 +13,7 @@ import { CoursePage } from "./Course/ui";
 import { CreateCoursePage } from "./CreateCourse/ui";
 import { CreateNewCourse } from "./CreateNewCourse/ui";
 import { NewCourseEdit } from "./NewCourseEdit/ui";
+import { UserEditPage } from "./UserEdit/ui";
 
 export const MyRoutes: FC = () => {
   return (
@@ -46,6 +47,7 @@ export const MyRoutes: FC = () => {
           element={<NewCourseEdit />}
         />
         <Route path={ROUTE_CONSTANTS.USER} element={<UserPage />} />
+        <Route path={ROUTE_CONSTANTS.USER_EDIT} element={<UserEditPage />} />
       </Routes>
     </Router>
   );

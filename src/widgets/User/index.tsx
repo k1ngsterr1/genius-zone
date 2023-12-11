@@ -59,7 +59,6 @@ export const UserScreen = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 };

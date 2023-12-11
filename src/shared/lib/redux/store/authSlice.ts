@@ -14,6 +14,7 @@ const authSlice = createSlice({
     },
     logOut: (state) => {
       state.isLogggedIn = false;
+      console.log("logged out");
     },
   },
 });

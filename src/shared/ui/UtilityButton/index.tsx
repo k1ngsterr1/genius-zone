@@ -19,7 +19,7 @@ export const UtilityButton: React.FC<UtilityButtonProps> = ({
 }) => {
   return (
     <button
-      onClick={() => onClick}
+      onClick={onClick}
       className={`utility-button__${type} ${className} ${marginTop} `}
     >
       {text}
