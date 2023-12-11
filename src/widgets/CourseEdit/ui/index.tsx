@@ -13,9 +13,10 @@ import "./styles.scss";
 import { RootState } from "@shared/lib/redux/store";
 
 export const CourseEditScreen = () => {
-  const courseID = useParams();
+  const courseID = useParams<{ courseID: string }>();
+  console.log("courseID client:", courseID.courseID);
 
-  const { courseData, error } = useLoadSpecificCourse(courseID);
+  const { courseData, error } = useLoadSpecificCourse(courseID.courseID);
 
   const isLoading = useSelector((state: RootState) => state.loader.isLoading);
 
@@ -43,6 +44,7 @@ export const CourseEditScreen = () => {
     <div className="wrapper--row mt-12">
       {courseData ? (
         <>
+          {" "}
           <EditCourseTab
             image={courseData.preview}
             courseName={courseData.title}

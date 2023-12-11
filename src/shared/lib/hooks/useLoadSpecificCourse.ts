@@ -18,16 +18,18 @@ export function useLoadSpecificCourse(courseID: string | any) {
   useEffect(() => {
     const fetchCourseData = async () => {
       try {
-        dispatch(turnOnLoader);
+        console.log("courseID:", courseID);
         const response = await axios.get(
           `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/`
         );
+
         setCourseData(response.data);
       } catch (error: any) {
         console.log("Error fetching course data:", error);
         setError(error);
       } finally {
-        dispatch(turnOffLoader);
+        dispatch(turnOffLoader());
+        console.log("Data Loaded Successfully");
       }
     };
     if (courseID) {
