@@ -1,0 +1,15 @@
+.module-side {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__number {
+    font-size: clamp(8px, 0.83328vw, 32px);
+    @apply text-custom-black;
+  }
+
+  &__title {
+    @extend &__number;
+  }
+}
