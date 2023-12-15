@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { UtilityButton } from "@shared/ui/UtilityButton";
+import { UserProfile } from "@shared/ui/UserProfile";
+import { useNavigate } from "react-router-dom";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -8,13 +11,12 @@ import Collapse from "@mui/material/Collapse";
 import SchoolIcon from "@mui/icons-material/School";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import { UtilityButton } from "@shared/ui/UtilityButton";
-import { UserProfile } from "@shared/ui/UserProfile";
 
 import "./styles.scss";
 
 export const CoursesAside = () => {
   const [open, setOpen] = useState(true);
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setOpen(!open);
@@ -26,7 +28,7 @@ export const CoursesAside = () => {
         text="Создать курс"
         type="outline-btn"
         marginTop="mt-8"
-        onClick={() => console.log("click")}
+        onClick={() => navigate("/create-course/new")}
       />
       <ListItem
         button

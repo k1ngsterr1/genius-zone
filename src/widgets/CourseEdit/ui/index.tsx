@@ -5,12 +5,15 @@ import { useSelector } from "react-redux";
 import { ErrorTab } from "@shared/ui/ErrorTab";
 import { Loader } from "@shared/ui/Loader";
 import { useParams } from "react-router-dom";
+import { RootState } from "@shared/lib/redux/store";
+import { ModuleTab } from "@widgets/ModuleTab";
+import { LessonTab } from "@widgets/LessonTab";
+
 import BasicDateCalendar from "@shared/ui/Calendar/ui";
 
 import cpp from "@assets/cpp.jpg";
 
 import "./styles.scss";
-import { RootState } from "@shared/lib/redux/store";
 
 export const CourseEditScreen = () => {
   const courseID = useParams<{ courseID: string }>();
@@ -55,6 +58,8 @@ export const CourseEditScreen = () => {
         <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
           Создание курса
         </h2>
+        <ModuleTab number="1" />
+
         <div className="course-edit-container__tab flex flex-col items-center justify-center">
           <p className="paragraph text-center w-[50%] text-gray-400">
             Ваш курс пока абсолютно пустой. Создайте первый модуль, чтобы

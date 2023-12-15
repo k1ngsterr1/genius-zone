@@ -1,5 +1,6 @@
 import { Footer } from "@features/Footer/ui";
 import { Header } from "@features/header/ui";
+import { RootState } from "@shared/lib/redux/store";
 import { CourseEditScreen } from "@widgets/CourseEdit/ui";
 import { Menu } from "@widgets/Menu";
 import { useSelector } from "react-redux";

@@ -1,0 +1,21 @@
+.lesson-tab {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 4px solid;
+  border-radius: 8px;
+  @apply border-custom-blue;
+  @apply bg-gray-100;
+
+  &__row {
+    width: 90%;
+    @apply mt-4;
+    @apply mb-4;
+
+    &__image {
+      width: clamp(40px, 4.1664vw, 160px);
+      height: clamp(40px, 4.1664vw, 160px);
+    }
+  }
+}
