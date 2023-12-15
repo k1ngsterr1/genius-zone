@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 export interface CourseData {
   title: string;
   description: string;
-  id: string;
 }
 
 export function useCreateCourse() {
@@ -18,7 +17,7 @@ export function useCreateCourse() {
       formData.append("description", data.description);
 
       if (image) {
-        formData.append("preview", image, image.name); // The file is appended here
+        formData.append("preview", image, image.name);
       }
 
       const token = Cookies.get("accessToken");

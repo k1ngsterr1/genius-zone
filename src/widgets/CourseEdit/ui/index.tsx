@@ -7,7 +7,7 @@ import { Loader } from "@shared/ui/Loader";
 import { useParams } from "react-router-dom";
 import { RootState } from "@shared/lib/redux/store";
 import { ModuleTab } from "@widgets/ModuleTab";
-import { LessonTab } from "@widgets/LessonTab";
+import { useAddNewModule } from "@shared/lib/hooks/useAddNewModule";
 
 import BasicDateCalendar from "@shared/ui/Calendar/ui";
 
@@ -17,6 +17,8 @@ import "./styles.scss";
 
 export const CourseEditScreen = () => {
   const courseID = useParams<{ courseID: string }>();
+
+  const { modules, addNewModule } = useAddNewModule();
 
   const { courseData, error } = useLoadSpecificCourse(courseID.courseID);
 
@@ -58,8 +60,9 @@ export const CourseEditScreen = () => {
         <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
           Создание курса
         </h2>
-        <ModuleTab number="1" />
-
+        {modules.map((module, index) => (
+          <ModuleTab key={module.id} number={index + 1} />
+        ))}
         <div className="course-edit-container__tab flex flex-col items-center justify-center">
           <p className="paragraph text-center w-[50%] text-gray-400">
             Ваш курс пока абсолютно пустой. Создайте первый модуль, чтобы
@@ -69,7 +72,7 @@ export const CourseEditScreen = () => {
             text="Новый модуль"
             marginTop="mt-6"
             type="filled-btn"
-            onClick={() => console.log("New Module")}
+            onClick={addNewModule}
           />
           <BasicDateCalendar />
         </div>

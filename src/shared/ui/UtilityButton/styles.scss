@@ -12,7 +12,7 @@
     padding-bottom: clamp(4px, 0.41664vw, 16px);
     border-radius: 4px;
     transition: 0.3s all;
-    @apply bg-custom-blue;
+    @apply bg-custom-blue #{!important};
     &:hover {
       background-color: #0f20b9;
     }
@@ -28,7 +28,7 @@
     border-radius: 4px;
     cursor: auto;
     transition: 0.3s all;
-    @apply bg-gray-200;
+    @apply bg-gray-200 #{!important};
     @apply text-custom-black;
   }
 
@@ -42,8 +42,8 @@
     border-radius: 4px;
     transition: 0.3s all;
     border: 3px solid;
-    @apply border-custom-blue;
-    @apply text-custom-blue;
+    @apply border-custom-blue #{!important};
+    @apply text-custom-blue #{!important};
     &:hover {
       color: white;
       @apply bg-custom-blue;
@@ -54,7 +54,7 @@
     font-family: Inter;
     font-weight: 700;
     font-size: clamp(10px, 1.0416vw, 40px);
-    @apply text-custom-black;
+    @apply text-custom-black #{!important};
     transition: 0.3s all;
     &:hover {
       color: #0f20b9;
