@@ -10,6 +10,7 @@
   }
 
   &__title {
-    @extend &__number;
+    font-size: clamp(8px, 0.83328vw, 32px);
+    @apply text-custom-black;
   }
 }
