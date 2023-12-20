@@ -86,8 +86,18 @@ export const CourseEditScreen = () => {
         ))}
         <div className="course-edit-container__tab flex flex-col items-center justify-center">
           <p className="paragraph text-center w-[50%] text-gray-400">
-            Ваш курс пока абсолютно пустой. Создайте первый модуль, чтобы
-            добавить уроки
+            {!courseData ? (
+              <>
+                {" "}
+                Ваш курс пока абсолютно пустой. Создайте первый модуль, чтобы
+                добавить уроки
+              </>
+            ) : (
+              <>
+                В вашем курсе уже есть модули. Вы можете создать еще модули и
+                дополнить ваш курс
+              </>
+            )}
           </p>
           <UtilityButton
             text="Новый модуль"

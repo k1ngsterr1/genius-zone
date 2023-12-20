@@ -1,8 +1,9 @@
 .finished-module {
   width: 70%;
-  padding: clamp(4px, 0.41664vw, 16px);
+  padding: 24px;
   display: flex;
   flex-direction: column;
+  align-items: fle;
   border-radius: clamp(3px, 0.31248vw, 12px);
   @apply bg-gray-100;
   @apply mt-2;
@@ -13,8 +14,8 @@
     align-items: center;
 
     &__image {
-      width: clamp(40px, 4.1664vw, 160px);
-      height: clamp(40px, 4.1664vw, 160px);
+      width: clamp(45px, 4.6872vw, 180px);
+      height: clamp(45px, 4.6872vw, 180px);
       border-radius: 3px;
     }
 

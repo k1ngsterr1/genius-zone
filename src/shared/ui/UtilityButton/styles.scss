@@ -14,7 +14,7 @@
     transition: 0.3s all;
     @apply bg-custom-blue #{!important};
     &:hover {
-      background-color: #0f20b9;
+      background-color: #0f20b9 !important;
     }
   }
 

@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import IconButton from "@mui/material/IconButton";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { KebabMenu } from "../KebabMenu";
 
 import "./styles.scss";
+import { UtilityButton } from "../UtilityButton";
 
 interface FinishedTabProps {
   title: string;
@@ -12,7 +16,6 @@ interface FinishedTabProps {
 export const FinishedModuleTab: React.FC<FinishedTabProps> = ({
   title,
   image,
-  number,
   description,
 }) => {
   return (
@@ -31,6 +34,7 @@ export const FinishedModuleTab: React.FC<FinishedTabProps> = ({
             {description}
           </span>
         </div>
+        <UtilityButton text="Редактировать" type="filled-btn" />
       </div>
     </div>
   );
