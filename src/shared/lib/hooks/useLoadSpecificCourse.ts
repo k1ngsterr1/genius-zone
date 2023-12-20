@@ -8,6 +8,7 @@ interface CourseData {
   id: string;
   description: string;
   preview: string;
+  modules: any[];
 }
 
 export function useLoadSpecificCourse(courseID: string | any) {

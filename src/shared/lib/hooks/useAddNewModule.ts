@@ -1,3 +1,4 @@
+import { NewModule } from "@features/NewModule";
 import { useState, useCallback } from "react";
 
 type ModuleType = {
@@ -6,15 +7,25 @@ type ModuleType = {
 };
 
 export const useAddNewModule = () => {
-  const [modules, setModules] = useState<ModuleType[]>([]);
+  const [moduleElements, setModules] = useState<ModuleType[]>([]);
 
   const addNewModule = useCallback(() => {
     const newModule: ModuleType = {
-      id: `module-${modules.length + 1}`,
-      title: `Module ${modules.length + 1}`, // Generate a title based on the length of the modules array
+      id: `module-${moduleElements.length + 1}`,
+      title: `Module ${moduleElements.length + 1}`,
     };
     setModules((prevModules) => [...prevModules, newModule]);
-  }, [modules]);
+  }, [moduleElements]);
 
-  return { modules, addNewModule };
+  const cancelNewModule = useCallback(
+    (moduleId: string | number) => {
+      setModules((prevModules) =>
+        prevModules.filter((module) => module.id !== moduleId)
+      );
+      console.log("deleted:", moduleId, module.id);
+    },
+    [moduleElements]
+  );
+
+  return { moduleElements, addNewModule, cancelNewModule };
 };

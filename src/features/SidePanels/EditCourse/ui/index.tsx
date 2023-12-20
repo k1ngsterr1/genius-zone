@@ -7,11 +7,11 @@ import "./styles.scss";
 interface Module {
   number: string;
   title: string;
+  id: string;
 }
 
 interface EditCourseProps {
   image: string;
-  number: string;
   courseName: string;
   modules: Module[];
 }

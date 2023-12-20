@@ -5,7 +5,7 @@ import { UtilityButton } from "@shared/ui/UtilityButton";
 import "./styles.scss";
 
 interface LessonTabProps {
-  image: string;
+  image: string | undefined;
   buttonType: string;
 }
 

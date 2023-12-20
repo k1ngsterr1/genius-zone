@@ -1,0 +1,42 @@
+.finished-module {
+  width: 70%;
+  padding: clamp(4px, 0.41664vw, 16px);
+  display: flex;
+  flex-direction: column;
+  border-radius: clamp(3px, 0.31248vw, 12px);
+  @apply bg-gray-100;
+  @apply mt-2;
+  @apply mb-8;
+
+  &__upper {
+    display: flex;
+    align-items: center;
+
+    &__image {
+      width: clamp(40px, 4.1664vw, 160px);
+      height: clamp(40px, 4.1664vw, 160px);
+      border-radius: 3px;
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      @apply ml-6;
+
+      &__title {
+        font-size: clamp(11px, 1.1457600000000001vw, 44px);
+        @apply text-custom-black;
+      }
+
+      &__description {
+        font-size: clamp(8px, 0.83328vw, 32px);
+        @apply text-custom-black;
+      }
+    }
+  }
+
+  &:hover {
+    transition: 0.3s all;
+    @apply bg-custom-lightest-blue;
+  }
+}

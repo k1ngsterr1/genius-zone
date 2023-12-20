@@ -1,16 +1,27 @@
 .module-side {
   width: 100%;
+  padding: clamp(4px, 0.41664vw, 16px);
   display: flex;
-  justify-content: space-between;
+  text-align: left;
+  justify-content: flex-start;
   align-items: center;
+  @apply mt-2;
 
   &__number {
-    font-size: clamp(8px, 0.83328vw, 32px);
+    font-size: clamp(9px, 0.93744vw, 36px);
+    @apply font-bold;
     @apply text-custom-black;
   }
 
   &__title {
-    font-size: clamp(8px, 0.83328vw, 32px);
+    font-size: clamp(9px, 0.93744vw, 36px);
+    text-align: left;
     @apply text-custom-black;
+    @apply ml-4;
+  }
+
+  &:hover {
+    transition: 0.3s all;
+    @apply bg-custom-lightest-blue;
   }
 }

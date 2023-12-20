@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import { RootState } from "@shared/lib/redux/store";
 import { ModuleTab } from "@widgets/ModuleTab";
 import { useAddNewModule } from "@shared/lib/hooks/useAddNewModule";
-
+import { FinishedModuleTab } from "@shared/ui/FinishedModuleTab";
 import BasicDateCalendar from "@shared/ui/Calendar/ui";
 
 import cpp from "@assets/cpp.jpg";
@@ -18,16 +18,18 @@ import "./styles.scss";
 export const CourseEditScreen = () => {
   const courseID = useParams<{ courseID: string }>();
 
-  const { modules, addNewModule } = useAddNewModule();
+  const { moduleElements, addNewModule } = useAddNewModule();
 
   const { courseData, error } = useLoadSpecificCourse(courseID.courseID);
 
   const isLoading = useSelector((state: RootState) => state.loader.isLoading);
 
-  const transformedModules = modules.map((mod, index) => ({
-    number: String(index + 1),
-    title: mod.title,
-  }));
+  const transformedModules =
+    courseData?.modules.map((mod) => ({
+      id: `module-${mod.module_num}`,
+      title: mod.module_title.toString(),
+      number: mod.module_num.toString(),
+    })) ?? [];
 
   if (isLoading) {
     return (
@@ -56,7 +58,7 @@ export const CourseEditScreen = () => {
           <EditCourseTab
             image={courseData.preview}
             courseName={courseData.title}
-            modules={modules}
+            modules={transformedModules}
           />
         </>
       ) : (
@@ -66,8 +68,21 @@ export const CourseEditScreen = () => {
         <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
           Создание курса
         </h2>
-        {modules.map((module, index) => (
-          <ModuleTab key={module.id} number={index + 1} />
+        {moduleElements.map((module, index) => (
+          <ModuleTab
+            lessonImage={courseData?.preview}
+            key={module.id}
+            id={module.id}
+            number={index + 1}
+          />
+        ))}
+        {courseData?.modules.map((module, index) => (
+          <FinishedModuleTab
+            image={courseData.preview}
+            title={module.module_title}
+            number={module.module_number}
+            description={module.module_description}
+          />
         ))}
         <div className="course-edit-container__tab flex flex-col items-center justify-center">
           <p className="paragraph text-center w-[50%] text-gray-400">
