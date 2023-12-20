@@ -45,7 +45,7 @@
     @apply border-custom-blue #{!important};
     @apply text-custom-blue #{!important};
     &:hover {
-      color: white;
+      color: white !important;
       @apply bg-custom-blue;
     }
   }

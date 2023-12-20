@@ -21,6 +21,28 @@ export const EditCourseTab: React.FC<EditCourseProps> = ({
   modules,
   courseName,
 }) => {
+  if (!Array.isArray(modules) || modules.length === 0) {
+    return (
+      <aside className="course-edit-side sticky top-20">
+        <img
+          src={image}
+          alt="course-edit-image"
+          className="course-edit-side__image"
+        />
+        <UtilityButton
+          text="Опубликовать"
+          type="filled-btn"
+          marginTop="mt-3"
+          onClick={() => console.log("Опубликовать")}
+        />
+        <p className="course-edit-side__course-name mt-6">{courseName}</p>
+        <p className="text-lg w-[70%] text-left mt-8">
+          В вашем курсе пока нет никаких модулей
+        </p>
+      </aside>
+    );
+  }
+
   return (
     <aside className="course-edit-side sticky top-20">
       <img

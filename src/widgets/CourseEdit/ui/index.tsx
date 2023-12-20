@@ -24,6 +24,11 @@ export const CourseEditScreen = () => {
 
   const isLoading = useSelector((state: RootState) => state.loader.isLoading);
 
+  const transformedModules = modules.map((mod, index) => ({
+    number: String(index + 1),
+    title: mod.title,
+  }));
+
   if (isLoading) {
     return (
       <>
@@ -51,6 +56,7 @@ export const CourseEditScreen = () => {
           <EditCourseTab
             image={courseData.preview}
             courseName={courseData.title}
+            modules={modules}
           />
         </>
       ) : (

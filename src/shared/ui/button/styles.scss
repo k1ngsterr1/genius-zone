@@ -32,7 +32,7 @@
   &:hover {
     border: 2px solid;
     @apply border-custom-blue;
-    color: white;
+    color: white !important;
     @apply bg-custom-blue;
   }
 }
