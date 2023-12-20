@@ -34,10 +34,10 @@ export const Header = () => {
           <Link to="/" className="header__links--link">
             Главная
           </Link>
-          <Link to="/study" className="header__links--link">
+          <Link to="/courses" className="header__links--link">
             Обучение
           </Link>
-          <Link to="/gift" className="header__links--link">
+          <Link to="/courses/new" className="header__links--link">
             Преподование
           </Link>
           {isLoggedIn && userData ? (

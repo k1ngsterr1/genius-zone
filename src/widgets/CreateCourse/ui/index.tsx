@@ -7,6 +7,10 @@ import SearchBar from "@features/SearchBar/ui";
 import { useSelector } from "react-redux";
 import { RootState } from "@shared/lib/redux/store";
 
+import noCourses from "@assets/no_courses.svg";
+
+import "./styles.scss";
+
 export const CreateCourseScreen = () => {
   const { courses, setCourses, error } = useLoadCourses();
 
@@ -30,6 +34,19 @@ export const CreateCourseScreen = () => {
             <Loader />
           </div>
         )}
+        {!courses ||
+          (courses.length === 0 && (
+            <div className="flex flex-col justify-center items-center h-full">
+              <img
+                src={noCourses}
+                className="no-courses"
+                alt="no-courses-vector"
+              />
+              <h1 className="text-3xl text-custom-black">
+                У вас пока нет курсов
+              </h1>
+            </div>
+          ))}
         {error && <ErrorTab text="Ошибка с загрузкой курсов" />}
         {!isLoading &&
           !error &&
