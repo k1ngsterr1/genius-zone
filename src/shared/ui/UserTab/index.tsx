@@ -15,7 +15,7 @@ export const UserTab: React.FC<UserTabProps> = ({
 }) => {
   return (
     <div className="user-tab flex items-center justify-between">
-      <img className="user-tab__image" src={userImage} alt="user" />
+      <img className="user-tab__image mr-2" src={userImage} alt="user" />
       <span className="user-tab__name">
         {firstName} {lastName}
       </span>

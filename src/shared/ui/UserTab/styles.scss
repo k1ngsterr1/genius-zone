@@ -8,8 +8,9 @@
   }
 
   &__image {
-    width: clamp(25px, 2.604vw, 100px);
-    height: clamp(25px, 2.604vw, 100px);
+    width: clamp(20px, 2.0832vw, 80px);
+    height: clamp(20px, 2.0832vw, 80px);
+    border-radius: 50px;
   }
 
   &__name {
