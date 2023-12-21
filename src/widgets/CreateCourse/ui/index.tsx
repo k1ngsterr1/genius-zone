@@ -1,17 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import { CreateCourseSide } from "@features/SidePanels/CreateCourse/ui";
 import { NewCourse } from "@widgets/NewCourse/ui";
 import { ErrorTab } from "@shared/ui/ErrorTab";
 import { Loader } from "@shared/ui/Loader";
-import useLoadCourses from "@shared/lib/hooks/useLoadCourses";
-import SearchBar from "@features/SearchBar/ui";
 import { useSelector } from "react-redux";
 import { RootState } from "@shared/lib/redux/store";
+import useLoadCourses from "@shared/lib/hooks/useLoadCourses";
+import SearchBar from "@features/SearchBar/ui";
 
 import noCourses from "@assets/no_courses.svg";
 
 import "./styles.scss";
 
 export const CreateCourseScreen = () => {
+  const navigate = useNavigate();
   const { courses, setCourses, error } = useLoadCourses();
 
   const isLoading = useSelector((state: RootState) => state.loader.isLoading);
@@ -21,6 +23,10 @@ export const CreateCourseScreen = () => {
       (course) => course.id !== deletedCourseId
     );
     setCourses(updatedCourses);
+  };
+
+  const handleOpenEditor = (courseId: string) => {
+    navigate(`/create-course/${courseId}/edit`);
   };
 
   return (
@@ -52,6 +58,7 @@ export const CreateCourseScreen = () => {
           !error &&
           courses.map((course) => (
             <NewCourse
+              kebabEdit={() => handleOpenEditor(course.id)}
               id={course.id}
               title={course.title}
               description={course.description}

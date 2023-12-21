@@ -13,8 +13,8 @@
   }
 
   &__image {
-    width: 75px;
-    height: 75px;
+    width: clamp(37.5px, 3.906vw, 150px);
+    height: clamp(37.5px, 3.906vw, 150px);
   }
 
   &__content {

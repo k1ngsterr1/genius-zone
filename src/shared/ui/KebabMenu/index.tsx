@@ -5,12 +5,14 @@ import MenuItem from "@mui/material/MenuItem";
 interface KebabMenuProps {
   anchorEl: any;
   setAnchorEl: any;
+  editButton: () => void;
   onCourseDelete: () => void;
 }
 
 export const KebabMenu: React.FC<KebabMenuProps> = ({
   anchorEl,
   setAnchorEl,
+  editButton,
   onCourseDelete,
 }) => {
   const open = Boolean(anchorEl);
@@ -35,7 +37,7 @@ export const KebabMenu: React.FC<KebabMenuProps> = ({
         horizontal: "right",
       }}
     >
-      <MenuItem onClick={handleClose}>Редактировать</MenuItem>
+      <MenuItem onClick={editButton}>Редактировать</MenuItem>
       <MenuItem onClick={onCourseDelete}>Удалить</MenuItem>
     </Menu>
   );

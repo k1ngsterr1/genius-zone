@@ -21,18 +21,20 @@ export const FinishedModuleTab: React.FC<FinishedTabProps> = ({
   return (
     <div className="finished-module">
       <div className="finished-module__upper">
-        <img
-          src={image}
-          alt="image"
-          className="finished-module__upper__image"
-        />
-        <div className="finished-module__upper__content">
-          <span className="finished-module__upper__content__title fond-semibold">
-            {title}
-          </span>
-          <span className="finished-module__upper__content__description">
-            {description}
-          </span>
+        <div className="finished-module__upper__image-and-content">
+          <img
+            src={image}
+            alt="image"
+            className="finished-module__upper__image-and-content__image"
+          />
+          <div className="finished-module__upper__image-and-content__content">
+            <span className="finished-module__upper__image-and-content__content__title fond-semibold">
+              {title}
+            </span>
+            <span className="finished-module__upper__image-and-content__content__description">
+              {description}
+            </span>
+          </div>
         </div>
         <UtilityButton text="Редактировать" type="filled-btn" />
       </div>

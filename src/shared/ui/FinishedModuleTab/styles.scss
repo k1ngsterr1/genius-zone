@@ -1,6 +1,6 @@
 .finished-module {
   width: 70%;
-  padding: 24px;
+  padding: clamp(12px, 1.24992vw, 48px);
   display: flex;
   flex-direction: column;
   align-items: fle;
@@ -12,26 +12,33 @@
   &__upper {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    &__image {
-      width: clamp(45px, 4.6872vw, 180px);
-      height: clamp(45px, 4.6872vw, 180px);
-      border-radius: 3px;
-    }
-
-    &__content {
+    &__image-and-content {
       display: flex;
-      flex-direction: column;
-      @apply ml-6;
+      align-items: center;
 
-      &__title {
-        font-size: clamp(11px, 1.1457600000000001vw, 44px);
-        @apply text-custom-black;
+      &__image {
+        width: clamp(45px, 4.6872vw, 180px);
+        height: clamp(45px, 4.6872vw, 180px);
+        border-radius: 3px;
       }
 
-      &__description {
-        font-size: clamp(8px, 0.83328vw, 32px);
-        @apply text-custom-black;
+      &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        @apply ml-6;
+
+        &__title {
+          font-size: clamp(11px, 1.1457600000000001vw, 44px);
+          @apply text-custom-black;
+        }
+
+        &__description {
+          font-size: clamp(8px, 0.83328vw, 32px);
+          @apply text-custom-black;
+        }
       }
     }
   }

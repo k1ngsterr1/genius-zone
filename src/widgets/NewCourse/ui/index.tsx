@@ -11,6 +11,7 @@ interface NewCourseProps {
   id: string;
   title: string;
   image: string;
+  kebabEdit: () => void;
   description: string;
   onDelete: (id: string) => void;
 }
@@ -19,6 +20,7 @@ export const NewCourse: React.FC<NewCourseProps> = ({
   id,
   title,
   image,
+  kebabEdit,
   description,
   onDelete,
 }) => {
@@ -53,6 +55,7 @@ export const NewCourse: React.FC<NewCourseProps> = ({
             <MoreVertIcon />
           </IconButton>
           <KebabMenu
+            editButton={kebabEdit}
             anchorEl={anchorEl}
             setAnchorEl={setAnchorEl}
             onCourseDelete={handleDelete}
