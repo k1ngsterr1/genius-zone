@@ -17,11 +17,9 @@ import "./styles.scss";
 
 export const CourseEditScreen = () => {
   const courseID = useParams<{ courseID: string }>();
-
-  const { moduleElements, addNewModule } = useAddNewModule();
-
+  const { moduleElements, addNewModule, cancelNewModule, toggleEditModule } =
+    useAddNewModule();
   const { courseData, error } = useLoadSpecificCourse(courseID.courseID);
-
   const isLoading = useSelector((state: RootState) => state.loader.isLoading);
 
   const transformedModules =
@@ -51,6 +49,26 @@ export const CourseEditScreen = () => {
     <div>There is no course data</div>;
   }
 
+  const renderedModules = courseData?.modules.map((module, index) =>
+    module.isEditing ? (
+      <ModuleTab
+        lessonImage={courseData?.preview}
+        key={module.id}
+        id={module.id}
+        number={index + 1}
+      />
+    ) : (
+      <FinishedModuleTab
+        key={module.id}
+        image={courseData.preview}
+        title={module.module_title}
+        number={module.module_number}
+        description={module.module_description}
+        editModule={() => toggleEditModule(module.id)}
+      />
+    )
+  );
+
   return (
     <div className="wrapper--row mt-12">
       {courseData ? (
@@ -78,6 +96,7 @@ export const CourseEditScreen = () => {
         ))}
         {courseData?.modules.map((module, index) => (
           <FinishedModuleTab
+            editModule={() => toggleEditModule(module.id)}
             image={courseData.preview}
             title={module.module_title}
             number={module.module_number}

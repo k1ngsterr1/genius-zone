@@ -10,6 +10,7 @@ interface FinishedTabProps {
   title: string;
   image: string;
   number: string;
+  editModule: () => void;
   description: string;
 }
 
@@ -17,6 +18,7 @@ export const FinishedModuleTab: React.FC<FinishedTabProps> = ({
   title,
   image,
   description,
+  editModule,
 }) => {
   return (
     <div className="finished-module">
@@ -36,7 +38,12 @@ export const FinishedModuleTab: React.FC<FinishedTabProps> = ({
             </span>
           </div>
         </div>
-        <UtilityButton text="Редактировать" type="filled-btn" />
+        <UtilityButton
+          text="Редактировать"
+          type="filled-btn"
+          marginTop="mt-0"
+          onClick={editModule}
+        />
       </div>
     </div>
   );

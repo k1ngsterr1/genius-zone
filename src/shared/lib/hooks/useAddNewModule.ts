@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 type ModuleType = {
   id: string;
   title: string;
+  isEditing: boolean;
 };
 
 export const useAddNewModule = () => {
@@ -13,19 +14,32 @@ export const useAddNewModule = () => {
     const newModule: ModuleType = {
       id: `module-${moduleElements.length + 1}`,
       title: `Module ${moduleElements.length + 1}`,
+      isEditing: true,
     };
     setModules((prevModules) => [...prevModules, newModule]);
   }, [moduleElements]);
 
   const cancelNewModule = useCallback(
-    (moduleId: string | number) => {
+    (moduleId: string) => {
       setModules((prevModules) =>
         prevModules.filter((module) => module.id !== moduleId)
       );
-      console.log("deleted:", moduleId, module.id);
     },
     [moduleElements]
   );
 
-  return { moduleElements, addNewModule, cancelNewModule };
+  const toggleEditModule = useCallback(
+    (moduleId: string) => {
+      setModules((prevModules) =>
+        prevModules.map((module) =>
+          module.id === moduleId
+            ? { ...module, isEditing: !module.isEditing }
+            : module
+        )
+      );
+    },
+    [moduleElements]
+  );
+
+  return { moduleElements, addNewModule, cancelNewModule, toggleEditModule };
 };
