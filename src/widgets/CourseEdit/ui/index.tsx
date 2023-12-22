@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { EditCourseTab } from "@features/SidePanels/EditCourse/ui";
 import { UtilityButton } from "@shared/ui/UtilityButton";
 import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
@@ -11,14 +12,17 @@ import { useAddNewModule } from "@shared/lib/hooks/useAddNewModule";
 import { FinishedModuleTab } from "@shared/ui/FinishedModuleTab";
 import BasicDateCalendar from "@shared/ui/Calendar/ui";
 
-import cpp from "@assets/cpp.jpg";
-
 import "./styles.scss";
 
 export const CourseEditScreen = () => {
   const courseID = useParams<{ courseID: string }>();
-  const { moduleElements, addNewModule, cancelNewModule, toggleEditModule } =
-    useAddNewModule();
+  const {
+    moduleElements,
+    addNewModule,
+    cancelNewModule,
+    toggleEditModule,
+    updateModules,
+  } = useAddNewModule();
   const { courseData, error } = useLoadSpecificCourse(courseID.courseID);
   const isLoading = useSelector((state: RootState) => state.loader.isLoading);
 
@@ -28,6 +32,10 @@ export const CourseEditScreen = () => {
       title: mod.module_title.toString(),
       number: mod.module_num.toString(),
     })) ?? [];
+
+  useEffect(() => {
+    updateModules(courseData?.modules);
+  }, [courseData?.modules]);
 
   if (isLoading) {
     return (

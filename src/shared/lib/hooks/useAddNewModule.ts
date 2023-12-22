@@ -19,6 +19,10 @@ export const useAddNewModule = () => {
     setModules((prevModules) => [...prevModules, newModule]);
   }, [moduleElements]);
 
+  const updateModules = (newModulesData: any) => {
+    setModules(newModulesData);
+  };
+
   const cancelNewModule = useCallback(
     (moduleId: string) => {
       setModules((prevModules) =>
@@ -41,5 +45,11 @@ export const useAddNewModule = () => {
     [moduleElements]
   );
 
-  return { moduleElements, addNewModule, cancelNewModule, toggleEditModule };
+  return {
+    moduleElements,
+    addNewModule,
+    cancelNewModule,
+    updateModules,
+    toggleEditModule,
+  };
 };
