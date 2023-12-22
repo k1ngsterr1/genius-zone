@@ -7,7 +7,7 @@ interface CourseData {
   title: string;
   id: string;
   description: string;
-  preview: string;
+  preview: string | any;
   modules: any[];
 }
 

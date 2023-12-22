@@ -34,7 +34,10 @@ export const CourseEditScreen = () => {
     })) ?? [];
 
   useEffect(() => {
-    updateModules(courseData?.modules);
+    if (courseData?.modules) {
+      updateModules(courseData.modules);
+      console.log("modules:", moduleElements);
+    }
   }, [courseData?.modules]);
 
   if (isLoading) {
@@ -94,7 +97,7 @@ export const CourseEditScreen = () => {
         <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
           Создание курса
         </h2>
-        {moduleElements.map((module, index) => (
+        {/* {moduleElements.map((module, index) => (
           <ModuleTab
             lessonImage={courseData?.preview}
             key={module.id}
@@ -110,7 +113,32 @@ export const CourseEditScreen = () => {
             number={module.module_number}
             description={module.module_description}
           />
-        ))}
+        ))} */}
+        {moduleElements.map((module, index) => {
+          if (module.finished) {
+            return (
+              <FinishedModuleTab
+                editModule={() => toggleEditModule(module.id)}
+                image={courseData?.preview}
+                title={module.module_title || "Default Title"}
+                number={module.module_number || 0}
+                description={module.module_description || "No description"}
+              />
+            );
+          } else if (module.isEditing) {
+            return (
+              <ModuleTab
+                lessonImage={courseData?.preview}
+                key={module.id}
+                id={module.id}
+                number={index + 1}
+              />
+            );
+          } else {
+            // Optionally render something for modules that are neither finished nor being edited
+            return null;
+          }
+        })}
         <div className="course-edit-container__tab flex flex-col items-center justify-center">
           <p className="paragraph text-center w-[50%] text-gray-400">
             {!courseData ? (
