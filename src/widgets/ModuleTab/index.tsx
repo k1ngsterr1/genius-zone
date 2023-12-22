@@ -1,4 +1,5 @@
 import React, { FormEvent, useState } from "react";
+import { ModuleData } from "@shared/lib/hooks/useSaveModule";
 import { OutlinedInput } from "@mui/material";
 import { LessonTab } from "@widgets/LessonTab";
 import { UtilityButton } from "@shared/ui/UtilityButton";
@@ -22,12 +23,18 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
   const courseID = useParams<{ courseID: string }>();
   const [module_title, setModuleTitle] = useState("");
   const [module_description, setModuleDescription] = useState("");
-  const { saveModule } = useSaveModule();
-  const { cancelNewModule } = useAddNewModule();
+  // const { saveModule } = useSaveModule();
+  const { cancelNewModule, saveModule } = useAddNewModule();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await saveModule({ module_title, module_description }, courseID.courseID);
+
+    const moduleData: ModuleData = {
+      module_title,
+      module_description,
+    };
+
+    await saveModule(id.toString(), courseID.courseID, moduleData);
   };
 
   return (

@@ -116,16 +116,19 @@ export const CourseEditScreen = () => {
         ))} */}
         {moduleElements.map((module, index) => {
           if (module.finished) {
+            console.log("finished:", module.finished);
             return (
               <FinishedModuleTab
                 editModule={() => toggleEditModule(module.id)}
                 image={courseData?.preview}
-                title={module.module_title || "Default Title"}
+                title={module.module_title || "Нет заголовка"}
                 number={module.module_number || 0}
-                description={module.module_description || "No description"}
+                key={module.id}
+                description={module.module_description || "Нет описания"}
               />
             );
           } else if (module.isEditing) {
+            console.log("isEditing:", module.isEditing);
             return (
               <ModuleTab
                 lessonImage={courseData?.preview}
@@ -135,7 +138,6 @@ export const CourseEditScreen = () => {
               />
             );
           } else {
-            // Optionally render something for modules that are neither finished nor being edited
             return null;
           }
         })}

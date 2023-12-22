@@ -1,5 +1,5 @@
-import { NewModule } from "@features/NewModule";
 import { useState, useCallback } from "react";
+import { useSaveModule, ModuleData } from "./useSaveModule";
 
 type ModuleType = {
   id: string;
@@ -27,14 +27,25 @@ export const useAddNewModule = () => {
     setModules((prevModules) => [...prevModules, newModule]);
   }, [moduleElements]);
 
-  const saveModule = (moduleId: string) => {
-    setModules((prevModules) =>
-      prevModules.map((module) =>
-        module.id === moduleId
-          ? { ...module, isEditing: false, finished: true }
-          : module
-      )
-    );
+  const { saveModule: apiSaveModule } = useSaveModule();
+
+  const saveModule = async (
+    moduleId: string,
+    courseID: string,
+    moduleData: ModuleData
+  ) => {
+    try {
+      await apiSaveModule(moduleData, courseID);
+      setModules((prevModules) =>
+        prevModules.map((module) =>
+          module.id === moduleId
+            ? { ...module, isEditing: false, finished: true }
+            : module
+        )
+      );
+    } catch (error) {
+      console.error("Error saving module:", error);
+    }
   };
 
   const updateModules = (newModulesData: any[]) => {
@@ -43,11 +54,14 @@ export const useAddNewModule = () => {
       id: `module-${mod.module_num}`,
       title: mod.module_title,
       isEditing: false,
-      finished: true, // or some logic to determine if it's finished
-      // Make sure to assign all required properties here
+      finished: true,
+      module_title: mod.module_title,
+      module_number: mod.module_number,
+      module_description: mod.module_description,
     }));
     setModules(transformedModules);
   };
+
   const cancelNewModule = useCallback(
     (moduleId: string) => {
       setModules((prevModules) =>
@@ -73,6 +87,7 @@ export const useAddNewModule = () => {
   return {
     moduleElements,
     addNewModule,
+    saveModule,
     cancelNewModule,
     updateModules,
     toggleEditModule,
