@@ -1,9 +1,9 @@
 import { useState, FormEvent, useRef } from "react";
 import { CreateCourseSide } from "@features/SidePanels/CreateCourse/ui";
 import { TextField } from "@mui/material";
-import { Button } from "@shared/ui/button";
 import { useCreateCourse } from "@shared/lib/hooks/useCreateCourse";
 import { useImageUpload } from "@shared/lib/hooks/useUploadImage";
+import { Button } from "@shared/ui/Button";
 
 import "./styles.scss";
 

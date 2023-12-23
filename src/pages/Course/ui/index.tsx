@@ -1,4 +1,4 @@
-import { Header } from "@features/header/ui";
+import { Header } from "@features/Header/ui";
 import { Menu } from "@widgets/Menu";
 import { useSelector } from "react-redux";
 import { RootState } from "@shared/lib/redux/store";

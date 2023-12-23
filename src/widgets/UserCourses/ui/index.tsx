@@ -12,7 +12,7 @@ import noCourses from "@assets/no_courses.svg";
 
 import "./styles.scss";
 
-export const CreateCourseScreen = () => {
+export const UserCoursesScreen = () => {
   const navigate = useNavigate();
   const { courses, setCourses, error } = useLoadCourses();
 

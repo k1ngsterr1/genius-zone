@@ -10,10 +10,11 @@ import { VerificationPage } from "./Verification/ui";
 import { ChangePasswordPage } from "./ChangePassword";
 import { UserPage } from "./User/ui";
 import { CoursePage } from "./Course/ui";
-import { CreateCoursePage } from "./CreateCourse/ui";
 import { CreateNewCourse } from "./CreateNewCourse/ui";
 import { UserEditPage } from "./UserEdit/ui";
 import { CourseSyllabus } from "./CourseSyllabus/ui";
+import { CourseEditorPage } from "./CourseEditor/ui";
+import { UserCoursesPage } from "./UserCourses/ui";
 
 export const MyRoutes: FC = () => {
   return (
@@ -35,8 +36,8 @@ export const MyRoutes: FC = () => {
         />
         <Route path={ROUTE_CONSTANTS.COURSE} element={<CoursePage />} />
         <Route
-          path={ROUTE_CONSTANTS.COURSE_EDIT}
-          element={<CreateCoursePage />}
+          path={ROUTE_CONSTANTS.USER_COURSES}
+          element={<UserCoursesPage />}
         />
         <Route
           path={ROUTE_CONSTANTS.CREATE_COURSE}
@@ -45,6 +46,10 @@ export const MyRoutes: FC = () => {
         <Route
           path={ROUTE_CONSTANTS.COURSE_SYLLABUS}
           element={<CourseSyllabus />}
+        />
+        <Route
+          path={ROUTE_CONSTANTS.CREATE_COURSE_EDIT}
+          element={<CourseEditorPage />}
         />
         <Route path={ROUTE_CONSTANTS.USER} element={<UserPage />} />
         <Route path={ROUTE_CONSTANTS.USER_EDIT} element={<UserEditPage />} />

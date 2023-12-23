@@ -3,9 +3,9 @@ import { Menu } from "@widgets/Menu";
 import { useSelector } from "react-redux";
 import { RootState } from "@shared/lib/redux/store";
 import { Footer } from "@features/Footer/ui";
-import { CreateCourseScreen } from "@widgets/CreateCourse/ui";
+import { UserCoursesScreen } from "@widgets/UserCourses/ui";
 
-export const CreateCoursePage = () => {
+export const UserCoursesPage = () => {
   const isMenuOpen = useSelector((state: RootState) => state.menu.isOpen);
 
   return (
@@ -13,7 +13,7 @@ export const CreateCoursePage = () => {
       <div className="page">
         <Header />
         {isMenuOpen && <Menu />}
-        <CreateCourseScreen />
+        <UserCoursesScreen />
       </div>
       <Footer />
     </>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { EditCourseTab } from "@features/SidePanels/EditCourse/ui";
 import { UtilityButton } from "@shared/ui/UtilityButton";
 import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
@@ -29,7 +29,7 @@ export const CourseSyllabusScreen = () => {
   const isLoading = useSelector((state: RootState) => state.loader.isLoading);
 
   function handleNavigateToEditor() {
-    navigate("/");
+    navigate(`/create-course/${courseID.courseID}/edit`);
   }
 
   const transformedModules =
@@ -63,7 +63,15 @@ export const CourseSyllabusScreen = () => {
   }
 
   if (!courseData) {
-    return <>No</>;
+    return (
+      <>
+        <div className="wrapper--row mt-12">
+          <h1 className="text-5xl text-custom-black">
+            Данного курса не существует
+          </h1>
+        </div>
+      </>
+    );
   }
 
   if (courseData.modules.length == 0) {
@@ -130,24 +138,18 @@ export const CourseSyllabusScreen = () => {
 
   return (
     <div className="wrapper--row mt-12">
-      {courseData ? (
-        <>
-          <EditCourseTab
-            image={courseData.preview}
-            courseName={courseData.title}
-            modules={transformedModules}
-          />
-        </>
-      ) : (
-        <div>error</div>
-      )}
+      <EditCourseTab
+        image={courseData.preview}
+        courseName={courseData.title}
+        modules={transformedModules}
+      />
       <section className="w-[73%] course-edit-container flex flex-col items-center">
         <div className="w-[70%] flex">
           <UtilityButton
             text="Редактировать cодержимое"
             type="filled-btn"
             marginTop="mt-6 mb-6"
-            onClick={() => console.log("aaa")}
+            onClick={() => handleNavigateToEditor()}
           />
         </div>
         <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
