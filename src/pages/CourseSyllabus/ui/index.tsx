@@ -1,11 +1,11 @@
 import { Footer } from "@features/Footer/ui";
-import { Header } from "@features/header/ui";
+import { Header } from "@features/Header/ui";
 import { RootState } from "@shared/lib/redux/store";
-import { CourseEditSyllabusScreen } from "@widgets/CourseEdit/ui";
+import { CourseSyllabusScreen } from "@widgets/CourseSyllabus/ui";
 import { Menu } from "@widgets/Menu";
 import { useSelector } from "react-redux";
 
-export const NewCourseEditSyllabus = () => {
+export const CourseSyllabus = () => {
   const isMenuOpen = useSelector((state: RootState) => state.menu.isOpen);
 
   return (
@@ -13,7 +13,7 @@ export const NewCourseEditSyllabus = () => {
       <div className="page">
         <Header />
         {isMenuOpen && <Menu />}
-        <CourseEditSyllabusScreen />
+        <CourseSyllabusScreen />
       </div>
       <Footer />
     </>

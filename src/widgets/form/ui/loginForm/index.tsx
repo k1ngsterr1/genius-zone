@@ -1,4 +1,5 @@
-import { Input, RegistrationButton } from "@shared/index";
+import { Input } from "@shared/ui/Input";
+import { RegistrationButton } from "@shared/ui/RegistrationButton";
 import { usePasswordVisibility } from "@shared/lib/hooks/usePasswordVisibility";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";

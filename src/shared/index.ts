@@ -1,3 +1,3 @@
-export { RegistrationButton } from "./ui/registration-button/index";
-export { Input } from "./ui/input/index";
-export { Logo } from "./ui/logo/index";
+import { Input } from "./ui/Input";
+import { Logo } from "./ui/Logo";
+import { RegistrationButton } from "./ui/RegistrationButton";

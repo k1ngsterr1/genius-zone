@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import "./styles.scss";
 
 export const CreateCourseSide = () => {
-  const [isActive, setIsActive] = useState();
   const navigate = useNavigate();
 
   function createCourse() {

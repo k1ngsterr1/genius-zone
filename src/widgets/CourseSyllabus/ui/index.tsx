@@ -5,7 +5,7 @@ import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
 import { useSelector } from "react-redux";
 import { ErrorTab } from "@shared/ui/ErrorTab";
 import { Loader } from "@shared/ui/Loader";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { RootState } from "@shared/lib/redux/store";
 import { ModuleTab } from "@widgets/ModuleTab";
 import { useAddNewModule } from "@shared/lib/hooks/useAddNewModule";
@@ -15,8 +15,9 @@ import BasicDateCalendar from "@shared/ui/Calendar/ui";
 
 import "./styles.scss";
 
-export const CourseEditSyllabusScreen = () => {
+export const CourseSyllabusScreen = () => {
   const courseID = useParams<{ courseID: string }>();
+  const navigate = useNavigate();
   const {
     moduleElements,
     addNewModule,
@@ -26,6 +27,10 @@ export const CourseEditSyllabusScreen = () => {
   } = useAddNewModule();
   const { courseData, error } = useLoadSpecificCourse(courseID.courseID);
   const isLoading = useSelector((state: RootState) => state.loader.isLoading);
+
+  function handleNavigateToEditor() {
+    navigate("/");
+  }
 
   const transformedModules =
     courseData?.modules.map((mod) => ({
@@ -110,7 +115,6 @@ export const CourseEditSyllabusScreen = () => {
             />
             <BasicDateCalendar />
           </div>
-
           <h2 className="text-2xl font-medium text-custom-black mt-16">
             Описание действия
           </h2>
@@ -123,26 +127,6 @@ export const CourseEditSyllabusScreen = () => {
       </div>
     );
   }
-
-  // const renderedModules = courseData?.modules.map((module, index) =>
-  //   module.isEditing ? (
-  //     <ModuleTab
-  //       lessonImage={courseData?.preview}
-  //       key={module.id}
-  //       id={module.id}
-  //       number={index + 1}
-  //     />
-  //   ) : (
-  //     <FinishedModuleTab
-  //       key={module.id}
-  //       image={courseData.preview}
-  //       title={module.module_title}
-  //       number={module.module_number}
-  //       description={module.module_description}
-  //       editModule={() => toggleEditModule(module.id)}
-  //     />
-  //   )
-  // );
 
   return (
     <div className="wrapper--row mt-12">
@@ -163,28 +147,12 @@ export const CourseEditSyllabusScreen = () => {
             text="Редактировать cодержимое"
             type="filled-btn"
             marginTop="mt-6 mb-6"
+            onClick={() => console.log("aaa")}
           />
         </div>
         <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
           Создание курса
         </h2>
-        {/* {moduleElements.map((module, index) => (
-          <ModuleTab
-            lessonImage={courseData?.preview}
-            key={module.id}
-            id={module.id}
-            number={index + 1}
-          />
-        ))}
-        {courseData?.modules.map((module, index) => (
-          <FinishedModuleTab
-            editModule={() => toggleEditModule(module.id)}
-            image={courseData.preview}
-            title={module.module_title}
-            number={module.module_number}
-            description={module.module_description}
-          />
-        ))} */}
         {moduleElements.map((module, index) => {
           if (module.finished) {
             console.log("finished:", module.finished);

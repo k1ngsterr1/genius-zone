@@ -1,16 +1,13 @@
-// Components
-import { Logo } from "@shared/index";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "@shared/ui/button";
+import { Button } from "@shared/ui/Button";
 import { UserTab } from "@shared/ui/UserTab";
-import Hamburger from "hamburger-react";
-
-// Hooks
 import { useOpenMenu } from "@shared/lib/hooks/useOpenMenu";
 import { useSelector } from "react-redux";
+import { RootState } from "@shared/lib/redux/store";
+import { Logo } from "@shared/ui/Logo";
+import Hamburger from "hamburger-react";
 
 import "./styles.scss";
-import { RootState } from "@shared/lib/redux/store";
 
 export const Header = () => {
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import { Header } from "@features/header/ui";
+import { Header } from "@features/Header/ui";
 import { VerificationScreen } from "@widgets/Verification/ui";
 import { Menu } from "@widgets/Menu";
 import { useSelector } from "react-redux";

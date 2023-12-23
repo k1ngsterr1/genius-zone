@@ -1,9 +1,6 @@
 import { UtilityButton } from "@shared/ui/UtilityButton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBriefcase, faStar } from "@fortawesome/free-solid-svg-icons";
 import { Separator } from "@shared/ui/Separator";
 import { UserProfile } from "@shared/ui/UserProfile";
-import image from "@assets/ruslan.jpg";
 import useLogOut from "@shared/lib/hooks/useLogOut";
 
 import "./styles.scss";

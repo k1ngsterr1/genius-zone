@@ -1,7 +1,7 @@
 import React from "react";
-import { Input } from "@shared/index";
+import { Input } from "@shared/ui/Input";
 import { usePasswordVisibility } from "@shared/lib/hooks/usePasswordVisibility";
-import { RegistrationButton } from "@shared/ui/registration-button";
+import { RegistrationButton } from "@shared/ui/RegistrationButton";
 import { useSignUpForm } from "@widgets/form/lib/useSignUpForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";

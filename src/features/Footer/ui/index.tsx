@@ -1,11 +1,11 @@
-import { Logo } from "@shared/index";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faTelegram } from "@fortawesome/free-brands-svg-icons/faTelegram";
+import { Separator } from "@shared/ui/Separator";
+import { Logo } from "@shared/ui/Logo";
 
 import "./styles.scss";
-import { Separator } from "@shared/ui/Separator";
 
 export const Footer = () => {
   return (
