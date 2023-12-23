@@ -26,7 +26,7 @@ export const CreateCourseScreen = () => {
   };
 
   const handleOpenEditor = (courseId: string) => {
-    navigate(`/create-course/${courseId}/edit`);
+    navigate(`/create-course/${courseId}/syllabus`);
   };
 
   return (

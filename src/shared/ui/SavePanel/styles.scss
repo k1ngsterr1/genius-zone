@@ -1,0 +1,28 @@
+.save-panel {
+  width: clamp(150px, 15.624vw, 600px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(8px, 0.83328vw, 32px);
+  height: clamp(32px, 3.33312vw, 128px);
+  border-radius: 4px;
+  @apply bg-custom-black;
+
+  &__content {
+    width: 80%;
+    margin: auto;
+
+    &__icon {
+      font-size: clamp(10.5px, 1.09368vw, 42px);
+      @apply text-green-600;
+    }
+
+    &__text {
+      font-size: clamp(8px, 0.83328vw, 32px);
+      font-weight: 600;
+      text-align: center;
+      @apply text-white;
+      @apply ml-2;
+    }
+  }
+}
