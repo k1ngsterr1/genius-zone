@@ -1,32 +1,30 @@
 import React, { FormEvent, useState } from "react";
 import { ModuleData } from "@shared/lib/hooks/useSaveModule";
 import { OutlinedInput } from "@mui/material";
-import { LessonTab } from "@widgets/LessonTab";
-import { UtilityButton } from "@shared/ui/UtilityButton";
-import { useSaveModule } from "@shared/lib/hooks/useSaveModule";
+import { useUpdateModule } from "@shared/lib/hooks/useUpdateModule";
 import { useParams } from "react-router-dom";
 import { useAddNewModule } from "@shared/lib/hooks/useAddNewModule";
+import { LessonTab } from "@widgets/LessonTab";
+import { UtilityButton } from "@shared/ui/UtilityButton";
 
-import "./styles.scss";
-
-interface ModuleTabProps {
-  id: string | number;
-  number: any;
-  titleValue?: string;
-  descriptionValue?: string;
-  lessonImage: string | undefined;
+interface LoadedModuleTabProps {
+  title: string | any;
+  description: string | any;
+  image: string | any;
+  number: string | number | any;
+  id: number;
 }
 
-export const ModuleTab: React.FC<ModuleTabProps> = ({
+export const LoadedModuleTab: React.FC<LoadedModuleTabProps> = ({
+  title,
+  description,
+  image,
   number,
-  lessonImage,
-  id,
 }) => {
   const courseID = useParams<{ courseID: string }>();
-  const [module_title, setModuleTitle] = useState("");
-  const [module_description, setModuleDescription] = useState("");
-  // const { saveModule } = useSaveModule();
-  const { cancelNewModule, saveModule } = useAddNewModule();
+  const { updateModule } = useUpdateModule();
+  const [module_title, setModuleTitle] = useState(title);
+  const [module_description, setModuleDescription] = useState(description);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -36,7 +34,7 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
       module_description,
     };
 
-    await saveModule(id.toString(), courseID.courseID, moduleData);
+    await updateModule(moduleData, courseID.courseID, number);
   };
 
   return (
@@ -46,7 +44,7 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
         onSubmit={handleSubmit}
       >
         <div className="module-tab__inputs flex-col items-start w-[70%] mt-5 mb-8">
-          <span className="module-tab__inputs__text">Модуль {`${number}`}</span>
+          <span className="module-tab__inputs__text">{title}</span>
           <div className="module-tab__inputs__upper-row flex mt-4">
             <OutlinedInput
               placeholder="Название модуля"
@@ -57,6 +55,7 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
                 width: "95%",
                 height: "clamp(20px,2.0832vw,80px)",
               }}
+              value={module_title}
               onChange={(e) => setModuleTitle(e.target.value)}
             />
           </div>
@@ -69,6 +68,7 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
               width: "100%",
               height: "clamp(20px,2.0832vw,80px)",
             }}
+            value={module_description}
             onChange={(e) => setModuleDescription(e.target.value)}
           />
           <UtilityButton
@@ -86,7 +86,7 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
           />
         </div>
       </form>
-      <LessonTab image={lessonImage} />
+      <LessonTab image={image} />
     </>
   );
 };

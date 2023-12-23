@@ -7,7 +7,7 @@ type ModuleType = {
   isEditing: boolean;
   finished: boolean;
   module_title?: string;
-  module_number?: any;
+  module_num?: any;
   module_description?: string;
 };
 
@@ -21,7 +21,7 @@ export const useAddNewModule = () => {
       isEditing: true,
       finished: false,
       module_title: "",
-      module_number: moduleElements.length + 1,
+      module_num: moduleElements.length,
       module_description: "",
     };
     setModules((prevModules) => [...prevModules, newModule]);

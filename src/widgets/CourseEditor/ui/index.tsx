@@ -6,6 +6,7 @@ import { RootState } from "@shared/lib/redux/store";
 import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
 import { useAddNewModule } from "@shared/lib/hooks/useAddNewModule";
 import { ModuleTab } from "@widgets/ModuleTab";
+import { LoadedModuleTab } from "@widgets/LoadedModuleTab";
 import { useParams, useNavigate } from "react-router-dom";
 import { SavePanel } from "@shared/ui/SavePanel";
 import BasicDateCalendar from "@shared/ui/Calendar/ui";
@@ -28,7 +29,6 @@ export const CourseEditorScreen = () => {
   useEffect(() => {
     if (courseData?.modules) {
       updateModules(courseData.modules);
-      console.log("modules:", moduleElements);
     }
   }, [courseData?.modules]);
 
@@ -55,6 +55,16 @@ export const CourseEditorScreen = () => {
         <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
           Редактирование курса
         </h2>
+        {courseData.modules.map((module, index) => (
+          <LoadedModuleTab
+            image={courseData.preview}
+            title={module?.module_title}
+            description={module?.module_description}
+            number={module.module_num}
+            key={module.id}
+            id={module.id}
+          />
+        ))}
         {moduleElements.map((module, index) => {
           if (module.isEditing) {
             return (

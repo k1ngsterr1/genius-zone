@@ -50,7 +50,9 @@ export const EditCourseTab: React.FC<EditCourseProps> = ({
         alt="course-edit-image"
         className="course-edit-side__image"
       />
-      <p className="course-edit-side__course-name mt-6">{courseName}</p>
+      <p className="course-edit-side__course-name mt-6 w-[100%]">
+        {courseName}
+      </p>
       <UtilityButton
         text="Опубликовать"
         type="filled-btn"

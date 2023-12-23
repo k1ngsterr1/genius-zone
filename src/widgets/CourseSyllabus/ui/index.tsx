@@ -43,6 +43,7 @@ export const CourseSyllabusScreen = () => {
     if (courseData?.modules) {
       updateModules(courseData.modules);
       console.log("modules:", moduleElements);
+      console.log(courseData.modules);
     }
   }, [courseData?.modules]);
 
@@ -163,7 +164,7 @@ export const CourseSyllabusScreen = () => {
                 editModule={() => toggleEditModule(module.id)}
                 image={courseData?.preview}
                 title={module.module_title || "Нет заголовка"}
-                number={module.module_number || 0}
+                number={module.module_num || 0}
                 key={module.id}
                 description={module.module_description || "Нет описания"}
               />
