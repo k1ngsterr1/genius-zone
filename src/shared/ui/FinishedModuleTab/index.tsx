@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { KebabMenu } from "../KebabMenu";
+import { UtilityButton } from "../UtilityButton";
 
 import "./styles.scss";
-import { UtilityButton } from "../UtilityButton";
 
 interface FinishedTabProps {
   title: string;
@@ -38,12 +38,6 @@ export const FinishedModuleTab: React.FC<FinishedTabProps> = ({
             </span>
           </div>
         </div>
-        <UtilityButton
-          text="Редактировать"
-          type="filled-btn"
-          marginTop="mt-0"
-          onClick={editModule}
-        />
       </div>
     </div>
   );

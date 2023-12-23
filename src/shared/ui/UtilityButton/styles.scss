@@ -3,8 +3,9 @@
   height: auto;
 
   &__filled-btn {
-    width: clamp(100px, 10.416vw, 400px);
+    width: auto;
     height: auto;
+    padding: clamp(15px, 1.5624vw, 60px);
     color: white;
     font-family: Inter;
     font-size: clamp(8.5px, 0.88536vw, 34px);

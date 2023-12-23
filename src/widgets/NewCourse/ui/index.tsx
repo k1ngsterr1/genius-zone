@@ -12,6 +12,7 @@ interface NewCourseProps {
   title: string;
   image: string;
   kebabEdit: () => void;
+  onClick: () => void;
   description: string;
   onDelete: (id: string) => void;
 }
@@ -21,6 +22,7 @@ export const NewCourse: React.FC<NewCourseProps> = ({
   title,
   image,
   kebabEdit,
+  onClick,
   description,
   onDelete,
 }) => {
@@ -39,7 +41,11 @@ export const NewCourse: React.FC<NewCourseProps> = ({
   };
 
   return (
-    <div className="new-course flex justify-between items-center" id={`${id}`}>
+    <div
+      className="new-course flex justify-between items-center"
+      id={`${id}`}
+      onClick={onClick}
+    >
       <img src={image} className="new-course__image" alt={title} />
       <div className="new-course__content flex flex-column items-start ml-8">
         <div className="new-course__content__title-container flex items-center justify-between">

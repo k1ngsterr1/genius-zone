@@ -82,16 +82,9 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
             }
             marginTop="mt-6"
           />
-          {/* <UtilityButton
-            text="Отменить"
-            type={"filled-btn bg-red-400 ml-4 hover:bg-red-600"}
-            marginTop="mt-6"
-            buttonType={"button"}
-            onClick={() => cancelNewModule(id)}
-          /> */}
         </div>
       </form>
-      <LessonTab image={lessonImage} buttonType="filled-inactive-btn" />
+      <LessonTab image={lessonImage}  />
     </>
   );
 };

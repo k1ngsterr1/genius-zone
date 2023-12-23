@@ -94,6 +94,13 @@ export const CourseEditScreen = () => {
         <div>error</div>
       )}
       <section className="w-[73%] course-edit-container flex flex-col items-center">
+        <div className="w-[70%] flex">
+          <UtilityButton
+            text="Редактировать cодержимое"
+            type="filled-btn"
+            marginTop="mt-6 mb-6"
+          />
+        </div>
         <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
           Создание курса
         </h2>

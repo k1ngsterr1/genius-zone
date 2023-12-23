@@ -58,6 +58,7 @@ export const CreateCourseScreen = () => {
           !error &&
           courses.map((course) => (
             <NewCourse
+              onClick={() => handleOpenEditor(course.id)}
               kebabEdit={() => handleOpenEditor(course.id)}
               id={course.id}
               title={course.title}

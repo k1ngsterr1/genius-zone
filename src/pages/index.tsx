@@ -13,7 +13,7 @@ import { CoursePage } from "./Course/ui";
 import { CreateCoursePage } from "./CreateCourse/ui";
 import { CreateNewCourse } from "./CreateNewCourse/ui";
 import { UserEditPage } from "./UserEdit/ui";
-import { NewCourseEdit } from "./NewCourseEdit";
+import { NewCourseEdit } from "./NewCourseEdit/ui";
 
 export const MyRoutes: FC = () => {
   return (
