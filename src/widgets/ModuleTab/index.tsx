@@ -39,7 +39,6 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
 
     await saveModule(moduleData, courseID.courseID);
     reloadCourseData();
-    console.log("reloaded");
   };
 
   return (

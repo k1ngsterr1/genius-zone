@@ -72,19 +72,15 @@ export const CourseEditorScreen = () => {
             }
           />
         ))}
-        {courseData.modules.map((module, index) => {
-          if (module.isEditing) {
-            return (
-              <ModuleTab
-                lessonImage={courseData?.preview}
-                key={module.id}
-                id={module.id}
-                number={index + 1}
-              />
-            );
-          } else {
-            return null;
-          }
+        {moduleElements.map((module, index) => {
+          return (
+            <ModuleTab
+              lessonImage={courseData?.preview}
+              key={module.id}
+              id={module.id}
+              number={index + 1}
+            />
+          );
         })}
         <div className="course-edit-container__tab flex flex-col items-center justify-center">
           <p className="paragraph text-center w-[50%] text-gray-400">
