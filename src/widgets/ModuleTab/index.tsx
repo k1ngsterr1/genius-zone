@@ -24,9 +24,12 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
   id,
 }) => {
   const courseID = useParams<{ courseID: string }>();
+  const { updateModuleElements } = useAddNewModule();
   const [module_title, setModuleTitle] = useState("");
   const [module_description, setModuleDescription] = useState("");
-  const { reloadCourseData } = useLoadSpecificCourse(courseID.courseID);
+  const { reloadCourseData, fetchCourseData } = useLoadSpecificCourse(
+    courseID.courseID
+  );
   const { saveModule } = useSaveModule();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -38,6 +41,7 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
     };
 
     await saveModule(moduleData, courseID.courseID);
+    console.log("updateModules:", updateModuleElements);
     reloadCourseData();
   };
 

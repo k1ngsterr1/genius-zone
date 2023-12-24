@@ -40,7 +40,7 @@ export const LoadedModuleTab: React.FC<LoadedModuleTabProps> = ({
 
     await updateModule(moduleData, courseID.courseID, number);
     reloadCourseData();
-    console.log("reloaded course data");
+    console.log("reloaded course data zhopa");
   };
 
   return (

@@ -45,5 +45,5 @@ export function useLoadSpecificCourse(courseID: string | any) {
     }
   };
 
-  return { courseData, error, reloadCourseData };
+  return { courseData, error, reloadCourseData, fetchCourseData };
 }

@@ -27,8 +27,13 @@ export const useAddNewModule = () => {
     setModules((prevModules) => [...prevModules, newModule]);
   }, [moduleElements]);
 
+  const updateModuleElements = (newModules: any) => {
+    setModules(newModules);
+  };
+
   return {
     moduleElements,
     addNewModule,
+    updateModuleElements,
   };
 };
