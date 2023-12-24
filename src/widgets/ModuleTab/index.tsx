@@ -6,6 +6,7 @@ import { UtilityButton } from "@shared/ui/UtilityButton";
 import { useSaveModule } from "@shared/lib/hooks/useSaveModule";
 import { useParams } from "react-router-dom";
 import { useAddNewModule } from "@shared/lib/hooks/useAddNewModule";
+import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
 
 import "./styles.scss";
 
@@ -25,6 +26,7 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
   const courseID = useParams<{ courseID: string }>();
   const [module_title, setModuleTitle] = useState("");
   const [module_description, setModuleDescription] = useState("");
+  const { reloadCourseData } = useLoadSpecificCourse(courseID.courseID);
   const { saveModule } = useSaveModule();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -36,6 +38,8 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
     };
 
     await saveModule(moduleData, courseID.courseID);
+    reloadCourseData();
+    console.log("reloaded");
   };
 
   return (

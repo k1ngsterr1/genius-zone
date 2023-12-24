@@ -41,6 +41,7 @@ export function useLoadSpecificCourse(courseID: string | any) {
   const reloadCourseData = () => {
     if (courseID) {
       fetchCourseData();
+      console.log("reloaded");
     }
   };
 

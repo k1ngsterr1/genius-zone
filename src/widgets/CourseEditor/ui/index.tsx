@@ -23,7 +23,6 @@ export const CourseEditorScreen = () => {
 
   const handleDeleteSuccess = () => {
     reloadCourseData();
-    console.log("reloadsterr");
   };
 
   const { deleteModule } = useDeleteModule(handleDeleteSuccess);
@@ -73,7 +72,7 @@ export const CourseEditorScreen = () => {
             }
           />
         ))}
-        {moduleElements.map((module, index) => {
+        {courseData.modules.map((module, index) => {
           if (module.isEditing) {
             return (
               <ModuleTab

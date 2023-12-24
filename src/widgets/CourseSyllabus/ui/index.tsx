@@ -26,6 +26,12 @@ export const CourseSyllabusScreen = () => {
     navigate(`/create-course/${courseID.courseID}/edit`);
   }
 
+  useEffect(() => {
+    console.log(moduleElements);
+    console.log(courseData?.modules);
+    return () => {};
+  }, []);
+
   const transformedModules =
     courseData?.modules.map((mod) => ({
       id: `module-${mod.module_num}`,
@@ -142,8 +148,8 @@ export const CourseSyllabusScreen = () => {
         <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
           Создание курса
         </h2>
-        {moduleElements.map((module, index) => {
-          if (module.finished) {
+        {courseData.modules.map((module, index) => {
+          {
             console.log("finished:", module.finished);
             return (
               <FinishedModuleTab
@@ -154,18 +160,6 @@ export const CourseSyllabusScreen = () => {
                 description={module.module_description || "Нет описания"}
               />
             );
-          } else if (module.isEditing) {
-            console.log("isEditing:", module.isEditing);
-            return (
-              <ModuleTab
-                lessonImage={courseData?.preview}
-                key={module.id}
-                id={module.id}
-                number={index + 1}
-              />
-            );
-          } else {
-            return null;
           }
         })}
         <h2 className="text-2xl font-medium text-custom-black mt-16">
