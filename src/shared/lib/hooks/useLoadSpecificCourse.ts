@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { turnOffLoader, turnOnLoader } from "../redux/store/loaderSlice";
 
@@ -16,24 +16,35 @@ export function useLoadSpecificCourse(courseID: string | any) {
   const [error, setError] = useState<Error | null>(null);
   const dispatch = useDispatch();
 
+  const fetchCourseData = useCallback(async () => {
+    dispatch(turnOnLoader()); // Turn on loader before fetching
+    try {
+      const response = await axios.get(
+        `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/`
+      );
+      console.log(response.data);
+      setCourseData(response.data);
+      setError(null);
+    } catch (error: any) {
+      setError(error);
+    } finally {
+      dispatch(turnOffLoader());
+    }
+  }, [courseID, dispatch]);
+
   useEffect(() => {
-    const fetchCourseData = async () => {
-      try {
-        const response = await axios.get(
-          `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/`
-        );
-        console.log(response.data);
-        setCourseData(response.data);
-      } catch (error: any) {
-        setError(error);
-      } finally {
-        dispatch(turnOffLoader());
-      }
-    };
     if (courseID) {
       fetchCourseData();
     }
-  }, [courseID]);
+  }, [courseID, fetchCourseData]);
 
-  return { courseData, setCourseData, error };
+  // Function to manually reload course data
+  const reloadCourseData = () => {
+    if (courseID) {
+      fetchCourseData();
+      console.log("reloaded");
+    }
+  };
+
+  return { courseData, error, reloadCourseData };
 }

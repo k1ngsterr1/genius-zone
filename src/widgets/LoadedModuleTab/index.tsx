@@ -3,16 +3,15 @@ import { ModuleData } from "@shared/lib/hooks/useSaveModule";
 import { OutlinedInput } from "@mui/material";
 import { useUpdateModule } from "@shared/lib/hooks/useUpdateModule";
 import { useParams } from "react-router-dom";
-import { useAddNewModule } from "@shared/lib/hooks/useAddNewModule";
 import { LessonTab } from "@widgets/LessonTab";
 import { UtilityButton } from "@shared/ui/UtilityButton";
-import useDeleteModule from "@shared/lib/hooks/useDeleteModule";
 
 interface LoadedModuleTabProps {
   title: string | any;
   description: string | any;
   image: string | any;
   number: string | number | any;
+  deleteFunction: () => void;
   id: number;
 }
 
@@ -21,10 +20,10 @@ export const LoadedModuleTab: React.FC<LoadedModuleTabProps> = ({
   description,
   image,
   number,
+  deleteFunction,
 }) => {
   const courseID = useParams<{ courseID: string }>();
   const { updateModule } = useUpdateModule();
-  const { deleteModule } = useDeleteModule();
   const [module_title, setModuleTitle] = useState(title);
   const [module_description, setModuleDescription] = useState(description);
 
@@ -89,7 +88,7 @@ export const LoadedModuleTab: React.FC<LoadedModuleTabProps> = ({
           <UtilityButton
             buttonType={"button"}
             text="Удалить модуль"
-            onClick={() => deleteModule(courseID.courseID, number)}
+            onClick={deleteFunction}
             type={"filled-btn bg-red-500 ml-4 hover:bg-red-600"}
             marginTop="mt-6"
           />

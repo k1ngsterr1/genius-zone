@@ -25,8 +25,7 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
   const courseID = useParams<{ courseID: string }>();
   const [module_title, setModuleTitle] = useState("");
   const [module_description, setModuleDescription] = useState("");
-  // const { saveModule } = useSaveModule();
-  const { cancelNewModule, saveModule } = useAddNewModule();
+  const { saveModule } = useSaveModule();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -36,7 +35,7 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
       module_description,
     };
 
-    await saveModule(id.toString(), courseID.courseID, moduleData);
+    await saveModule(moduleData, courseID.courseID);
   };
 
   return (

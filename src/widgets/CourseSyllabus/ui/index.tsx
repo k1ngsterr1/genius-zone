@@ -18,13 +18,7 @@ import "./styles.scss";
 export const CourseSyllabusScreen = () => {
   const courseID = useParams<{ courseID: string }>();
   const navigate = useNavigate();
-  const {
-    moduleElements,
-    addNewModule,
-    cancelNewModule,
-    toggleEditModule,
-    updateModules,
-  } = useAddNewModule();
+  const { moduleElements, addNewModule } = useAddNewModule();
   const { courseData, error } = useLoadSpecificCourse(courseID.courseID);
   const isLoading = useSelector((state: RootState) => state.loader.isLoading);
 
@@ -38,14 +32,6 @@ export const CourseSyllabusScreen = () => {
       title: mod.module_title.toString(),
       number: mod.module_num.toString(),
     })) ?? [];
-
-  useEffect(() => {
-    if (courseData?.modules) {
-      updateModules(courseData.modules);
-      console.log("modules:", moduleElements);
-      console.log(courseData.modules);
-    }
-  }, [courseData?.modules]);
 
   if (isLoading) {
     return (
@@ -161,7 +147,6 @@ export const CourseSyllabusScreen = () => {
             console.log("finished:", module.finished);
             return (
               <FinishedModuleTab
-                editModule={() => toggleEditModule(module.id)}
                 image={courseData?.preview}
                 title={module.module_title || "Нет заголовка"}
                 number={module.module_num || 0}

@@ -27,69 +27,8 @@ export const useAddNewModule = () => {
     setModules((prevModules) => [...prevModules, newModule]);
   }, [moduleElements]);
 
-  const { saveModule: apiSaveModule } = useSaveModule();
-
-  const saveModule = async (
-    moduleId: string,
-    courseID: string,
-    moduleData: ModuleData
-  ) => {
-    try {
-      await apiSaveModule(moduleData, courseID);
-      setModules((prevModules) =>
-        prevModules.map((module) =>
-          module.id === moduleId
-            ? { ...module, isEditing: false, finished: true }
-            : module
-        )
-      );
-    } catch (error) {
-      console.error("Error saving module:", error);
-    }
-  };
-
-  const updateModules = (newModulesData: any[]) => {
-    const transformedModules = newModulesData.map((mod) => ({
-      ...mod,
-      id: `module-${mod.module_num}`,
-      title: mod.module_title,
-      isEditing: false,
-      finished: true,
-      module_title: mod.module_title,
-      module_number: mod.module_number,
-      module_description: mod.module_description,
-    }));
-    setModules(transformedModules);
-  };
-
-  const cancelNewModule = useCallback(
-    (moduleId: string) => {
-      setModules((prevModules) =>
-        prevModules.filter((module) => module.id !== moduleId)
-      );
-    },
-    [moduleElements]
-  );
-
-  const toggleEditModule = useCallback(
-    (moduleId: string) => {
-      setModules((prevModules) =>
-        prevModules.map((module) =>
-          module.id === moduleId
-            ? { ...module, isEditing: !module.isEditing }
-            : module
-        )
-      );
-    },
-    [moduleElements]
-  );
-
   return {
     moduleElements,
     addNewModule,
-    saveModule,
-    cancelNewModule,
-    updateModules,
-    toggleEditModule,
   };
 };

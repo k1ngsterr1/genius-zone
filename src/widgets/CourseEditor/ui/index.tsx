@@ -11,14 +11,22 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Loader } from "@shared/ui/Loader";
 import { SavePanel } from "@shared/ui/SavePanel";
 import BasicDateCalendar from "@shared/ui/Calendar/ui";
+import useDeleteModule from "@shared/lib/hooks/useDeleteModule";
 
 export const CourseEditorScreen = () => {
   const courseID = useParams<{ courseID: string }>();
   const navigate = useNavigate();
-  const { moduleElements, addNewModule, cancelNewModule, updateModules } =
-    useAddNewModule();
-  const { courseData } = useLoadSpecificCourse(courseID.courseID);
-  const isLoading = useSelector((state: RootState) => state.loader.isLoading);
+  const { moduleElements, addNewModule } = useAddNewModule();
+  const { courseData, reloadCourseData } = useLoadSpecificCourse(
+    courseID.courseID
+  );
+
+  const handleDeleteSuccess = () => {
+    reloadCourseData();
+    console.log("reloadsterr");
+  };
+
+  const { deleteModule } = useDeleteModule(handleDeleteSuccess);
 
   const transformedModules =
     courseData?.modules.map((mod) => ({
@@ -28,8 +36,8 @@ export const CourseEditorScreen = () => {
     })) ?? [];
 
   useEffect(() => {
+    console.log("before updating modules:", courseData?.modules);
     if (courseData?.modules) {
-      updateModules(courseData.modules);
     }
   }, [courseData?.modules]);
 
@@ -60,6 +68,9 @@ export const CourseEditorScreen = () => {
             number={module.module_num}
             key={module.id}
             id={module.id}
+            deleteFunction={() =>
+              deleteModule(courseID.courseID, module.module_num)
+            }
           />
         ))}
         {moduleElements.map((module, index) => {

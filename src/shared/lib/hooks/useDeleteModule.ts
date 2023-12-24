@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const useDeleteModule = () => {
+const useDeleteModule = (onSuccess: any) => {
   const deleteModule = async (
     courseId: string | number | any,
     moduleNum: string | number
@@ -18,8 +18,17 @@ const useDeleteModule = () => {
       );
 
       console.log("Module has been deleted successfully!", response.data);
+
+      if (onSuccess) {
+        onSuccess(moduleNum);
+        console.log("success reload");
+      }
     } catch (error: any) {
       console.error("There was an error deleting the Module", error);
+      if (onSuccess) {
+        onSuccess(moduleNum);
+        console.log("success reload");
+      }
     }
   };
   return { deleteModule };
