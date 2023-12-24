@@ -3,7 +3,7 @@
   height: auto;
 
   &__filled-btn {
-    width: auto;
+    min-width: clamp(100px, 10.416vw, 400px);
     height: auto;
     padding: clamp(15px, 1.5624vw, 60px);
     color: white;

@@ -22,7 +22,7 @@ export const UserAside = () => {
           text="Выйти"
           marginTop="mt-6"
           onClick={() => handleLogOut()}
-          type={"filled-btn bg-red-500"}
+          type={"filled-btn bg-red-500 hover:bg-red-600"}
         />
         <Separator width="w-[90%]" margin="mt-4 mb-4" color="bg-gray-100" />
         <div className="user-profile__tab-buttons flex flex-col items-start">

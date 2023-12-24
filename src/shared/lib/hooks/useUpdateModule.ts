@@ -15,7 +15,7 @@ export const useUpdateModule = () => {
     try {
       const token = Cookies.get("accessToken");
       const response = await axios.put(
-        `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}`,
+        `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/`,
         data,
         {
           headers: {

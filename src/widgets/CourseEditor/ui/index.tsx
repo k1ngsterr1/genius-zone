@@ -8,6 +8,7 @@ import { useAddNewModule } from "@shared/lib/hooks/useAddNewModule";
 import { ModuleTab } from "@widgets/ModuleTab";
 import { LoadedModuleTab } from "@widgets/LoadedModuleTab";
 import { useParams, useNavigate } from "react-router-dom";
+import { Loader } from "@shared/ui/Loader";
 import { SavePanel } from "@shared/ui/SavePanel";
 import BasicDateCalendar from "@shared/ui/Calendar/ui";
 
@@ -35,11 +36,7 @@ export const CourseEditorScreen = () => {
   if (!courseData) {
     return (
       <>
-        <div className="wrapper--row mt-12">
-          <h1 className="text-5xl text-custom-black">
-            Данного курса не существует
-          </h1>
-        </div>
+        <Loader />
       </>
     );
   }
