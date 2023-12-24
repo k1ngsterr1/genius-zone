@@ -41,15 +41,14 @@ export const NewCourse: React.FC<NewCourseProps> = ({
   };
 
   return (
-    <div
-      className="new-course flex justify-between items-center"
-      id={`${id}`}
-      onClick={onClick}
-    >
+    <div className="new-course flex justify-between items-center" id={`${id}`}>
       <img src={image} className="new-course__image" alt={title} />
       <div className="new-course__content flex flex-column items-start ml-8">
         <div className="new-course__content__title-container flex items-center justify-between">
-          <h1 className="new-course__content__title-container__title">
+          <h1
+            className="new-course__content__title-container__title hover:underline"
+            onClick={onClick}
+          >
             {title}
           </h1>
           <IconButton

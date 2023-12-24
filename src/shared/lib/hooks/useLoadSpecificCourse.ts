@@ -38,11 +38,9 @@ export function useLoadSpecificCourse(courseID: string | any) {
     }
   }, [courseID, fetchCourseData]);
 
-  // Function to manually reload course data
   const reloadCourseData = () => {
     if (courseID) {
       fetchCourseData();
-      console.log("reloaded");
     }
   };
 

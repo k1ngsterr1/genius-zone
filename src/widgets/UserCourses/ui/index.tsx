@@ -14,7 +14,7 @@ import "./styles.scss";
 
 export const UserCoursesScreen = () => {
   const navigate = useNavigate();
-  const { courses, setCourses, error } = useLoadCourses();
+  const { courses, setCourses, error, reloadCourseData } = useLoadCourses();
 
   const isLoading = useSelector((state: RootState) => state.loader.isLoading);
 
@@ -23,6 +23,7 @@ export const UserCoursesScreen = () => {
       (course) => course.id !== deletedCourseId
     );
     setCourses(updatedCourses);
+    reloadCourseData();
   };
 
   const handleOpenEditor = (courseId: string) => {

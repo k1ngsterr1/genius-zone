@@ -16,25 +16,29 @@ function useLoadCourses() {
 
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    async function fetchCourses() {
-      try {
-        dispatch(turnOnLoader());
-        const response = await axios.get(
-          "https://inquisitive-creature-production.up.railway.app/api/courses/courses/"
-        );
-        setCourses(response.data);
-      } catch (error: any) {
-        setError(error);
-      } finally {
-        dispatch(turnOffLoader());
-      }
+  async function fetchCourses() {
+    try {
+      dispatch(turnOnLoader());
+      const response = await axios.get(
+        "https://inquisitive-creature-production.up.railway.app/api/courses/courses/"
+      );
+      setCourses(response.data);
+    } catch (error: any) {
+      setError(error);
+    } finally {
+      dispatch(turnOffLoader());
     }
+  }
 
+  useEffect(() => {
     fetchCourses();
   }, []);
 
-  return { courses, setCourses, error };
+  const reloadCourseData = () => {
+    fetchCourses();
+  };
+
+  return { courses, setCourses, reloadCourseData, error };
 }
 
 export default useLoadCourses;
