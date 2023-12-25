@@ -1,10 +1,36 @@
 .lesson-module-tab {
+  width: 100%;
+  padding: clamp(5px, 0.5208vw, 20px);
+  cursor: pointer;
+  transition: 0.3s all;
+  border-radius: 2px;
+  @apply mt-10;
+  &:hover {
+    @apply bg-gray-200;
+  }
+
+  &:hover &__text {
+    text-decoration: underline;
+  }
+
   &__text {
-    font-size: clamp(9px, 0.93744vw, 36px);
+    font-size: clamp(10.5px, 1.09368vw, 42px);
     @apply text-custom-black;
   }
+
+  &__cross {
+    font-size: clamp(12px, 1.24992vw, 48px);
+    cursor: pointer;
+    transition: 0.3s all;
+    @apply text-gray-300;
+    &:hover {
+      @apply text-gray-500;
+    }
+  }
+
   &__image {
-    width: clamp(24px, 2.49984vw, 96px);
-    height: clamp(24px, 2.49984vw, 96px);
+    width: clamp(40px, 4.1664vw, 160px);
+    height: clamp(40px, 4.1664vw, 160px);
+    border-radius: 7px;
   }
 }

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { ModuleData } from "@shared/lib/hooks/useSaveModule";
 import { OutlinedInput } from "@mui/material";
-import { LessonTab } from "@widgets/LessonTab";
 import { UtilityButton } from "@shared/ui/UtilityButton";
 import { useSaveModule } from "@shared/lib/hooks/useSaveModule";
 import { useParams } from "react-router-dom";
 import { useAddNewModule } from "@shared/lib/hooks/useAddNewModule";
 import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
+import { LessonForModule } from "@shared/ui/LessonForModule";
 
 interface ModuleWithLessonsProps {
   id: string | number;
@@ -85,6 +85,7 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
       </div>
       <div className="module-tab__lessons flex-col items-start w-[70%] mt-0 mb-8">
         <span className="text-2xl">Уроки</span>
+        <LessonForModule lessonImage={lessonImage} lessonTitle="Проверка" />
       </div>
     </div>
   );
