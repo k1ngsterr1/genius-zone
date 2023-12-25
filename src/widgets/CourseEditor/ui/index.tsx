@@ -66,7 +66,7 @@ export const CourseEditorScreen = () => {
           if (module.lessons && module.lessons.length > 0) {
             const lessonsForModule = module.lessons.map((lesson: any) => ({
               lessonTitle: lesson.lesson_title,
-              lessonNumber: lesson.lesson_num,
+              lessonNum: lesson.lesson_num,
             }));
             return (
               <ModuleWithLessons
