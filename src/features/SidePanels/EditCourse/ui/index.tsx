@@ -12,7 +12,7 @@ interface Module {
 
 interface EditCourseProps {
   image: string;
-  courseName: string;
+  courseName: string | undefined;
   modules: Module[];
 }
 

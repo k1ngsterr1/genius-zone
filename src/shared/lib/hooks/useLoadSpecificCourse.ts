@@ -13,11 +13,12 @@ interface CourseData {
 
 export function useLoadSpecificCourse(courseID: string | any) {
   const [courseData, setCourseData] = useState<CourseData | null>(null);
+  const [needsUpdate, setNeedsUpdate] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const dispatch = useDispatch();
 
   const fetchCourseData = useCallback(async () => {
-    dispatch(turnOnLoader()); // Turn on loader before fetching
+    dispatch(turnOnLoader());
     try {
       const response = await axios.get(
         `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/`
@@ -33,10 +34,8 @@ export function useLoadSpecificCourse(courseID: string | any) {
   }, [courseID, dispatch]);
 
   useEffect(() => {
-    if (courseID) {
-      fetchCourseData();
-    }
-  }, [courseID, fetchCourseData]);
+    fetchCourseData();
+  }, []);
 
   const reloadCourseData = () => {
     if (courseID) {
@@ -45,5 +44,15 @@ export function useLoadSpecificCourse(courseID: string | any) {
     }
   };
 
-  return { courseData, error, reloadCourseData, fetchCourseData };
+  const updateCourseData = () => {
+    setNeedsUpdate(true);
+  };
+
+  return {
+    courseData,
+    error,
+    reloadCourseData,
+    fetchCourseData,
+    updateCourseData,
+  };
 }

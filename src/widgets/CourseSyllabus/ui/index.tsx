@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { EditCourseTab } from "@features/SidePanels/EditCourse/ui";
 import { UtilityButton } from "@shared/ui/UtilityButton";
 import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
@@ -19,18 +18,18 @@ export const CourseSyllabusScreen = () => {
   const courseID = useParams<{ courseID: string }>();
   const navigate = useNavigate();
   const { moduleElements, addNewModule } = useAddNewModule();
-  const { courseData, error } = useLoadSpecificCourse(courseID.courseID);
+  const { courseData, error, updateCourseData } = useLoadSpecificCourse(
+    courseID.courseID
+  );
   const isLoading = useSelector((state: RootState) => state.loader.isLoading);
 
   function handleNavigateToEditor() {
     navigate(`/create-course/${courseID.courseID}/edit`);
   }
 
-  useEffect(() => {
-    console.log(moduleElements);
-    console.log(courseData?.modules);
-    return () => {};
-  }, []);
+  const handleAddModuleClick = () => {
+    addNewModule();
+  };
 
   const transformedModules =
     courseData?.modules.map((mod) => ({
@@ -55,19 +54,7 @@ export const CourseSyllabusScreen = () => {
     );
   }
 
-  if (!courseData) {
-    return (
-      <>
-        <div className="wrapper--row mt-12">
-          <h1 className="text-5xl text-custom-black">
-            Данного курса не существует
-          </h1>
-        </div>
-      </>
-    );
-  }
-
-  if (courseData.modules.length == 0) {
+  if (courseData?.modules.length == 0) {
     return (
       <div className="wrapper--row mt-12">
         <EditCourseTab
@@ -95,10 +82,16 @@ export const CourseSyllabusScreen = () => {
           })}
           <div className="course-edit-container__tab flex flex-col items-center justify-center">
             <p className="paragraph text-center w-[50%] text-gray-400">
-              {!courseData ? (
+              {courseData.modules.length == 0 ? (
                 <>
                   Ваш курс пока абсолютно пустой. Создайте первый модуль, чтобы
                   добавить уроки
+                  <UtilityButton
+                    text="Редактировать cодержимое"
+                    type="filled-btn"
+                    marginTop="mt-6 mb-6"
+                    onClick={() => handleNavigateToEditor()}
+                  />
                 </>
               ) : (
                 <>
@@ -107,14 +100,6 @@ export const CourseSyllabusScreen = () => {
                 </>
               )}
             </p>
-
-            <UtilityButton
-              text="Новый модуль"
-              marginTop="mt-6"
-              type="filled-btn"
-              onClick={addNewModule}
-            />
-            <BasicDateCalendar />
           </div>
           <h2 className="text-2xl font-medium text-custom-black mt-16">
             Описание действия
@@ -132,8 +117,8 @@ export const CourseSyllabusScreen = () => {
   return (
     <div className="wrapper--row mt-12">
       <EditCourseTab
-        image={courseData.preview}
-        courseName={courseData.title}
+        image={courseData?.preview}
+        courseName={courseData?.title}
         modules={transformedModules}
       />
       <section className="w-[73%] course-edit-container flex flex-col items-center">
@@ -148,7 +133,7 @@ export const CourseSyllabusScreen = () => {
         <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
           Создание курса
         </h2>
-        {courseData.modules.map((module, index) => {
+        {courseData?.modules.map((module, index) => {
           {
             console.log("finished:", module.finished);
             return (

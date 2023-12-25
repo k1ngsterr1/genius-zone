@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { useState } from "react";
 import { ModuleData } from "@shared/lib/hooks/useSaveModule";
 import { OutlinedInput } from "@mui/material";
 import { LessonTab } from "@widgets/LessonTab";
@@ -9,7 +9,6 @@ import { useAddNewModule } from "@shared/lib/hooks/useAddNewModule";
 import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
 
 import "./styles.scss";
-
 interface ModuleTabProps {
   id: string | number;
   number: any;
@@ -24,33 +23,28 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
   id,
 }) => {
   const courseID = useParams<{ courseID: string }>();
+  const { reloadCourseData } = useLoadSpecificCourse(courseID.courseID);
   const { updateModuleElements } = useAddNewModule();
   const [module_title, setModuleTitle] = useState("");
   const [module_description, setModuleDescription] = useState("");
-  const { reloadCourseData, fetchCourseData } = useLoadSpecificCourse(
-    courseID.courseID
-  );
+
   const { saveModule } = useSaveModule();
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const handleSubmit = async () => {
     const moduleData: ModuleData = {
       module_title,
       module_description,
     };
 
     await saveModule(moduleData, courseID.courseID);
-    console.log("updateModules:", updateModuleElements);
     reloadCourseData();
+
+    console.log("updateModules:", updateModuleElements);
   };
 
   return (
     <>
-      <form
-        className="module-tab flex flex-col items-center"
-        onSubmit={handleSubmit}
-      >
+      <form className="module-tab flex flex-col items-center">
         <div className="module-tab__inputs flex-col items-start w-[70%] mt-5 mb-8">
           <span className="module-tab__inputs__text">Модуль {`${number}`}</span>
           <div className="module-tab__inputs__upper-row flex mt-4">
@@ -83,6 +77,7 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
             }
             buttonType={"submit"}
             text="Сохранить модуль"
+            onClick={handleSubmit}
             type={
               module_description && module_title !== ""
                 ? "filled-btn"
@@ -92,7 +87,11 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
           />
         </div>
       </form>
-      <LessonTab image={lessonImage} />
+      <LessonTab
+        image={lessonImage}
+        courseID={courseID.courseID}
+        moduleNumber={number}
+      />
     </>
   );
 };

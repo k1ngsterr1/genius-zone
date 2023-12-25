@@ -1,6 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-
+import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
 export interface ModuleData {
   module_title: string;
   module_description: string;

@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import { OutlinedInput } from "@mui/material";
 import { UtilityButton } from "@shared/ui/UtilityButton";
+import { useCreateLesson } from "@shared/lib/hooks/useCreateLesson";
 
 import "./styles.scss";
 
 interface LessonTabProps {
   image: string | undefined;
+  moduleNumber: string | number | any;
+  courseID: string | number | any;
 }
 
-export const LessonTab: React.FC<LessonTabProps> = ({ image }) => {
+export const LessonTab: React.FC<LessonTabProps> = ({
+  image,
+  moduleNumber,
+  courseID,
+}) => {
+  const { createLesson } = useCreateLesson();
   const [lessonName, setLessonName] = useState("");
 
   return (
