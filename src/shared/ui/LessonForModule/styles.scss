@@ -1,0 +1,10 @@
+.lesson-module-tab {
+  &__text {
+    font-size: clamp(9px, 0.93744vw, 36px);
+    @apply text-custom-black;
+  }
+  &__image {
+    width: clamp(24px, 2.49984vw, 96px);
+    height: clamp(24px, 2.49984vw, 96px);
+  }
+}

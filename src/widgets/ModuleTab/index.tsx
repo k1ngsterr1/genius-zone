@@ -20,7 +20,6 @@ interface ModuleTabProps {
 export const ModuleTab: React.FC<ModuleTabProps> = ({
   number,
   lessonImage,
-  id,
 }) => {
   const courseID = useParams<{ courseID: string }>();
   const { reloadCourseData } = useLoadSpecificCourse(courseID.courseID);

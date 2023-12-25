@@ -99,7 +99,11 @@ export const LoadedModuleTab: React.FC<LoadedModuleTabProps> = ({
           />
         </div>
       </form>
-      <LessonTab image={image} />
+      <LessonTab
+        image={image}
+        courseID={courseID.courseID}
+        moduleNumber={number}
+      />
     </>
   );
 };

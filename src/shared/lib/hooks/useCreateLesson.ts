@@ -2,14 +2,15 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 export interface LessonData {
-  lessonName: string;
+  lesson_title: string;
+  lesson_description: string;
 }
 
 export function useCreateLesson() {
   const createLesson = async (
     data: LessonData,
-    courseID: string | any,
-    moduleNum: string | any
+    courseID: any,
+    moduleNum: any
   ) => {
     try {
       const token = Cookies.get("accessToken");

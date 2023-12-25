@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { OutlinedInput } from "@mui/material";
+import { LessonData } from "@shared/lib/hooks/useCreateLesson";
 import { UtilityButton } from "@shared/ui/UtilityButton";
 import { useCreateLesson } from "@shared/lib/hooks/useCreateLesson";
 
@@ -17,7 +18,17 @@ export const LessonTab: React.FC<LessonTabProps> = ({
   courseID,
 }) => {
   const { createLesson } = useCreateLesson();
-  const [lessonName, setLessonName] = useState("");
+  const [lesson_title, setLessonName] = useState("");
+  const lesson_description = "Trash Description";
+
+  function handleCreateLesson() {
+    const lessonData: LessonData = {
+      lesson_title,
+      lesson_description,
+    };
+    console.log(moduleNumber, courseID, lessonData);
+    createLesson(lessonData, courseID, moduleNumber);
+  }
 
   return (
     <div className="lesson-tab mb-8">
@@ -37,10 +48,10 @@ export const LessonTab: React.FC<LessonTabProps> = ({
         <UtilityButton
           text="Создать урок"
           className=""
-          isDisabled={lessonName !== "" ? false : true}
-          type={lessonName !== "" ? "filled-btn" : "filled-inactive-btn"}
+          isDisabled={lesson_title !== "" ? false : true}
+          type={lesson_title !== "" ? "filled-btn" : "filled-inactive-btn"}
           marginTop="mt-0"
-          onClick={() => console.log("holla")}
+          onClick={handleCreateLesson}
         />
       </div>
     </div>

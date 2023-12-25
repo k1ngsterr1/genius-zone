@@ -9,6 +9,7 @@ import { ModuleTab } from "@widgets/ModuleTab";
 import { LoadedModuleTab } from "@widgets/LoadedModuleTab";
 import { useParams, useNavigate } from "react-router-dom";
 import { Loader } from "@shared/ui/Loader";
+import { ModuleWithLessons } from "@widgets/ModuleWithLessonsEditable";
 import { SavePanel } from "@shared/ui/SavePanel";
 import BasicDateCalendar from "@shared/ui/Calendar/ui";
 import useDeleteModule from "@shared/lib/hooks/useDeleteModule";
@@ -59,6 +60,11 @@ export const CourseEditorScreen = () => {
         <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
           Редактирование курса
         </h2>
+        <ModuleWithLessons
+          lessonImage={courseData?.preview}
+          id={1}
+          number={1}
+        />
         {courseData.modules.map((module, index) => (
           <LoadedModuleTab
             image={courseData.preview}
