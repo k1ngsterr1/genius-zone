@@ -13,7 +13,6 @@ interface CourseData {
 
 export function useLoadSpecificCourse(courseID: string | any) {
   const [courseData, setCourseData] = useState<CourseData | null>(null);
-  const [needsUpdate, setNeedsUpdate] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const dispatch = useDispatch();
 
@@ -44,15 +43,10 @@ export function useLoadSpecificCourse(courseID: string | any) {
     }
   };
 
-  const updateCourseData = () => {
-    setNeedsUpdate(true);
-  };
-
   return {
     courseData,
     error,
     reloadCourseData,
     fetchCourseData,
-    updateCourseData,
   };
 }
