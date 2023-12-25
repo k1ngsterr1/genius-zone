@@ -8,11 +8,13 @@ import "./styles.scss";
 export interface LessonForModuleProps {
   lessonTitle: string;
   lessonImage: string | undefined;
+  deleteLesson: () => void;
 }
 
 export const LessonForModule: React.FC<LessonForModuleProps> = ({
   lessonImage,
   lessonTitle,
+  deleteLesson,
 }) => {
   return (
     <div className="lesson-module-tab flex items-center justify-between">
@@ -30,6 +32,7 @@ export const LessonForModule: React.FC<LessonForModuleProps> = ({
         />
         <FontAwesomeIcon
           icon={faClose}
+          onClick={deleteLesson}
           className="lesson-module-tab__cross ml-4"
         />
       </div>

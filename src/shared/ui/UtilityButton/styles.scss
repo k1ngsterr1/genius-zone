@@ -19,6 +19,25 @@
     }
   }
 
+  &__filled-inactive-hover {
+    min-width: clamp(100px, 10.416vw, 400px);
+    height: auto;
+    padding: clamp(15px, 1.5624vw, 60px);
+    color: white;
+    font-family: Inter;
+    font-size: clamp(8.5px, 0.88536vw, 34px);
+    padding-top: clamp(4px, 0.41664vw, 16px);
+    padding-bottom: clamp(4px, 0.41664vw, 16px);
+    border-radius: 4px;
+    transition: 0.3s all;
+    @apply bg-gray-200 #{!important};
+    @apply text-custom-black;
+    &:hover {
+      color: white;
+      background-color: #0f20b9 !important;
+    }
+  }
+
   &__filled-inactive-btn {
     width: clamp(100px, 10.416vw, 400px);
     height: auto;

@@ -1,14 +1,14 @@
-.lesson-tab {
-  width: 70%;
+.lesson-tab-input {
+  width: 100%;
+  padding: 8px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-left: 4px solid;
+  justify-content: space-between;
   border-radius: 8px;
   @apply bg-gray-100;
 
   &__row {
-    width: 90%;
+    width: 100%;
     @apply mt-4;
     @apply mb-4;
 

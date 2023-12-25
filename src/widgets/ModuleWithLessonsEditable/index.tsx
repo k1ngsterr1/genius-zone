@@ -8,11 +8,14 @@ import { LessonForModuleProps } from "@shared/ui/LessonForModule";
 import { useAddNewModule } from "@shared/lib/hooks/useAddNewModule";
 import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
 import { LessonForModule } from "@shared/ui/LessonForModule";
+import { LessonInput } from "@shared/ui/LessonInput";
 
 interface ModuleWithLessonsProps {
   id: string | number;
   number: any;
   title: string;
+  deleteFunction: () => void;
+  deleteLessonFunction: () => void;
   description: string;
   image: string | undefined;
   lessons: LessonForModuleProps[];
@@ -22,6 +25,9 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
   image,
   title,
   description,
+  number,
+  deleteFunction,
+  deleteLessonFunction,
   lessons,
 }) => {
   const courseID = useParams<{ courseID: string }>();
@@ -29,8 +35,8 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
     courseID.courseID
   );
   const { updateModuleElements } = useAddNewModule();
-  const [module_title, setModuleTitle] = useState("");
-  const [module_description, setModuleDescription] = useState("");
+  const [module_title, setModuleTitle] = useState(title);
+  const [module_description, setModuleDescription] = useState(description);
 
   const { saveModule } = useSaveModule();
 
@@ -48,7 +54,7 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
 
   return (
     <div className="module-tab flex flex-col items-center">
-      <div className="module-tab__inputs flex-col items-start w-[70%] mt-5 mb-8">
+      <div className="module-tab__inputs flex-col items-start w-[80%] mt-5 mb-8">
         <span className="module-tab__inputs__text">{title}</span>
         <div className="module-tab__inputs__upper-row flex mt-4">
           <OutlinedInput
@@ -56,7 +62,7 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
             type="text"
             name="module_title"
             required
-            value={title}
+            value={module_title}
             sx={{
               width: "95%",
               height: "clamp(20px,2.0832vw,80px)",
@@ -69,7 +75,7 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
           type="text"
           required
           className="mt-4"
-          value={description}
+          value={module_description}
           sx={{
             width: "100%",
             height: "clamp(20px,2.0832vw,80px)",
@@ -88,15 +94,36 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
           }
           marginTop="mt-6"
         />
+        <UtilityButton
+          buttonType={"button"}
+          text="Удалить модуль"
+          onClick={deleteFunction}
+          type={"filled-btn bg-red-500 ml-4 hover:bg-red-600"}
+          marginTop="mt-6"
+        />
       </div>
-      <div className="module-tab__lessons flex-col items-start w-[70%] mt-0 mb-8">
+      <div className="module-tab__lessons flex-col items-start w-[80%] mt-0 mb-8">
         <span className="text-2xl">Уроки</span>
         {lessons.map((lesson) => (
           <LessonForModule
             lessonTitle={lesson.lessonTitle}
             lessonImage={image}
+            deleteLesson={deleteLessonFunction}
           />
         ))}
+        <LessonInput
+          courseID={courseID.courseID}
+          moduleNumber={number}
+          image={image}
+        />
+      </div>
+      <div className="w-[80%] flex items-start">
+        <UtilityButton
+          text="Добавить Урок"
+          marginTop="mt-3 mb-6"
+          type="filled-inactive-hover"
+          onClick={() => console.log("added")}
+        />
       </div>
     </div>
   );
