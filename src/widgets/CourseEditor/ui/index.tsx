@@ -1,22 +1,18 @@
 import { useEffect } from "react";
 import { EditCourseTab } from "@features/SidePanels/EditCourse/ui";
 import { UtilityButton } from "@shared/ui/UtilityButton";
-import { useSelector } from "react-redux";
-import { RootState } from "@shared/lib/redux/store";
 import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
 import { useAddNewModule } from "@shared/lib/hooks/useAddNewModule";
 import { ModuleTab } from "@widgets/ModuleTab";
 import { LoadedModuleTab } from "@widgets/LoadedModuleTab";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Loader } from "@shared/ui/Loader";
 import { ModuleWithLessons } from "@widgets/ModuleWithLessonsEditable";
-import { SavePanel } from "@shared/ui/SavePanel";
 import BasicDateCalendar from "@shared/ui/Calendar/ui";
 import useDeleteModule from "@shared/lib/hooks/useDeleteModule";
 
 export const CourseEditorScreen = () => {
   const courseID = useParams<{ courseID: string }>();
-  const navigate = useNavigate();
   const { moduleElements, addNewModule } = useAddNewModule();
   const { courseData, reloadCourseData } = useLoadSpecificCourse(
     courseID.courseID
@@ -33,9 +29,13 @@ export const CourseEditorScreen = () => {
       id: `module-${mod.module_num}`,
       title: mod.module_title.toString(),
       number: mod.module_num.toString(),
+      lessons: mod.lessons.map((lesson: any) => ({
+        lessonTitle: lesson.lesson_title,
+      })),
     })) ?? [];
 
   useEffect(() => {
+    console.log(courseData);
     console.log("before updating modules:", courseData?.modules);
     if (courseData?.modules) {
     }
@@ -60,24 +60,38 @@ export const CourseEditorScreen = () => {
         <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
           Редактирование курса
         </h2>
-        <ModuleWithLessons
-          lessonImage={courseData?.preview}
-          id={1}
-          number={1}
-        />
-        {courseData.modules.map((module, index) => (
-          <LoadedModuleTab
-            image={courseData.preview}
-            title={module?.module_title}
-            description={module?.module_description}
-            number={module.module_num}
-            key={module.id}
-            id={module.id}
-            deleteFunction={() =>
-              deleteModule(courseID.courseID, module.module_num)
-            }
-          />
-        ))}
+        {courseData.modules.map((module, index) => {
+          if (module.lessons && module.lessons.length > 0) {
+            const lessonsForModule = module.lessons.map((lesson: any) => ({
+              lessonTitle: lesson.lesson_title,
+            }));
+            return (
+              <ModuleWithLessons
+                key={module.id}
+                id={module.id}
+                number={index + 1}
+                title={module.module_title}
+                description={module.module_description}
+                image={courseData.preview}
+                lessons={lessonsForModule}
+              />
+            );
+          } else {
+            return (
+              <LoadedModuleTab
+                key={module.id}
+                id={module.id}
+                image={courseData.preview}
+                title={module.module_title}
+                description={module.module_description}
+                number={module.module_num}
+                deleteFunction={() =>
+                  deleteModule(courseID.courseID, module.module_num)
+                }
+              />
+            );
+          }
+        })}
         {moduleElements.map((module, index) => {
           return (
             <ModuleTab

@@ -35,7 +35,7 @@ export function useLoadSpecificCourse(courseID: string | any) {
 
   useEffect(() => {
     fetchCourseData();
-  }, []);
+  }, [courseID]);
 
   const reloadCourseData = () => {
     if (courseID) {

@@ -5,7 +5,7 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 import "./styles.scss";
 
-interface LessonForModuleProps {
+export interface LessonForModuleProps {
   lessonTitle: string;
   lessonImage: string | undefined;
 }
