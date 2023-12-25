@@ -9,15 +9,16 @@ import { useAddNewModule } from "@shared/lib/hooks/useAddNewModule";
 import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
 import { LessonForModule } from "@shared/ui/LessonForModule";
 import { LessonInput } from "@shared/ui/LessonInput";
+import { useDeleteLesson } from "@shared/lib/hooks/useDeleteLesson";
 
 interface ModuleWithLessonsProps {
   id: string | number;
   number: any;
   title: string;
   deleteFunction: () => void;
-  deleteLessonFunction: () => void;
   description: string;
   image: string | undefined;
+
   lessons: LessonForModuleProps[];
 }
 
@@ -27,14 +28,17 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
   description,
   number,
   deleteFunction,
-  deleteLessonFunction,
   lessons,
 }) => {
   const courseID = useParams<{ courseID: string }>();
-  const { reloadCourseData, courseData } = useLoadSpecificCourse(
-    courseID.courseID
-  );
+  const { reloadCourseData } = useLoadSpecificCourse(courseID.courseID);
+
+  const handleDeleteSuccess = () => {
+    reloadCourseData();
+  };
+
   const { updateModuleElements } = useAddNewModule();
+  const { deleteLesson } = useDeleteLesson(handleDeleteSuccess);
   const [module_title, setModuleTitle] = useState(title);
   const [module_description, setModuleDescription] = useState(description);
 
@@ -97,7 +101,7 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
         <UtilityButton
           buttonType={"button"}
           text="Удалить модуль"
-          onClick={deleteFunction}
+          onClick={() => deleteFunction}
           type={"filled-btn bg-red-500 ml-4 hover:bg-red-600"}
           marginTop="mt-6"
         />
@@ -108,7 +112,10 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
           <LessonForModule
             lessonTitle={lesson.lessonTitle}
             lessonImage={image}
-            deleteLesson={deleteLessonFunction}
+            lessonNum={lesson.lessonNum}
+            deleteLesson={() =>
+              deleteLesson(courseID.courseID, number, lesson.lessonNum)
+            }
           />
         ))}
         <LessonInput

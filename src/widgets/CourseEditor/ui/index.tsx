@@ -11,6 +11,7 @@ import { ModuleWithLessons } from "@widgets/ModuleWithLessonsEditable";
 import BasicDateCalendar from "@shared/ui/Calendar/ui";
 import useDeleteModule from "@shared/lib/hooks/useDeleteModule";
 import { useDeleteLesson } from "@shared/lib/hooks/useDeleteLesson";
+import { LessonForModule } from "@shared/ui/LessonForModule";
 
 export const CourseEditorScreen = () => {
   const courseID = useParams<{ courseID: string }>();
@@ -24,7 +25,6 @@ export const CourseEditorScreen = () => {
   };
 
   const { deleteModule } = useDeleteModule(handleDeleteSuccess);
-  const { deleteLesson } = useDeleteLesson(handleDeleteSuccess);
 
   const transformedModules =
     courseData?.modules.map((mod) => ({
@@ -35,14 +35,6 @@ export const CourseEditorScreen = () => {
         lessonTitle: lesson.lesson_title,
       })),
     })) ?? [];
-
-  const transformedLessonNum = courseData?.modules.map((module, index) => {
-    if (module.lessons && module.lessons.length > 0) {
-      const lessonNum = module.lessons.map((lesson: any) => ({
-        lessonNum: lesson.lesson_num,
-      }));
-    }
-  });
 
   useEffect(() => {
     console.log(courseData);
@@ -74,7 +66,7 @@ export const CourseEditorScreen = () => {
           if (module.lessons && module.lessons.length > 0) {
             const lessonsForModule = module.lessons.map((lesson: any) => ({
               lessonTitle: lesson.lesson_title,
-              lessonNum: lesson.lesson_num,
+              lessonNumber: lesson.lesson_num,
             }));
             return (
               <ModuleWithLessons
@@ -87,9 +79,6 @@ export const CourseEditorScreen = () => {
                 lessons={lessonsForModule}
                 deleteFunction={() =>
                   deleteModule(courseID.courseID, module.module_num)
-                }
-                deleteLessonFunction={() =>
-                  deleteLesson(courseID.courseID, module.module_num, 1)
                 }
               />
             );

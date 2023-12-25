@@ -21,7 +21,6 @@ const useDeleteModule = (onSuccess: any) => {
 
       if (onSuccess) {
         onSuccess(moduleNum);
-        console.log("success reload");
       }
     } catch (error: any) {
       console.error("There was an error deleting the Module", error);

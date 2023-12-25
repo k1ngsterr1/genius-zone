@@ -7,6 +7,7 @@ import "./styles.scss";
 
 export interface LessonForModuleProps {
   lessonTitle: string;
+  lessonNum: string | number;
   lessonImage: string | undefined;
   deleteLesson: () => void;
 }
