@@ -3,6 +3,7 @@ import { OutlinedInput } from "@mui/material";
 import { LessonData } from "@shared/lib/hooks/useCreateLesson";
 import { UtilityButton } from "@shared/ui/UtilityButton";
 import { useCreateLesson } from "@shared/lib/hooks/useCreateLesson";
+import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
 
 import "./styles.scss";
 
@@ -17,6 +18,7 @@ export const LessonTab: React.FC<LessonTabProps> = ({
   moduleNumber,
   courseID,
 }) => {
+  const { reloadCourseData } = useLoadSpecificCourse(courseID);
   const { createLesson } = useCreateLesson();
   const [lesson_title, setLessonName] = useState("");
   const lesson_description = "Trash Description";
@@ -26,8 +28,14 @@ export const LessonTab: React.FC<LessonTabProps> = ({
       lesson_title,
       lesson_description,
     };
-    console.log(moduleNumber, courseID, lessonData);
-    createLesson(lessonData, courseID, moduleNumber);
+    createLesson(lessonData, courseID, moduleNumber)
+      .then(() => {
+        reloadCourseData();
+      })
+      .catch((error) => {
+        reloadCourseData();
+        console.error("Error creating lesson:", error);
+      });
   }
 
   return (

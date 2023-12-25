@@ -93,7 +93,7 @@ export const LoadedModuleTab: React.FC<LoadedModuleTabProps> = ({
           <UtilityButton
             buttonType={"button"}
             text="Удалить модуль"
-            onClick={deleteFunction}
+            onClick={() => deleteFunction()}
             type={"filled-btn bg-red-500 ml-4 hover:bg-red-600"}
             marginTop="mt-6"
           />

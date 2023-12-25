@@ -4,6 +4,7 @@ import { OutlinedInput } from "@mui/material";
 import { UtilityButton } from "@shared/ui/UtilityButton";
 import { useSaveModule } from "@shared/lib/hooks/useSaveModule";
 import { useParams } from "react-router-dom";
+import { useUpdateModule } from "@shared/lib/hooks/useUpdateModule";
 import { LessonForModuleProps } from "@shared/ui/LessonForModule";
 import { useAddNewModule } from "@shared/lib/hooks/useAddNewModule";
 import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
@@ -36,13 +37,11 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
   const handleDeleteSuccess = () => {
     reloadCourseData();
   };
-
+  const { updateModule } = useUpdateModule();
   const { updateModuleElements } = useAddNewModule();
   const { deleteLesson } = useDeleteLesson(handleDeleteSuccess);
   const [module_title, setModuleTitle] = useState(title);
   const [module_description, setModuleDescription] = useState(description);
-
-  const { saveModule } = useSaveModule();
 
   const handleSubmit = async () => {
     const moduleData: ModuleData = {
@@ -50,7 +49,7 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
       module_description,
     };
 
-    await saveModule(moduleData, courseID.courseID);
+    await updateModule(moduleData, courseID.courseID, number);
     reloadCourseData();
 
     console.log("updateModules:", updateModuleElements);

@@ -18,12 +18,14 @@ export function useDeleteLesson(onSuccess: any) {
         }
       );
       if (onSuccess) {
-        onSuccess(moduleNum);
+        console.log("deleted Successfully");
+        onSuccess(lessonNum);
       }
       console.log("Lesson successfully deleted:", response);
     } catch (error: any) {
       if (onSuccess) {
-        onSuccess(moduleNum);
+        console.log("deleted Successfully");
+        onSuccess(lessonNum);
       }
       console.error("There was an error with lesson delete:", error);
     }

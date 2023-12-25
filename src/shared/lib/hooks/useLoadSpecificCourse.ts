@@ -13,6 +13,7 @@ interface CourseData {
 
 export function useLoadSpecificCourse(courseID: string | any) {
   const [courseData, setCourseData] = useState<CourseData | null>(null);
+  const [modulesData, setModulesData] = useState<any>();
   const [error, setError] = useState<Error | null>(null);
   const dispatch = useDispatch();
 
@@ -22,8 +23,8 @@ export function useLoadSpecificCourse(courseID: string | any) {
       const response = await axios.get(
         `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/`
       );
-      console.log(response.data);
       setCourseData(response.data);
+      setModulesData(response.data.modules);
       setError(null);
     } catch (error: any) {
       setError(error);
@@ -38,14 +39,15 @@ export function useLoadSpecificCourse(courseID: string | any) {
 
   const reloadCourseData = () => {
     if (courseID) {
+      console.log("courseID:", courseID);
       fetchCourseData();
-      console.log("reloaded");
     }
   };
 
   return {
-    courseData,
     error,
+    courseData,
+    modulesData,
     reloadCourseData,
     fetchCourseData,
   };
