@@ -18,9 +18,7 @@ export const CourseSyllabusScreen = () => {
   const courseID = useParams<{ courseID: string }>();
   const navigate = useNavigate();
   const { moduleElements, addNewModule } = useAddNewModule();
-  const { courseData, error, updateCourseData } = useLoadSpecificCourse(
-    courseID.courseID
-  );
+  const { courseData, error } = useLoadSpecificCourse(courseID.courseID);
   const isLoading = useSelector((state: RootState) => state.loader.isLoading);
 
   function handleNavigateToEditor() {

@@ -15,6 +15,7 @@ import { UserEditPage } from "./UserEdit/ui";
 import { CourseSyllabus } from "./CourseSyllabus/ui";
 import { CourseEditorPage } from "./CourseEditor/ui";
 import { UserCoursesPage } from "./UserCourses/ui";
+import { LessonSettings } from "./LessonSettings/ui";
 
 export const MyRoutes: FC = () => {
   return (
@@ -53,6 +54,10 @@ export const MyRoutes: FC = () => {
         />
         <Route path={ROUTE_CONSTANTS.USER} element={<UserPage />} />
         <Route path={ROUTE_CONSTANTS.USER_EDIT} element={<UserEditPage />} />
+        <Route
+          path={ROUTE_CONSTANTS.LESSON_SETTINGS}
+          element={<LessonSettings />}
+        />
       </Routes>
     </Router>
   );

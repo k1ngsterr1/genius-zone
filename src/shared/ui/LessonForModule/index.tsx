@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { UtilityButton } from "../UtilityButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
@@ -15,8 +16,15 @@ export interface LessonForModuleProps {
 export const LessonForModule: React.FC<LessonForModuleProps> = ({
   lessonImage,
   lessonTitle,
+  lessonNum,
   deleteLesson,
 }) => {
+  const navigate = useNavigate();
+
+  const handleNavigateToLessonSettings = () => {
+    navigate(`/lesson-settings/${lessonNum}/lesson`);
+  };
+
   return (
     <div className="lesson-module-tab flex items-center justify-between">
       <img
@@ -30,6 +38,7 @@ export const LessonForModule: React.FC<LessonForModuleProps> = ({
           text="Редактировать"
           type="filled-btn"
           marginTop="mt-0"
+          onClick={handleNavigateToLessonSettings}
         />
         <FontAwesomeIcon
           icon={faClose}
