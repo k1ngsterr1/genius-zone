@@ -31,9 +31,9 @@ export const LessonTab: React.FC<LessonTabProps> = ({
     createLesson(lessonData, courseID, moduleNumber)
       .then(() => {
         reloadCourseData();
+        location.reload();
       })
       .catch((error) => {
-        reloadCourseData();
         console.error("Error creating lesson:", error);
       });
   }

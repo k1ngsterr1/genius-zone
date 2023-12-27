@@ -36,6 +36,7 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
 
   const handleDeleteSuccess = () => {
     reloadCourseData();
+    location.reload();
   };
   const { updateModule } = useUpdateModule();
   const { updateModuleElements } = useAddNewModule();
