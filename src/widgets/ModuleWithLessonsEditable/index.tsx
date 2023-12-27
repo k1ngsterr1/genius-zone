@@ -11,6 +11,7 @@ import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
 import { LessonForModule } from "@shared/ui/LessonForModule";
 import { LessonInput } from "@shared/ui/LessonInput";
 import { useDeleteLesson } from "@shared/lib/hooks/useDeleteLesson";
+import { useAddLessonInput } from "@shared/lib/hooks/useAddLessonInput";
 
 interface ModuleWithLessonsProps {
   id: string | number;
@@ -40,6 +41,7 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
   };
   const { updateModule } = useUpdateModule();
   const { updateModuleElements } = useAddNewModule();
+  const { lessonInputs, addNewLesson } = useAddLessonInput();
   const { deleteLesson } = useDeleteLesson(handleDeleteSuccess);
   const [module_title, setModuleTitle] = useState(title);
   const [module_description, setModuleDescription] = useState(description);
@@ -118,18 +120,22 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
             }
           />
         ))}
-        <LessonInput
-          courseID={courseID.courseID}
-          moduleNumber={number}
-          image={image}
-        />
+        {lessonInputs.map(() => {
+          return (
+            <LessonInput
+              courseID={courseID.courseID}
+              moduleNumber={number}
+              image={image}
+            />
+          );
+        })}
       </div>
       <div className="w-[80%] flex items-start">
         <UtilityButton
           text="Добавить Урок"
           marginTop="mt-3 mb-6"
           type="filled-inactive-hover"
-          onClick={() => console.log("added")}
+          onClick={addNewLesson}
         />
       </div>
     </div>
