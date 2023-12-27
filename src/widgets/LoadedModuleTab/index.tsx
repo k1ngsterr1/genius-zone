@@ -30,9 +30,7 @@ export const LoadedModuleTab: React.FC<LoadedModuleTabProps> = ({
 
   const { reloadCourseData } = useLoadSpecificCourse(courseID.courseID);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const handleSubmit = async () => {
     const moduleData: ModuleData = {
       module_title,
       module_description,
@@ -40,14 +38,14 @@ export const LoadedModuleTab: React.FC<LoadedModuleTabProps> = ({
 
     await updateModule(moduleData, courseID.courseID, number);
     reloadCourseData();
-    console.log("reloaded course data zhopa");
+    location.reload();
   };
 
   return (
     <>
       <form
         className="module-tab flex flex-col items-center"
-        onSubmit={handleSubmit}
+        // onSubmit={handleSubmit}
       >
         <div className="module-tab__inputs flex-col items-start w-[70%] mt-5 mb-8">
           <span className="module-tab__inputs__text">{title}</span>
@@ -81,7 +79,8 @@ export const LoadedModuleTab: React.FC<LoadedModuleTabProps> = ({
             isDisabled={
               module_description && module_title !== "" ? false : true
             }
-            buttonType={"submit"}
+            buttonType={"button"}
+            onClick={() => handleSubmit()}
             text="Сохранить модуль"
             type={
               module_description && module_title !== ""

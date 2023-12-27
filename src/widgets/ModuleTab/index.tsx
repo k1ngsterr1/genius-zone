@@ -37,8 +37,7 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
 
     await saveModule(moduleData, courseID.courseID);
     reloadCourseData();
-
-    console.log("updateModules:", updateModuleElements);
+    location.reload();
   };
 
   return (
@@ -74,7 +73,7 @@ export const ModuleTab: React.FC<ModuleTabProps> = ({
             isDisabled={
               module_description && module_title !== "" ? false : true
             }
-            buttonType={"submit"}
+            buttonType={"button"}
             text="Сохранить модуль"
             onClick={handleSubmit}
             type={
