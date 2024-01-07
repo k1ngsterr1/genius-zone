@@ -1,4 +1,12 @@
+.DraftEditor-root img {
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* For centering if needed */
+  margin: 0 auto; /* For centering if needed */
+}
+
 .editor {
+  @apply text-custom-black;
   &__toolbar {
     width: 70%;
     display: flex;
@@ -12,7 +20,9 @@
     &__italic,
     &__code,
     &__underline,
-    &__heading {
+    &__heading,
+    &__image,
+    &__expand {
       width: clamp(20px, 2.0832vw, 80px);
       height: clamp(20px, 2.0832vw, 80px);
       display: flex;
@@ -41,7 +51,77 @@
   &__text-editor {
     width: 70%;
     height: clamp(150px, 15.624vw, 600px);
+    overflow-y: auto;
+    border: 1px solid;
     border-top: none !important;
     padding: clamp(8px, 0.83328vw, 32px) !important;
+    @apply border-custom-black;
+  }
+}
+
+.editor-absolute {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 0;
+  right: 0;
+  left: 0;
+  position: absolute;
+  @apply bg-white;
+
+  @apply text-custom-black;
+  &__toolbar {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid;
+    @apply bg-gray-100;
+    @apply p-2;
+    @apply mt-7;
+
+    &__bold,
+    &__italic,
+    &__code,
+    &__underline,
+    &__heading,
+    &__image,
+    &__expand {
+      width: clamp(20px, 2.0832vw, 80px);
+      height: clamp(20px, 2.0832vw, 80px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: 0.3s all;
+      @apply text-custom-black;
+      &:hover {
+        border: 1px solid;
+        @apply bg-gray-200;
+        @apply border-gray-300;
+        @apply text-custom-hover-blue;
+      }
+    }
+
+    &__separator {
+      width: 1px;
+      height: clamp(10px, 1.0416vw, 40px);
+      @apply bg-custom-black;
+      @apply ml-4;
+      @apply mr-4;
+    }
+  }
+
+  &__text-editor {
+    width: 90%;
+    height: 80%;
+    overflow-y: auto;
+    border: 1px solid;
+    border-top: none !important;
+    padding: clamp(8px, 0.83328vw, 32px) !important;
+    @apply border-custom-black;
   }
 }

@@ -1,7 +1,20 @@
 import React, { useState } from "react";
-import { Editor, EditorState, RichUtils, DraftStyleMap } from "draft-js";
+import {
+  Editor,
+  EditorState,
+  RichUtils,
+  DraftStyleMap,
+  AtomicBlockUtils,
+} from "draft-js";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCode } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCode,
+  faImage,
+  faExpand,
+  faCompress,
+} from "@fortawesome/free-solid-svg-icons";
+
 import "draft-js/dist/Draft.css";
 import "./styles.scss";
 
@@ -15,7 +28,13 @@ const styleMap: DraftStyleMap = {
 };
 
 const TextEditor: React.FC = () => {
+  const [isFullscreen, setFullScreen] = useState(false);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+  // Full Window
+  const openFullScreen = () => {
+    setFullScreen(!isFullscreen);
+  };
 
   const handleKeyCommand = (command: string, editorState: EditorState) => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -68,62 +87,245 @@ const TextEditor: React.FC = () => {
     setEditorState(RichUtils.toggleBlockType(editorState, "header-six"));
   };
 
+  const onSectionClick = () => {
+    setEditorState(RichUtils.toggleBlockType(editorState, "section"));
+  };
+
+  // Content
+  const addImage = (editorState: any, url: any) => {
+    const contentState = editorState.getCurrentContent();
+    const contentStateWithEntity = contentState.createEntity(
+      "IMAGE",
+      "IMMUTABLE",
+      { src: url }
+    );
+    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+    const newEditorState = EditorState.set(editorState, {
+      currentContent: contentStateWithEntity,
+    });
+    return AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, " ");
+  };
+
+  const mediaBlockRenderer = (block: any) => {
+    if (block.getType() === "atomic") {
+      return {
+        component: Media,
+        editable: false,
+      };
+    }
+    return null;
+  };
+
+  const Media = (props: any) => {
+    const entity = props.contentState.getEntity(props.block.getEntityAt(0));
+    const { src } = entity.getData();
+    const type = entity.getType();
+
+    let media;
+    if (type === "IMAGE") {
+      media = <img src={src} alt="" />;
+    }
+
+    return media;
+  };
+
+  const handleImageUpload = (files: FileList) => {
+    if (files.length === 0) {
+      return;
+    }
+    const file = files[0];
+    if (file.type.indexOf("image/") === 0) {
+      const reader = new FileReader();
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        const base64Image = e.target?.result;
+        if (typeof base64Image === "string") {
+          const newEditorState = addImage(editorState, base64Image);
+          setEditorState(newEditorState);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
-    <div className="editor">
-      <div className="editor__toolbar">
-        <button onClick={onBoldClick} className="editor__toolbar__bold">
+    <div className={isFullscreen ? "editor-absolute" : "editor"}>
+      <div
+        className={
+          isFullscreen ? "editor-absolute__toolbar" : "editor__toolbar"
+        }
+      >
+        <button
+          onClick={onBoldClick}
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__bold"
+              : "editor__toolbar__bold"
+          }
+        >
           <strong>B</strong>
         </button>
         <button
           onClick={onItalicClick}
-          className="editor__toolbar__italic ml-2"
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__italic ml-2"
+              : "editor__toolbar__italic ml-2"
+          }
         >
           <i>I</i>
         </button>
         <button
           onClick={onUnderlineClick}
-          className="editor__toolbar__underline ml-2"
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__underline ml-2"
+              : "editor__toolbar__underline ml-2"
+          }
         >
           <span className="underline">U</span>
         </button>
-        <button onClick={onCodeClick} className="editor__toolbar__code ml-2">
+        <button
+          onClick={onCodeClick}
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__code ml-2"
+              : "editor__toolbar__code ml-2"
+          }
+        >
           <FontAwesomeIcon icon={faCode} />
         </button>
-        <span className="editor__toolbar__separator"></span>
-        <button onClick={onH1Click} className="editor__toolbar__heading ml-2">
+        <span
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__separator"
+              : "editor__toolbar__separator"
+          }
+        />
+        <button
+          onClick={onH1Click}
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__heading ml-2"
+              : "editor__toolbar__heading ml-2"
+          }
+        >
           <strong>H1</strong>
         </button>
-        <button onClick={onH2Click} className="editor__toolbar__heading ml-2">
+        <button
+          onClick={onH2Click}
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__heading ml-2"
+              : "editor__toolbar__heading ml-2"
+          }
+        >
           <strong>H2</strong>
         </button>
-        <button onClick={onH3Click} className="editor__toolbar__heading ml-2">
+        <button
+          onClick={onH3Click}
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__heading ml-2"
+              : "editor__toolbar__heading ml-2"
+          }
+        >
           <strong>H3</strong>
         </button>
-        <button onClick={onH4Click} className="editor__toolbar__heading ml-2">
+        <button
+          onClick={onH4Click}
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__heading ml-2"
+              : "editor__toolbar__heading ml-2"
+          }
+        >
           <strong>H4</strong>
         </button>
-        <button onClick={onH5Click} className="editor__toolbar__heading ml-2">
+        <button
+          onClick={onH5Click}
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__heading ml-2"
+              : "editor__toolbar__heading ml-2"
+          }
+        >
           <strong>H5</strong>
         </button>
-        <button onClick={onH6Click} className="editor__toolbar__heading ml-2">
+        <button
+          onClick={onH6Click}
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__heading ml-2"
+              : "editor__toolbar__heading ml-2"
+          }
+        >
           <strong>H6</strong>
         </button>
-        <button onClick={onCodeClick} className="editor__toolbar__heading ml-2">
+        <button
+          onClick={onSectionClick}
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__heading ml-2"
+              : "editor__toolbar__heading ml-2"
+          }
+        >
           <strong>P</strong>
+        </button>
+        <span
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__separator"
+              : "editor__toolbar__separator"
+          }
+        />
+        <label
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__image ml-2"
+              : "editor__toolbar__image ml-2"
+          }
+          htmlFor="image-for-editor"
+        >
+          <FontAwesomeIcon icon={faImage} />
+        </label>
+        <input
+          accept="image/*"
+          id="image-for-editor"
+          type="file"
+          style={{ display: "none" }}
+          multiple
+          onChange={(e) => handleImageUpload(e.target.files)}
+        ></input>
+        <span
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__separator"
+              : "editor__toolbar__separator"
+          }
+        />
+        <button
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__expand"
+              : "editor__toolbar__expand"
+          }
+          onClick={openFullScreen}
+        >
+          <FontAwesomeIcon icon={isFullscreen ? faCompress : faExpand} />
         </button>
       </div>
       <div
-        className="editor__text-editor"
-        style={{
-          border: "1px solid black",
-          padding: "2px",
-        }}
+        className={
+          isFullscreen ? "editor-absolute__text-editor" : "editor__text-editor"
+        }
       >
         <Editor
           customStyleMap={styleMap}
           editorState={editorState}
           handleKeyCommand={handleKeyCommand}
           onChange={setEditorState}
+          blockRendererFn={mediaBlockRenderer}
+          placeholder="Пишите здесь... :)"
         />
       </div>
     </div>
