@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Editor, EditorState, RichUtils, DraftStyleMap } from "draft-js";
-import "./styles.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCode } from "@fortawesome/free-solid-svg-icons";
 import "draft-js/dist/Draft.css";
+import "./styles.scss";
 
 const styleMap: DraftStyleMap = {
   CODE: {
@@ -10,7 +12,6 @@ const styleMap: DraftStyleMap = {
     fontSize: 16,
     padding: 2,
   },
-  // Add your custom styles here
 };
 
 const TextEditor: React.FC = () => {
@@ -37,6 +38,36 @@ const TextEditor: React.FC = () => {
     setEditorState(RichUtils.toggleInlineStyle(editorState, "UNDERLINE"));
   };
 
+  const onCodeClick = () => {
+    setEditorState(RichUtils.toggleInlineStyle(editorState, "CODE"));
+  };
+
+  // Headings
+
+  const onH1Click = () => {
+    setEditorState(RichUtils.toggleBlockType(editorState, "header-one"));
+  };
+
+  const onH2Click = () => {
+    setEditorState(RichUtils.toggleBlockType(editorState, "header-two"));
+  };
+
+  const onH3Click = () => {
+    setEditorState(RichUtils.toggleBlockType(editorState, "header-three"));
+  };
+
+  const onH4Click = () => {
+    setEditorState(RichUtils.toggleBlockType(editorState, "header-four"));
+  };
+
+  const onH5Click = () => {
+    setEditorState(RichUtils.toggleBlockType(editorState, "header-five"));
+  };
+
+  const onH6Click = () => {
+    setEditorState(RichUtils.toggleBlockType(editorState, "header-six"));
+  };
+
   return (
     <div className="editor">
       <div className="editor__toolbar">
@@ -51,9 +82,34 @@ const TextEditor: React.FC = () => {
         </button>
         <button
           onClick={onUnderlineClick}
-          className="editor__toolbar__italic ml-2"
+          className="editor__toolbar__underline ml-2"
         >
           <span className="underline">U</span>
+        </button>
+        <button onClick={onCodeClick} className="editor__toolbar__code ml-2">
+          <FontAwesomeIcon icon={faCode} />
+        </button>
+        <span className="editor__toolbar__separator"></span>
+        <button onClick={onH1Click} className="editor__toolbar__heading ml-2">
+          <strong>H1</strong>
+        </button>
+        <button onClick={onH2Click} className="editor__toolbar__heading ml-2">
+          <strong>H2</strong>
+        </button>
+        <button onClick={onH3Click} className="editor__toolbar__heading ml-2">
+          <strong>H3</strong>
+        </button>
+        <button onClick={onH4Click} className="editor__toolbar__heading ml-2">
+          <strong>H4</strong>
+        </button>
+        <button onClick={onH5Click} className="editor__toolbar__heading ml-2">
+          <strong>H5</strong>
+        </button>
+        <button onClick={onH6Click} className="editor__toolbar__heading ml-2">
+          <strong>H6</strong>
+        </button>
+        <button onClick={onCodeClick} className="editor__toolbar__heading ml-2">
+          <strong>P</strong>
         </button>
       </div>
       <div

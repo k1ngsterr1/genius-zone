@@ -2,19 +2,23 @@
   &__toolbar {
     width: 70%;
     display: flex;
+    align-items: center;
     border: 1px solid;
     @apply bg-gray-100;
     @apply p-2;
     @apply mt-7;
 
     &__bold,
-    &__italic {
+    &__italic,
+    &__code,
+    &__underline,
+    &__heading {
       width: clamp(20px, 2.0832vw, 80px);
       height: clamp(20px, 2.0832vw, 80px);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: clamp(12px, 1.24992vw, 48px);
+      font-size: 18px;
       transition: 0.3s all;
       @apply text-custom-black;
       &:hover {
@@ -23,6 +27,14 @@
         @apply border-gray-300;
         @apply text-custom-hover-blue;
       }
+    }
+
+    &__separator {
+      width: 1px;
+      height: clamp(10px, 1.0416vw, 40px);
+      @apply bg-custom-black;
+      @apply ml-4;
+      @apply mr-4;
     }
   }
 
