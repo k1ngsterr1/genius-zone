@@ -8,6 +8,7 @@ import "./styles.scss";
 
 export interface LessonForModuleProps {
   lessonTitle: string;
+  courseID: any;
   lessonNum: string | number;
   lessonImage: string | undefined;
   deleteLesson: () => void;
@@ -16,13 +17,14 @@ export interface LessonForModuleProps {
 export const LessonForModule: React.FC<LessonForModuleProps> = ({
   lessonImage,
   lessonTitle,
+  courseID,
   lessonNum,
   deleteLesson,
 }) => {
   const navigate = useNavigate();
 
   const handleNavigateToLessonSettings = () => {
-    navigate(`/lesson-settings/${lessonNum}/lesson`);
+    navigate(`/lesson-settings/${courseID}/${lessonNum}/lesson`);
   };
 
   return (

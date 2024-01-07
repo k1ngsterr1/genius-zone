@@ -112,6 +112,7 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
         <span className="text-2xl">Уроки</span>
         {lessons.map((lesson) => (
           <LessonForModule
+            courseID={courseID.courseID}
             lessonTitle={lesson.lessonTitle}
             lessonImage={image}
             lessonNum={lesson.lessonNum}

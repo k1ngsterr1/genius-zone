@@ -1,0 +1,43 @@
+.input-lesson {
+  width: 70%;
+  @apply p-4;
+  @apply bg-gray-100;
+
+  &__upper {
+    font-size: clamp(11px, 1.1457600000000001vw, 44px);
+    @apply text-custom-black;
+    @apply pb-4;
+  }
+
+  &__content {
+    display: flex;
+
+    &__image {
+      width: clamp(50px, 5.208vw, 200px);
+      height: clamp(50px, 5.208vw, 200px);
+    }
+
+    &__container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      @apply ml-6;
+
+      &__input {
+        width: 100% !important;
+        height: clamp(18px, 1.87488vw, 72px);
+        border-radius: 0px;
+        outline: none;
+        transition: 0.3s all;
+        @apply text-custom-black;
+        @apply pl-4;
+        &:focus {
+          border: 2px solid;
+          @apply border-custom-blue;
+        }
+      }
+    }
+  }
+}

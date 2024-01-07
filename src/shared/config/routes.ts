@@ -5,7 +5,7 @@ export const ROUTE_CONSTANTS = {
   REGISTRATION: "/registration",
   LOGIN: "/login",
   VERIFICATION: "/verification",
-  // USER: "/:userID/user",
+  // ! USER: "/:userID/user",
   // Users
   USER: "/user",
   USER_EDIT: "/user/:userID/edit",
@@ -16,5 +16,5 @@ export const ROUTE_CONSTANTS = {
   COURSE_SYLLABUS: "/create-course/:courseID/syllabus",
   CREATE_COURSE_EDIT: "/create-course/:courseID/edit",
   // Lessons
-  LESSON_SETTINGS: "/lesson-settings/:lessonNumber/lesson",
+  LESSON_SETTINGS: "/lesson-settings/:courseID/:lessonNumber/lesson",
 };
