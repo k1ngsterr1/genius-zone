@@ -129,7 +129,7 @@ const TextEditor: React.FC = () => {
     return media;
   };
 
-  const handleImageUpload = (files: FileList) => {
+  const handleImageUpload = (files: FileList | any) => {
     if (files.length === 0) {
       return;
     }
