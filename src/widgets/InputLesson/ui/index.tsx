@@ -25,6 +25,7 @@ export const InputLesson: React.FC<InputLessonProps> = ({
           <input
             type="text"
             value={inputValue}
+            placeholder={inputValue}
             className="input-lesson__content__container__input"
           />
           <UtilityButton

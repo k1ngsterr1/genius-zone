@@ -9,10 +9,16 @@ import cpp from "@assets/cpp.jpg";
 
 export const LessonSettingsScreen = () => {
   const courseID = useParams<{ courseID: string }>();
-  const lessonID = useParams<{ lessonID: string }>();
+  const lessonNumber = useParams<{ lessonNumber: string }>();
   const { courseData, reloadCourseData, modulesData } = useLoadSpecificCourse(
     courseID.courseID
   );
+
+  const lessonTitle = courseData?.modules
+    .flatMap((mod) => mod.lessons)
+    .find(
+      (lesson, index) => index.toString() === lessonNumber.lessonNumber
+    )?.lesson_title;
 
   const transformedModules =
     courseData?.modules.map((mod) => ({
@@ -25,8 +31,6 @@ export const LessonSettingsScreen = () => {
     })) ?? [];
 
   useEffect(() => {
-    console.log("course data:", courseData);
-    console.log("before updating modules:", modulesData);
     if (courseData?.modules) {
     }
   }, [courseData?.modules]);
@@ -50,7 +54,7 @@ export const LessonSettingsScreen = () => {
         <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
           Настройки Урока
         </h2>
-        <InputLesson lessonImage={cpp} />
+        <InputLesson lessonImage={cpp} inputValue={lessonTitle} />
       </section>
     </div>
   );
