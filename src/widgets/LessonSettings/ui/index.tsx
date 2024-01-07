@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
 import { Loader } from "@shared/ui/Loader";
 import { EditCourseTab } from "@features/SidePanels/EditCourse/ui";
 import { InputLesson } from "@widgets/InputLesson/ui";
+import TextEditor from "@features/TextEditor/ui";
 
 import cpp from "@assets/cpp.jpg";
 
@@ -55,6 +56,7 @@ export const LessonSettingsScreen = () => {
           Настройки Урока
         </h2>
         <InputLesson lessonImage={cpp} inputValue={lessonTitle} />
+        <TextEditor />
       </section>
     </div>
   );

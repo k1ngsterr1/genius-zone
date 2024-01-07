@@ -37,7 +37,7 @@ export const EditCourseTab: React.FC<EditCourseProps> = ({
         />
         <p className="course-edit-side__course-name mt-6">{courseName}</p>
         <p className="text-lg w-[70%] text-left mt-8">
-          В вашем курсе пока нет никаких модулей
+          В вашем кур е пока нет никаких модулей
         </p>
       </aside>
     );
