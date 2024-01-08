@@ -10,7 +10,9 @@ import cpp from "@assets/cpp.jpg";
 
 export const LessonSettingsScreen = () => {
   const courseID = useParams<{ courseID: string }>();
+  const moduleNum = useParams<{ moduleNum: string }>();
   const lessonNumber = useParams<{ lessonNumber: string }>();
+
   const { courseData, reloadCourseData, modulesData } = useLoadSpecificCourse(
     courseID.courseID
   );
@@ -30,12 +32,6 @@ export const LessonSettingsScreen = () => {
         lessonTitle: lesson.lesson_title,
       })),
     })) ?? [];
-
-  useEffect(() => {
-    console.log("Course data:", courseData);
-    console.log("Lesson number:", lessonNumber);
-    console.log("Lesson title:", lessonTitle);
-  }, [courseData, lessonNumber]);
 
   if (!courseData) {
     return (
@@ -57,7 +53,11 @@ export const LessonSettingsScreen = () => {
           Настройки Урока
         </h2>
         <InputLesson lessonImage={cpp} inputValue={lessonTitle} />
-        <TextEditor />
+        <TextEditor
+          courseID={courseID.courseID}
+          lessonNum={lessonNumber.lessonNumber}
+          moduleNum={moduleNum.moduleNum}
+        />
       </section>
     </div>
   );

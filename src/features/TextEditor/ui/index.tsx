@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useCreateStep } from "@shared/lib/hooks/useCreateStep";
+
 import {
   Editor,
   EditorState,
@@ -28,14 +30,57 @@ const styleMap: DraftStyleMap = {
   },
 };
 
-const TextEditor: React.FC = () => {
+interface CreateStepProps {
+  courseID: string | any;
+  moduleNum: string | any;
+  lessonNum: string | any;
+}
+
+const TextEditor: React.FC<CreateStepProps> = ({
+  courseID,
+  moduleNum,
+  lessonNum,
+}) => {
   const [isFullscreen, setFullScreen] = useState(false);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const { createStep } = useCreateStep();
+
+  // Create Step
+  const saveContent = (editorState: any) => {
+    const contentState = editorState.getCurrentContent();
+    const rawContent = convertToRaw(contentState);
+
+    const formattedContent = rawContent.blocks.map((block) => {
+      const text = block.text;
+      let imageUrl = "";
+
+      if (block.type === "atomic") {
+        const entityKey = block.entityRanges[0]?.key;
+        const entity = contentState.getEntity(entityKey);
+        if (entity.getType().toUpperCase === "IMAGE") {
+          imageUrl = entity.getData().src;
+        }
+      }
+
+      return {
+        step_title: "Step title here",
+        step_content: text,
+        content_num: block.key,
+        content_type: block.type,
+        ...(imageUrl && { image: imageUrl }),
+      };
+    });
+
+    createStep(formattedContent, courseID, moduleNum, lessonNum);
+  };
 
   // Full Window
+
   const openFullScreen = () => {
     setFullScreen(!isFullscreen);
   };
+
+  // Toolbar
 
   const handleKeyCommand = (command: string, editorState: EditorState) => {
     const newState = RichUtils.handleKeyCommand(editorState, command);

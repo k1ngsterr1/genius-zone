@@ -114,6 +114,7 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
           <LessonForModule
             courseID={courseID.courseID}
             lessonTitle={lesson.lessonTitle}
+            moduleNum={number}
             lessonImage={image}
             lessonNum={lesson.lessonNum}
             deleteLesson={() =>
