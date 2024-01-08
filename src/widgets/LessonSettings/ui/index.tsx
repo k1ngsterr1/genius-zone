@@ -18,7 +18,7 @@ export const LessonSettingsScreen = () => {
   const lessonTitle = courseData?.modules
     .flatMap((mod) => mod.lessons)
     .find(
-      (lesson, index) => index.toString() === lessonNumber.lessonNumber
+      (lesson) => lesson.lesson_num.toString() === lessonNumber.lessonNumber
     )?.lesson_title;
 
   const transformedModules =
@@ -32,9 +32,10 @@ export const LessonSettingsScreen = () => {
     })) ?? [];
 
   useEffect(() => {
-    if (courseData?.modules) {
-    }
-  }, [courseData?.modules]);
+    console.log("Course data:", courseData);
+    console.log("Lesson number:", lessonNumber);
+    console.log("Lesson title:", lessonTitle);
+  }, [courseData, lessonNumber]);
 
   if (!courseData) {
     return (

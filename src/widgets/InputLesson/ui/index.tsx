@@ -14,7 +14,7 @@ export const InputLesson: React.FC<InputLessonProps> = ({
 }) => {
   return (
     <div className="input-lesson">
-      <div className="input-lesson__upper">Ваш урок</div>
+      <div className="input-lesson__upper">{inputValue}</div>
       <div className="input-lesson__content">
         <img
           src={lessonImage}

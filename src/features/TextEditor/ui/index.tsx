@@ -3,6 +3,7 @@ import {
   Editor,
   EditorState,
   RichUtils,
+  convertToRaw,
   DraftStyleMap,
   AtomicBlockUtils,
 } from "draft-js";
@@ -281,13 +282,14 @@ const TextEditor: React.FC = () => {
         <label
           className={
             isFullscreen
-              ? "editor-absolute__toolbar__image ml-2"
-              : "editor__toolbar__image ml-2"
+              ? "editor-absolute__toolbar__image"
+              : "editor__toolbar__image"
           }
           htmlFor="image-for-editor"
         >
           <FontAwesomeIcon icon={faImage} />
         </label>
+
         <input
           accept="image/*"
           id="image-for-editor"
@@ -296,6 +298,22 @@ const TextEditor: React.FC = () => {
           multiple
           onChange={(e) => handleImageUpload(e.target.files)}
         ></input>
+        <span
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__separator"
+              : "editor__toolbar__separator"
+          }
+        />
+        <button
+          className={
+            isFullscreen
+              ? "editor-absolute__toolbar__create-step"
+              : "editor__toolbar__create-step"
+          }
+        >
+          Создать шаг
+        </button>
         <span
           className={
             isFullscreen

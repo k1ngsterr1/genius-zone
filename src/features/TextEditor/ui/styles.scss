@@ -39,6 +39,16 @@
       }
     }
 
+    &__create-step {
+      font-size: clamp(7px, 0.72912vw, 28px);
+      text-decoration: underline;
+      transition: 0.3s all;
+      @apply text-custom-blue;
+      &:hover {
+        @apply text-custom-hover-blue;
+      }
+    }
+
     &__separator {
       width: 1px;
       height: clamp(10px, 1.0416vw, 40px);
@@ -102,6 +112,16 @@
         border: 1px solid;
         @apply bg-gray-200;
         @apply border-gray-300;
+        @apply text-custom-hover-blue;
+      }
+    }
+
+    &__create-step {
+      font-size: clamp(8.5px, 0.88536vw, 34px);
+      text-decoration: underline;
+      transition: 0.3s all;
+      @apply text-custom-blue;
+      &:hover {
         @apply text-custom-hover-blue;
       }
     }
