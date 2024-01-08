@@ -27,6 +27,9 @@ export function useCreateStep() {
       );
       console.log("Step Successfully Created!", response.data);
     } catch (error: any) {
+      console.log(
+        `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/step/`
+      );
       console.error("There was an error with step creationz:", error);
     }
   };

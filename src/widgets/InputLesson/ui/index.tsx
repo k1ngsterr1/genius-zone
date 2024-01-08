@@ -1,7 +1,8 @@
 import React from "react";
+import { OutlinedInput } from "@mui/material";
+import { UtilityButton } from "@shared/ui/UtilityButton";
 
 import "./styles.scss";
-import { UtilityButton } from "@shared/ui/UtilityButton";
 
 interface InputLessonProps {
   inputValue: string;
@@ -22,7 +23,7 @@ export const InputLesson: React.FC<InputLessonProps> = ({
           className="input-lesson__content__image"
         />
         <div className="input-lesson__content__container">
-          <input
+          <OutlinedInput
             type="text"
             value={inputValue}
             placeholder={inputValue}

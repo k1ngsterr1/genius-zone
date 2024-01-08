@@ -32,7 +32,6 @@
         outline: none;
         transition: 0.3s all;
         @apply text-custom-black;
-        @apply pl-4;
         &:focus {
           border: 2px solid;
           @apply border-custom-blue;
