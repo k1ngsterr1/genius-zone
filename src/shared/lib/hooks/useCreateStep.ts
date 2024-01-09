@@ -25,6 +25,7 @@ export function useCreateStep() {
           },
         }
       );
+      console.log(token);
       console.log("Step Successfully Created!", response.data);
     } catch (error: any) {
       console.log(

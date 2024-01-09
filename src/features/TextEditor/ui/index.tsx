@@ -34,8 +34,30 @@ interface CreateStepProps {
   courseID: string | any;
   moduleNum: string | any;
   lessonNum: string | any;
-  stepNum: string | any;
+  stepNum?: string | any;
   stepTitle: string;
+}
+
+// type ContentBlockData = {
+//   content_num: number;
+//   content_type: string;
+//   text: string;
+//   width: string;
+//   height: string;
+//   image?: string;
+// };
+
+interface ContentItem {
+  content_num: string;
+  content_type: string;
+  text?: string; // Optional text property
+  image?: string; // Optional image property
+}
+
+interface StepData {
+  step_num?: string;
+  step_title: string;
+  step_content: ContentItem[];
 }
 
 const TextEditor: React.FC<CreateStepProps> = ({
@@ -87,6 +109,87 @@ const TextEditor: React.FC<CreateStepProps> = ({
     }
   };
 
+  // const saveContent = (editorState: any) => {
+  //   const contentState = editorState.getCurrentContent();
+  //   const rawContent = convertToRaw(contentState);
+
+  //   let contents: ContentBlockData[] = []; // This will be an array of ContentBlockData objects
+
+  //   rawContent.blocks.forEach((block) => {
+  //     let contentData: ContentBlockData = {
+  //       // Declare contentData as ContentBlockData
+  //       content_num: 1,
+  //       content_type: block.type,
+  //       text: block.text,
+  //       width: "auto", // Assuming these are your default values
+  //       height: "auto",
+  //     };
+
+  //     // Your existing logic to handle atomic blocks and images
+  //     if (block.type === "atomic") {
+  //       block.entityRanges.forEach((range) => {
+  //         const entity = contentState.getEntity(range.key);
+  //         if (entity.getType().toUpperCase() === "IMAGE") {
+  //           contentData.image = entity.getData().src; // This is now valid because 'image' is known on ContentBlockData
+  //         }
+  //       });
+  //     }
+
+  //     // Push the contentData object into the contents array
+  //     contents.push(contentData);
+  //   });
+
+  //   // Create your step data structure
+  //   let stepData = {
+  //     step_title: stepTitle,
+  //     step_content: contents, // This assumes your backend expects an array of contents
+  //     step_num: stepNum,
+  //   };
+
+  //   console.log(stepData);
+
+  //   // Check if the step title is not empty and contents array is not empty
+  //   if (stepTitle && contents.length > 0) {
+  //     createStep(JSON.stringify(stepData), courseID, moduleNum, lessonNum);
+  //   } else {
+  //     console.log("Step Title and Content are required");
+  //   }
+  // };
+
+  // const saveContent = (editorState: EditorState) => {
+  //   const contentState = editorState.getCurrentContent();
+  //   const rawContent = convertToRaw(contentState);
+
+  //   const formattedContent: ContentItem[] = rawContent.blocks.map((block) => {
+  //     const contentItem: ContentItem = {
+  //       content_num: "1",
+  //       content_type: block.type,
+  //     };
+
+  //     if (block.type === "atomic") {
+  //       const entityKey: any = block.entityRanges[0]?.key;
+  //       const entity = contentState.getEntity(entityKey);
+  //       if (entity.getType() === "IMAGE") {
+  //         contentItem.image = entity.getData().src;
+  //       }
+  //     } else {
+  //       contentItem.text = block.text;
+  //     }
+
+  //     return contentItem;
+  //   });
+
+  //   const stepData: StepData = {
+  //     step_title: stepTitle,
+  //     step_content: formattedContent,
+  //   };
+
+  //   const jsonData = JSON.stringify(stepData);
+
+  //   console.log("Formatted:", jsonData);
+
+  //   createStep(stepData, courseID, moduleNum, lessonNum);
+  // };
   // Full Window
 
   const openFullScreen = () => {
