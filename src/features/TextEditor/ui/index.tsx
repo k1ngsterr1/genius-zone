@@ -77,7 +77,11 @@ const TextEditor: React.FC<CreateStepProps> = ({
 
     console.log("Formatted:", jsonData);
 
-    createStep(jsonData, courseID, moduleNum, lessonNum);
+    if (stepTitle !== "") {
+      createStep(jsonData, courseID, moduleNum, lessonNum);
+    } else {
+      console.log("Step Title is required");
+    }
   };
 
   // Full Window
@@ -363,6 +367,7 @@ const TextEditor: React.FC<CreateStepProps> = ({
               : "editor__toolbar__create-step"
           }
           onClick={() => saveContent(editorState)}
+          type="submit"
         >
           Создать шаг
         </button>

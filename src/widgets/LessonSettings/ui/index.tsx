@@ -93,25 +93,29 @@ export const LessonSettingsScreen = () => {
           />
         </div>
         <span className="text-2xl text-custom-black mt-8">Создание шага</span>
-        <div className="w-[70%] bg-gray-100 flex flex-col items-start rounded p-4 mt-6">
-          <span className="text-xl">{`Заголовок Шага ${stepNumber.stepNumber}`}</span>
-          <OutlinedInput
-            type="text"
-            placeholder="Введите заголовок для урока"
-            sx={{
-              width: "70%",
-              marginTop: "clamp(8px,0.83328vw,32px)",
-              height: "clamp(20px,2.0832vw,80px)",
-            }}
-            onChange={(e) => setLessonStepValue(e.target.value)}
+        <form>
+          <div className="w-[70%] bg-gray-100 flex flex-col items-start rounded p-4 mt-6">
+            <span className="text-xl">{`Заголовок Шага ${stepNumber.stepNumber}`}</span>
+
+            <OutlinedInput
+              type="text"
+              required
+              placeholder="Введите заголовок для урока"
+              sx={{
+                width: "70%",
+                marginTop: "clamp(8px,0.83328vw,32px)",
+                height: "clamp(20px,2.0832vw,80px)",
+              }}
+              onChange={(e) => setLessonStepValue(e.target.value)}
+            />
+          </div>
+          <TextEditor
+            courseID={courseID.courseID}
+            lessonNum={lessonNumber.lessonNumber}
+            moduleNum={moduleNumber.moduleNumber}
+            stepTitle={lessonStepValue}
           />
-        </div>
-        <TextEditor
-          courseID={courseID.courseID}
-          lessonNum={lessonNumber.lessonNumber}
-          moduleNum={moduleNumber.moduleNumber}
-          stepTitle={lessonStepValue}
-        />
+        </form>
       </section>
     </div>
   );
