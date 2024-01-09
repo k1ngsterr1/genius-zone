@@ -26,7 +26,9 @@ export const LessonForModule: React.FC<LessonForModuleProps> = ({
   const navigate = useNavigate();
 
   const handleNavigateToLessonSettings = () => {
-    navigate(`/lesson-settings/${courseID}/${moduleNum}/${lessonNum}/lesson`);
+    navigate(
+      `/lesson-settings/${courseID}/${moduleNum}/${lessonNum}/lesson/step/1`
+    );
   };
 
   return (

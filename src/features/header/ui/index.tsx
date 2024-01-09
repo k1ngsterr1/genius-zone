@@ -40,6 +40,9 @@ export const Header = () => {
           <Link to="/create-course/new" className="header__links--link">
             Преподование
           </Link>
+          <Link to="/chats" className="header__links--link">
+            Чаты
+          </Link>
           {isLoggedIn && userData ? (
             <UserTab
               firstName={userData.firstName}

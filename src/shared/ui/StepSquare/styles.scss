@@ -1,0 +1,18 @@
+.step-square {
+  &__number {
+    font-size: clamp(8px, 0.83328vw, 32px);
+    @apply text-custom-black;
+    @apply mb-1;
+  }
+
+  &__square {
+    width: clamp(32px, 3.33312vw, 128px);
+    height: clamp(32px, 3.33312vw, 128px);
+    cursor: pointer;
+    transition: 0.3s all;
+    @apply bg-gray-300;
+    &:hover {
+      @apply bg-custom-blue;
+    }
+  }
+}

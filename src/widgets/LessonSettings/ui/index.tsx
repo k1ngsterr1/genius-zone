@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { StepSquare } from "@shared/ui/StepSquare";
 import { OutlinedInput } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
@@ -8,6 +9,7 @@ import { InputLesson } from "@widgets/InputLesson/ui";
 import TextEditor from "@features/TextEditor/ui";
 
 import cpp from "@assets/cpp.jpg";
+import { UtilityButton } from "@shared/ui/UtilityButton";
 
 export const LessonSettingsScreen = () => {
   const [lessonStepValue, setLessonStepValue] = useState("");
@@ -56,6 +58,15 @@ export const LessonSettingsScreen = () => {
           Настройки Урока
         </h2>
         <InputLesson lessonImage={cpp} inputValue={lessonTitle} />
+        <span className="text-2xl text-custom-black mt-8">Ваши Шаги</span>
+        <div className="squares flex justify-start items-center mt-6">
+          <StepSquare number="1" />
+          <UtilityButton
+            text="Добавить Шаг"
+            type="outline-btn"
+            marginTop="mt-7 ml-4"
+          />
+        </div>
         <span className="text-2xl text-custom-black mt-8">Создание шага</span>
         <div className="w-[70%] bg-gray-100 flex flex-col items-start rounded p-4 mt-6">
           <span className="text-xl">Заголовок Шага</span>

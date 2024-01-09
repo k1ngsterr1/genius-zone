@@ -73,9 +73,11 @@ const TextEditor: React.FC<CreateStepProps> = ({
       };
     });
 
-    console.log("Formatted:", formattedContent);
+    const jsonData = JSON.stringify(formattedContent);
 
-    createStep(formattedContent, courseID, moduleNum, lessonNum);
+    console.log("Formatted:", jsonData);
+
+    createStep(jsonData, courseID, moduleNum, lessonNum);
   };
 
   // Full Window
