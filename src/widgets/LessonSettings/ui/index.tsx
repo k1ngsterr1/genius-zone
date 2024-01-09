@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { StepSquare } from "@shared/ui/StepSquare";
 import { OutlinedInput } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -6,21 +6,21 @@ import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
 import { Loader } from "@shared/ui/Loader";
 import { EditCourseTab } from "@features/SidePanels/EditCourse/ui";
 import { InputLesson } from "@widgets/InputLesson/ui";
+import { UtilityButton } from "@shared/ui/UtilityButton";
+import { useAddNewStep } from "@shared/lib/hooks/useAddNewStep";
 import TextEditor from "@features/TextEditor/ui";
 
 import cpp from "@assets/cpp.jpg";
-import { UtilityButton } from "@shared/ui/UtilityButton";
 
 export const LessonSettingsScreen = () => {
   const [lessonStepValue, setLessonStepValue] = useState("");
+  const { stepElements, addNewStep, updateStepElements } = useAddNewStep();
 
   const courseID = useParams<{ courseID: string }>();
   const moduleNumber = useParams<{ moduleNumber: string }>();
   const lessonNumber = useParams<{ lessonNumber: string }>();
 
-  const { courseData, reloadCourseData, modulesData } = useLoadSpecificCourse(
-    courseID.courseID
-  );
+  const { courseData } = useLoadSpecificCourse(courseID.courseID);
 
   const lessonTitle = courseData?.modules
     .flatMap((mod) => mod.lessons)
@@ -61,10 +61,15 @@ export const LessonSettingsScreen = () => {
         <span className="text-2xl text-custom-black mt-8">Ваши Шаги</span>
         <div className="squares flex justify-start items-center mt-6">
           <StepSquare number="1" />
+          {stepElements.map((step, index) => {
+            return <StepSquare number={index + 2} />;
+          })}
+
           <UtilityButton
             text="Добавить Шаг"
             type="outline-btn"
             marginTop="mt-7 ml-4"
+            onClick={addNewStep}
           />
         </div>
         <span className="text-2xl text-custom-black mt-8">Создание шага</span>

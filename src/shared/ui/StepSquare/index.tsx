@@ -4,10 +4,14 @@ import { useNavigate } from "react-router-dom";
 import "./styles.scss";
 
 interface StepSquareData {
-  number: string;
+  number: string | number;
+  marginLeft?: string;
 }
 
-export const StepSquare: React.FC<StepSquareData> = ({ number }) => {
+export const StepSquare: React.FC<StepSquareData> = ({
+  number,
+  marginLeft,
+}) => {
   const navigate = useNavigate();
 
   return (
