@@ -93,10 +93,9 @@ export const LessonSettingsScreen = () => {
           />
         </div>
         <span className="text-2xl text-custom-black mt-8">Создание шага</span>
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
           <div className="w-[70%] bg-gray-100 flex flex-col items-start rounded p-4 mt-6">
             <span className="text-xl">{`Заголовок Шага ${stepNumber.stepNumber}`}</span>
-
             <OutlinedInput
               type="text"
               required
@@ -113,6 +112,7 @@ export const LessonSettingsScreen = () => {
             courseID={courseID.courseID}
             lessonNum={lessonNumber.lessonNumber}
             moduleNum={moduleNumber.moduleNumber}
+            stepNum={stepNumber.stepNumber}
             stepTitle={lessonStepValue}
           />
         </form>

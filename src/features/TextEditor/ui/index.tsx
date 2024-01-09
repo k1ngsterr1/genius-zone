@@ -34,6 +34,7 @@ interface CreateStepProps {
   courseID: string | any;
   moduleNum: string | any;
   lessonNum: string | any;
+  stepNum: string | any;
   stepTitle: string;
 }
 
@@ -41,6 +42,7 @@ const TextEditor: React.FC<CreateStepProps> = ({
   courseID,
   moduleNum,
   lessonNum,
+  stepNum,
   stepTitle,
 }) => {
   const [isFullscreen, setFullScreen] = useState(false);
@@ -67,6 +69,7 @@ const TextEditor: React.FC<CreateStepProps> = ({
       return {
         step_title: stepTitle,
         step_content: text,
+        step_num: stepNum,
         content_num: block.key,
         content_type: block.type,
         ...(imageUrl && { image: imageUrl }),
@@ -367,7 +370,6 @@ const TextEditor: React.FC<CreateStepProps> = ({
               : "editor__toolbar__create-step"
           }
           onClick={() => saveContent(editorState)}
-          type="submit"
         >
           Создать шаг
         </button>
