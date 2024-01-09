@@ -15,7 +15,7 @@ export const StepSquare: React.FC<StepSquareData> = ({
   const navigate = useNavigate();
 
   return (
-    <div className="step-square flex flex-col items-center">
+    <div className={`step-square flex flex-col items-center ${marginLeft}`}>
       <span className="step-square__number">{number}</span>
       <div
         className="step-square__square rounded-sm"

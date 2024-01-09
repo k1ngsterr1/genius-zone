@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StepSquare } from "@shared/ui/StepSquare";
 import { OutlinedInput } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -14,13 +14,27 @@ import cpp from "@assets/cpp.jpg";
 
 export const LessonSettingsScreen = () => {
   const [lessonStepValue, setLessonStepValue] = useState("");
-  const { stepElements, addNewStep, updateStepElements } = useAddNewStep();
+  const { stepElements, addNewStep } = useAddNewStep();
 
   const courseID = useParams<{ courseID: string }>();
   const moduleNumber = useParams<{ moduleNumber: string }>();
   const lessonNumber = useParams<{ lessonNumber: string }>();
+  const stepNumber = useParams<{ stepNumber: string }>();
 
   const { courseData } = useLoadSpecificCourse(courseID.courseID);
+
+  useEffect(() => {
+    const handleBeforeUnload = (e: any) => {
+      e.preventDefault();
+      e.returnValue = "";
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
   const lessonTitle = courseData?.modules
     .flatMap((mod) => mod.lessons)
@@ -62,7 +76,13 @@ export const LessonSettingsScreen = () => {
         <div className="squares flex justify-start items-center mt-6">
           <StepSquare number="1" />
           {stepElements.map((step, index) => {
-            return <StepSquare number={index + 2} />;
+            return (
+              <StepSquare
+                key={step.number}
+                number={index + 2}
+                marginLeft="ml-2"
+              />
+            );
           })}
 
           <UtilityButton
@@ -74,7 +94,7 @@ export const LessonSettingsScreen = () => {
         </div>
         <span className="text-2xl text-custom-black mt-8">Создание шага</span>
         <div className="w-[70%] bg-gray-100 flex flex-col items-start rounded p-4 mt-6">
-          <span className="text-xl">Заголовок Шага</span>
+          <span className="text-xl">{`Заголовок Шага ${stepNumber.stepNumber}`}</span>
           <OutlinedInput
             type="text"
             placeholder="Введите заголовок для урока"
