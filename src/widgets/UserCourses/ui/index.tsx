@@ -33,7 +33,7 @@ export const UserCoursesScreen = () => {
   return (
     <div className="wrapper--row h-full mb-12">
       <CreateCourseSide />
-      <section className="w-[73%] course-edit-container flex flex-col">
+      <section className="w-[73%] course-edit-container flex flex-col max-[640px]:hidden">
         <h1 className="main-heading">Ваши курсы</h1>
         <SearchBar onSearch={() => console.log("zhopa")} />
         {isLoading && (
@@ -50,6 +50,42 @@ export const UserCoursesScreen = () => {
                 alt="no-courses-vector"
               />
               <h1 className="text-3xl text-custom-black">
+                У вас пока нет курсов
+              </h1>
+            </div>
+          ))}
+        {error && <ErrorTab text="Ошибка с загрузкой курсов" />}
+        {!isLoading &&
+          !error &&
+          courses.map((course) => (
+            <NewCourse
+              onClick={() => handleOpenEditor(course.id)}
+              kebabEdit={() => handleOpenEditor(course.id)}
+              id={course.id}
+              title={course.title}
+              description={course.description}
+              image={course.preview}
+              onDelete={handleCourseDelete}
+            />
+          ))}
+      </section>
+      <section className="w-[90%] course-edit-container flex flex-col items-center m-auto min-[1024px]:hidden">
+        <h1 className="main-heading">Ваши курсы</h1>
+        <SearchBar onSearch={() => console.log("zhopa")} />
+        {isLoading && (
+          <div className="flex justify-center items-center h-full">
+            <Loader />
+          </div>
+        )}
+        {!courses ||
+          (courses.length === 0 && (
+            <div className="flex flex-col justify-center items-center h-full">
+              <img
+                src={noCourses}
+                className="no-courses"
+                alt="no-courses-vector"
+              />
+              <h1 className="text-2xl text-custom-black">
                 У вас пока нет курсов
               </h1>
             </div>

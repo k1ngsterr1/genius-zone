@@ -35,3 +35,9 @@
     }
   }
 }
+
+@media screen and (max-width: 640px) {
+  .course-edit-side {
+    display: none;
+  }
+}
