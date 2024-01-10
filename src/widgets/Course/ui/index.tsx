@@ -1,13 +1,11 @@
 import { CoursesAside } from "@features/SidePanels/Courses/ui";
 import { CourseTab } from "@widgets/CourseTab";
+import { CourseSwiper } from "@features/CourseSwiper/ui";
 import SearchBar from "@features/SearchBar/ui";
-import TextField from "@mui/material/TextField";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DatePicker from "@mui/lab/DatePicker";
+
+import offer from "@assets/genius-zone.webp";
 
 import "./styles.scss";
-import { CourseSwiper } from "@features/CourseSwiper/ui";
 
 export const CourseScreen = () => {
   return (
@@ -41,7 +39,8 @@ export const CourseScreen = () => {
           </div>
         </section>
         <section className="w-[100%] m-auto flex flex-col items-center justify-center min-[1024px]:hidden">
-          <h1 className="main-heading">Курсы</h1>
+          <img src={offer} className="rounded-xl w-[100%]" alt="offer" />
+          <h1 className="main-heading mt-8">Курсы</h1>
           <SearchBar onSearch={() => console.log("zhopa")} />
           <h2 className="text-2xl text-custom-black mt-8">Популряные</h2>
           <CourseSwiper />

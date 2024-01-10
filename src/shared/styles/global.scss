@@ -78,9 +78,21 @@
   line-height: normal;
 }
 
-@media screen and (max-width: 448px) {
+@media screen and (max-width: 640px) {
   .wrapper {
     width: 90%;
+    align-items: start;
+    @apply mt-32;
+
+    &--row {
+      width: 90%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: auto;
+      @apply mt-10;
+      @apply mb-32;
+    }
   }
 
   .main-heading {
