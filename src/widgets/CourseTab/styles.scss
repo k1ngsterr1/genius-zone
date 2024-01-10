@@ -39,7 +39,7 @@
 @media screen and (max-width: 640px) {
   .course-tab {
     width: 90%;
-    height: auto;
+    height: clamp(152.5px, 71.2602vw, 610px);
     padding: clamp(10px, 4.6728vw, 40px);
     border-radius: 4px;
     cursor: pointer;

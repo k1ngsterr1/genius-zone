@@ -29,17 +29,12 @@
     cursor: pointer;
 
     &__image {
-      width: clamp(20px, 9.3456vw, 80px);
-      height: clamp(20px, 9.3456vw, 80px);
+      width: clamp(25px, 11.681999999999999vw, 100px);
+      height: clamp(25px, 11.681999999999999vw, 100px);
     }
 
     &__text {
-      @apply text-custom-black;
-      font-family: Inter;
-      font-size: clamp(10px, 4.6728vw, 40px);
-      font-style: normal;
-      font-weight: 800;
-      line-height: normal;
+      display: none;
     }
     .white {
       color: white !important;

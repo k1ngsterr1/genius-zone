@@ -1,0 +1,11 @@
+.course-swiper {
+  width: 100%;
+  display: flex;
+  @apply mt-6;
+
+  &__slide {
+    display: flex !important;
+    justify-content: center !important;
+    height: clamp(165px, 77.10119999999999vw, 660px) !important;
+  }
+}

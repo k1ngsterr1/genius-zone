@@ -20,3 +20,25 @@
     @apply text-custom-black;
   }
 }
+
+@media screen and (max-width: 640px) {
+  .user-tab {
+    width: auto;
+    height: auto;
+    cursor: pointer;
+
+    &:hover &__name {
+      @apply text-custom-blue;
+    }
+
+    &__image {
+      width: clamp(20px, 9.3456vw, 80px);
+      height: clamp(20px, 9.3456vw, 80px);
+      border-radius: 50px;
+    }
+
+    &__name {
+      display: none;
+    }
+  }
+}

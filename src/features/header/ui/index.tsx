@@ -67,6 +67,13 @@ export const Header = () => {
       </div>
       <div className="header__mob-container flex items-center justify-between max-[640px]:flex min-[640px]:hidden">
         <Logo />
+        {isLoggedIn && userData ? (
+          <UserTab
+            firstName={userData.firstName}
+            lastName={userData.lastName}
+            userImage={userData.userImage}
+          />
+        ) : null}
         <Hamburger color="#0B1887" onToggle={openMenu} />
       </div>
     </header>
