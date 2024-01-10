@@ -22,7 +22,7 @@ export const CourseTab: React.FC<CourseTabProps> = ({
 }) => {
   return (
     <div className={`course-tab ${margin}`}>
-      <div className="course-tab__row flex items-center justify-between">
+      <div className="course-tab__row flex items-center justify-between ">
         <h1 className="course-tab__row__heading">
           Введние в программирование (C++)
         </h1>

@@ -89,3 +89,99 @@
     text-decoration: underline;
   }
 }
+
+@media screen and (max-width: 640px) {
+  .utility-button {
+    width: clamp(85px, 39.718799999999995vw, 340px);
+    height: auto;
+
+    &__filled-btn {
+      min-width: clamp(100px, 46.727999999999994vw, 400px);
+      height: auto;
+      padding: clamp(10px, 4.6728vw, 40px);
+      color: white;
+      font-family: Inter;
+      font-size: clamp(8.5px, 3.9718799999999996vw, 34px);
+      padding-top: clamp(4px, 1.86912vw, 16px);
+      padding-bottom: clamp(4px, 1.86912vw, 16px);
+      border-radius: 4px;
+      transition: 0.3s all;
+      @apply bg-custom-blue #{!important};
+      &:hover {
+        background-color: #0f20b9 !important;
+      }
+    }
+
+    &__filled-inactive-hover {
+      min-width: clamp(100px, 46.727999999999994vw, 400px);
+      height: auto;
+      padding: clamp(10px, 4.6728vw, 40px);
+      color: white;
+      font-family: Inter;
+      font-size: clamp(8.5px, 3.9718799999999996vw, 34px);
+      padding-top: clamp(4px, 1.86912vw, 16px);
+      padding-bottom: clamp(4px, 1.86912vw, 16px);
+      border-radius: 4px;
+      transition: 0.3s all;
+      @apply bg-gray-200 #{!important};
+      @apply text-custom-black;
+      &:hover {
+        color: white;
+        background-color: #0f20b9 !important;
+      }
+    }
+
+    &__filled-inactive-btn {
+      min-width: clamp(100px, 46.727999999999994vw, 400px);
+      height: auto;
+      padding: clamp(10px, 4.6728vw, 40px);
+      font-family: Inter;
+      font-size: clamp(8.5px, 3.9718799999999996vw, 34px);
+      padding-top: clamp(4px, 1.86912vw, 16px);
+      padding-bottom: clamp(4px, 1.86912vw, 16px);
+      border-radius: 4px;
+      cursor: auto;
+      transition: 0.3s all;
+      @apply bg-gray-200 #{!important};
+      @apply text-custom-black;
+    }
+
+    &__outline-btn {
+      min-width: clamp(100px, 46.727999999999994vw, 400px);
+      height: auto;
+      padding: clamp(10px, 4.6728vw, 40px);
+      font-family: Inter;
+      font-size: clamp(8.5px, 3.9718799999999996vw, 34px);
+      padding-top: clamp(4px, 1.86912vw, 16px);
+      padding-bottom: clamp(4px, 1.86912vw, 16px);
+      border-radius: 4px;
+      transition: 0.3s all;
+      border: 3px solid;
+      @apply border-custom-blue #{!important};
+      @apply text-custom-blue #{!important};
+      &:hover {
+        color: white !important;
+        @apply bg-custom-blue;
+      }
+    }
+
+    &__transparent-inactive {
+      font-family: Inter;
+      font-weight: 700;
+      font-size: clamp(10px, 4.6728vw, 40px);
+      @apply text-custom-black #{!important};
+      transition: 0.3s all;
+      &:hover {
+        color: #0f20b9;
+      }
+    }
+
+    &__transparent-active {
+      font-family: Inter;
+      font-weight: 700;
+      font-size: clamp(10px, 1.0416vw, 40px);
+      @apply text-custom-blue;
+      text-decoration: underline;
+    }
+  }
+}

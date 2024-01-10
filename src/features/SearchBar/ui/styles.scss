@@ -2,3 +2,10 @@
   width: clamp(150px, 15.624vw, 600px) !important;
   @apply mt-5 #{!important};
 }
+
+@media screen and (max-width: 640px) {
+  .search-bar {
+    width: clamp(150px, 70.092vw, 600px) !important;
+    @apply mt-5 #{!important};
+  }
+}

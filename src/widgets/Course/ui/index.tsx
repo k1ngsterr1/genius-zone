@@ -13,7 +13,7 @@ export const CourseScreen = () => {
     <>
       <main className="wrapper--row mb-12">
         <CoursesAside />
-        <section className="w-[73%] courses-container flex flex-col">
+        <section className="w-[73%] courses-container flex flex-col max-[640px]:hidden">
           <h1 className="main-heading">Курсы</h1>
           <SearchBar onSearch={() => console.log("zhopa")} />
           <h2 className="text-2xl text-custom-black mt-8">Популряные</h2>
@@ -38,6 +38,11 @@ export const CourseScreen = () => {
             <CourseTab margin=" ml-8" buttonText="Записаться" />
             <CourseTab margin=" ml-8" buttonText="Записаться" />
           </div>
+        </section>
+        <section className="w-[90%] m-auto flex flex-col items-center justify-center min-[1024px]:hidden">
+          <h1 className="main-heading">Курсы</h1>
+          <SearchBar onSearch={() => console.log("zhopa")} />
+          <CourseTab buttonText="Записаться" />
         </section>
       </main>
     </>

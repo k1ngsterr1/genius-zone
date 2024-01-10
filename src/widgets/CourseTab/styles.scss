@@ -35,3 +35,44 @@
     font-family: Inter;
   }
 }
+
+@media screen and (max-width: 640px) {
+  .course-tab {
+    width: 90%;
+    height: auto;
+    padding: clamp(10px, 4.6728vw, 40px);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s all;
+    @apply bg-slate-100;
+    @apply shadow-md;
+    &:hover {
+      @apply shadow-lg;
+      @apply bg-custom-lightest-blue;
+    }
+
+    &__row {
+      width: 100%;
+      height: auto;
+
+      &__heading {
+        width: 90%;
+        font-size: clamp(9px, 4.20552vw, 36px);
+        font-weight: 800;
+        font-family: Inter;
+      }
+
+      &__image {
+        width: clamp(32px, 14.95296vw, 128px);
+        height: clamp(32px, 14.95296vw, 128px);
+        border-radius: 4px;
+      }
+    }
+    &__description {
+      width: 100%;
+      font-size: clamp(7px, 3.2709599999999996vw, 28px);
+      font-weight: 400;
+      font-family: Inter;
+    }
+  }
+}

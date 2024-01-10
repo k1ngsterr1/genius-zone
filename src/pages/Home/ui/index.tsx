@@ -18,7 +18,7 @@ export const HomePage = () => {
       <div className="page">
         <Header />
         {isMenuOpen && <Menu />}
-        <h1 className="text-4xl font-bold text-custom-black w-[30%] text-center mt-24">
+        <h1 className="text-4xl font-bold text-custom-black w-[30%] text-center mt-24 max-[640px]:text-2xl w-[80%]">
           Авторизуйтесь чтобы начать пользоваться{" "}
           <span className="text-custom-blue">Genius Zone</span>
         </h1>

@@ -7,3 +7,15 @@
   font-size: clamp(11.5px, 1.19784vw, 46px);
   @apply text-yellow-500;
 }
+
+@media screen and (max-width: 640px) {
+  .star-icon {
+    font-size: clamp(12px, 5.60736vw, 48px);
+    @apply text-gray-400;
+  }
+
+  .active {
+    font-size: clamp(12px, 5.60736vw, 48px);
+    @apply text-yellow-500;
+  }
+}

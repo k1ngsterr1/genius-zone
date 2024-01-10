@@ -84,7 +84,6 @@ export const LessonSettingsScreen = () => {
               />
             );
           })}
-
           <UtilityButton
             text="Добавить Шаг"
             type="outline-btn"
