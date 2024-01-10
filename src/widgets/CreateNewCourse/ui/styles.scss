@@ -8,3 +8,16 @@
     height: clamp(100px, 10.416vw, 400px);
   }
 }
+
+@media screen and (max-width: 640px) {
+  .new-courses-container {
+    &__input {
+      width: 100%;
+    }
+
+    .new-course-container__preview {
+      width: clamp(100px, 10.416vw, 400px);
+      height: clamp(100px, 10.416vw, 400px);
+    }
+  }
+}
