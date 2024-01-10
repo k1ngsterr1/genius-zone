@@ -148,7 +148,7 @@ export const CreateNewCourseScreen = () => {
             />
           </label>
           {previewUrl && (
-            <div>
+            <div className="flex flex-col items-center">
               <div className="w-[100%] border-custom-blue border-2 rounded flex flex-col items-center justify-center bg-custom-lightest-blue mt-8">
                 <p className="text-lg text-custom-black font-medium p-4 text-center">
                   Фотография для вашего курса:
