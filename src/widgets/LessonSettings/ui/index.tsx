@@ -168,7 +168,7 @@ export const LessonSettingsScreen = () => {
             <OutlinedInput
               type="text"
               required
-              placeholder="Введите заголовок для урока"
+              placeholder={stepData.stepTitle}
               sx={{
                 width: "70%",
                 marginTop: "clamp(8px,0.83328vw,32px)",
