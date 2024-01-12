@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCreateStep } from "@shared/lib/hooks/useCreateStep";
 
 import {
@@ -6,6 +6,7 @@ import {
   EditorState,
   RichUtils,
   convertToRaw,
+  convertFromRaw,
   DraftStyleMap,
   AtomicBlockUtils,
 } from "draft-js";
@@ -36,28 +37,7 @@ interface CreateStepProps {
   lessonNum: string | any;
   stepNum?: string | any;
   stepTitle: string;
-}
-
-// type ContentBlockData = {
-//   content_num: number;
-//   content_type: string;
-//   text: string;
-//   width: string;
-//   height: string;
-//   image?: string;
-// };
-
-interface ContentItem {
-  content_num: string;
-  content_type: string;
-  text?: string; // Optional text property
-  image?: string; // Optional image property
-}
-
-interface StepData {
-  step_num?: string;
-  step_title: string;
-  step_content: ContentItem[];
+  initialContent?: any;
 }
 
 const TextEditor: React.FC<CreateStepProps> = ({
@@ -66,132 +46,93 @@ const TextEditor: React.FC<CreateStepProps> = ({
   lessonNum,
   stepNum,
   stepTitle,
+  initialContent,
 }) => {
   const [isFullscreen, setFullScreen] = useState(false);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const { createStep } = useCreateStep();
+
+  useEffect(() => {
+    if (initialContent) {
+      const blocks = initialContent.contents.map((content: any) => ({
+        key: "content" + content.content_num,
+        text: content.text,
+        type: "unstyled",
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [],
+        data: {},
+      }));
+
+      const rawContentState = {
+        blocks: blocks,
+        entityMap: {},
+      };
+
+      const contentState = convertFromRaw(rawContentState);
+      const newEditorState = EditorState.createWithContent(contentState);
+      setEditorState(newEditorState);
+    }
+  }, [initialContent]);
 
   // Create Step
   const saveContent = (editorState: any) => {
     const contentState = editorState.getCurrentContent();
     const rawContent = convertToRaw(contentState);
 
-    const formattedContent = rawContent.blocks.map((block) => {
-      const text = block.text;
-      let imageUrl = "";
+    console.log("Raw Blocks:", rawContent.blocks); // Debug log
 
-      if (block.type === "atomic") {
-        const entityKey = block.entityRanges[0]?.key;
-        const entity = contentState.getEntity(entityKey);
-        if (entity.getType().toUpperCase === "IMAGE") {
-          imageUrl = entity.getData().src;
-        }
-      }
+    const formattedContent = {
+      step_title: stepTitle,
+      contents: rawContent.blocks
+        .map((block) => {
+          const text = block.text;
+          let imageUrl = "";
 
-      return {
-        step_title: stepTitle,
-        step_content: text,
-        step_num: stepNum,
-        content_num: block.key,
-        content_type: block.type,
-        ...(imageUrl && { image: imageUrl }),
-      };
-    });
+          if (block.type === "atomic") {
+            const entityKey = block.entityRanges[0]?.key;
+            if (entityKey) {
+              const entity = contentState.getEntity(entityKey);
+              if (entity.getType().toUpperCase() === "IMAGE") {
+                imageUrl = entity.getData().src;
+              }
+            }
+          }
 
-    const jsonData = JSON.stringify(formattedContent);
+          if (block.type === "unstyled") {
+            return {
+              content_num: 1,
+              content_type: "text",
+              text: text,
+              width: "",
+              height: "",
+            };
+          } else if (block.type === "atomic" && imageUrl) {
+            return {
+              content_num: 1,
+              content_type: "image",
+              src: imageUrl,
+              width: "",
+              height: "",
+            };
+          } else {
+            console.log("Unsupported block type or missing data:", block); // Debug log
+            return null;
+          }
+        })
+        .filter((content) => content !== null),
+    };
 
-    console.log("Formatted:", jsonData);
+    console.log("Formatted:", formattedContent); // Log the object instead of string
 
     if (stepTitle !== "") {
-      createStep(jsonData, courseID, moduleNum, lessonNum);
+      createStep(formattedContent, courseID, moduleNum, lessonNum, stepNum);
     } else {
       console.log("Step Title is required");
     }
   };
 
-  // const saveContent = (editorState: any) => {
-  //   const contentState = editorState.getCurrentContent();
-  //   const rawContent = convertToRaw(contentState);
-
-  //   let contents: ContentBlockData[] = []; // This will be an array of ContentBlockData objects
-
-  //   rawContent.blocks.forEach((block) => {
-  //     let contentData: ContentBlockData = {
-  //       // Declare contentData as ContentBlockData
-  //       content_num: 1,
-  //       content_type: block.type,
-  //       text: block.text,
-  //       width: "auto", // Assuming these are your default values
-  //       height: "auto",
-  //     };
-
-  //     // Your existing logic to handle atomic blocks and images
-  //     if (block.type === "atomic") {
-  //       block.entityRanges.forEach((range) => {
-  //         const entity = contentState.getEntity(range.key);
-  //         if (entity.getType().toUpperCase() === "IMAGE") {
-  //           contentData.image = entity.getData().src; // This is now valid because 'image' is known on ContentBlockData
-  //         }
-  //       });
-  //     }
-
-  //     // Push the contentData object into the contents array
-  //     contents.push(contentData);
-  //   });
-
-  //   // Create your step data structure
-  //   let stepData = {
-  //     step_title: stepTitle,
-  //     step_content: contents, // This assumes your backend expects an array of contents
-  //     step_num: stepNum,
-  //   };
-
-  //   console.log(stepData);
-
-  //   // Check if the step title is not empty and contents array is not empty
-  //   if (stepTitle && contents.length > 0) {
-  //     createStep(JSON.stringify(stepData), courseID, moduleNum, lessonNum);
-  //   } else {
-  //     console.log("Step Title and Content are required");
-  //   }
-  // };
-
-  // const saveContent = (editorState: EditorState) => {
-  //   const contentState = editorState.getCurrentContent();
-  //   const rawContent = convertToRaw(contentState);
-
-  //   const formattedContent: ContentItem[] = rawContent.blocks.map((block) => {
-  //     const contentItem: ContentItem = {
-  //       content_num: "1",
-  //       content_type: block.type,
-  //     };
-
-  //     if (block.type === "atomic") {
-  //       const entityKey: any = block.entityRanges[0]?.key;
-  //       const entity = contentState.getEntity(entityKey);
-  //       if (entity.getType() === "IMAGE") {
-  //         contentItem.image = entity.getData().src;
-  //       }
-  //     } else {
-  //       contentItem.text = block.text;
-  //     }
-
-  //     return contentItem;
-  //   });
-
-  //   const stepData: StepData = {
-  //     step_title: stepTitle,
-  //     step_content: formattedContent,
-  //   };
-
-  //   const jsonData = JSON.stringify(stepData);
-
-  //   console.log("Formatted:", jsonData);
-
-  //   createStep(stepData, courseID, moduleNum, lessonNum);
-  // };
   // Full Window
-
   const openFullScreen = () => {
     setFullScreen(!isFullscreen);
   };

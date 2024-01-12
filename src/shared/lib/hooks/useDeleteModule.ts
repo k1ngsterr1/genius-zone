@@ -9,7 +9,7 @@ const useDeleteModule = (onSuccess: any) => {
     try {
       const token = Cookies.get("accessToken");
       const response = await axios.delete(
-        `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseId}/module/${moduleNum}/`,
+        `https://genzone.up.railway.app/api/courses/course/${courseId}/module/${moduleNum}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

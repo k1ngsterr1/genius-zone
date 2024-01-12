@@ -15,7 +15,7 @@ export function useCreateLesson() {
     try {
       const token = Cookies.get("accessToken");
       const response = await axios.post(
-        `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/`,
+        `https://genzone.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/`,
         data,
         {
           headers: {

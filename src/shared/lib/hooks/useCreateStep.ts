@@ -12,12 +12,13 @@ export function useCreateStep() {
     data: any,
     courseID: string,
     moduleNum: string,
-    lessonNum: string
+    lessonNum: string,
+    stepNum: string
   ) => {
     try {
       const token = Cookies.get("accessToken");
       const response = await axios.post(
-        `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/step/`,
+        `https://genzone.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/step/`,
         data,
         {
           headers: {
@@ -25,13 +26,18 @@ export function useCreateStep() {
           },
         }
       );
-      console.log(token);
-      console.log("Step Successfully Created!", response.data);
-    } catch (error: any) {
-      console.log(
-        `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/step/`
+      const response2 = await axios.patch(
+        `https://genzone.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/step/${stepNum}/`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
-      console.error("There was an error with step creationz:", error);
+      console.log("Step Successfully Created!", response.data, response2.data);
+    } catch (error: any) {
+      console.error("There was an error with step creation:", error);
     }
   };
   return { createStep };

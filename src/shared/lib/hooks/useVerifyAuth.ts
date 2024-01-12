@@ -12,7 +12,7 @@ export function useVerifyAuth() {
     try {
       const accessToken = Cookies.get("accessToken");
       const response = await axios.get(
-        `https://inquisitive-creature-production.up.railway.app/api/courses/courses/`,
+        `https://genzone.up.railway.app/api/courses/courses/`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,

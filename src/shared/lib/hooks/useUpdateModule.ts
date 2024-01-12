@@ -15,7 +15,7 @@ export const useUpdateModule = () => {
     try {
       const token = Cookies.get("accessToken");
       const response = await axios.put(
-        `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/`,
+        `https://genzone.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/`,
         data,
         {
           headers: {
@@ -24,14 +24,8 @@ export const useUpdateModule = () => {
         }
       );
       console.log("Module Updated!", response.data);
-      console.log(
-        `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}`
-      );
     } catch (error: any) {
       console.error("There was an error with module save:", error);
-      console.log(
-        `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}`
-      );
     }
   };
   return { updateModule };

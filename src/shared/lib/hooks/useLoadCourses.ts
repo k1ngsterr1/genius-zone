@@ -20,7 +20,7 @@ function useLoadCourses() {
     try {
       dispatch(turnOnLoader());
       const response = await axios.get(
-        "https://inquisitive-creature-production.up.railway.app/api/courses/courses/"
+        "https://genzone.up.railway.app/api/courses/courses/"
       );
       setCourses(response.data);
     } catch (error: any) {

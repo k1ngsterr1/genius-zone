@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useState, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { turnOffLoader, turnOnLoader } from "../redux/store/loaderSlice";
+import axios from "axios";
 
 interface CourseData {
   title: string;
@@ -21,7 +21,7 @@ export function useLoadSpecificCourse(courseID: string | any) {
     dispatch(turnOnLoader());
     try {
       const response = await axios.get(
-        `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/`
+        `https://genzone.up.railway.app/api/courses/course/${courseID}/`
       );
       setCourseData(response.data);
       setModulesData(response.data.modules);
@@ -39,7 +39,6 @@ export function useLoadSpecificCourse(courseID: string | any) {
 
   const reloadCourseData = () => {
     if (courseID) {
-      console.log("courseID:", courseID);
       fetchCourseData();
     }
   };

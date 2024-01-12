@@ -22,7 +22,7 @@ export function useCreateCourse() {
 
       const token = Cookies.get("accessToken");
       const response = await axios.post(
-        `https://inquisitive-creature-production.up.railway.app/api/courses/courses/`,
+        `https://genzone.up.railway.app/api/courses/courses/`,
         formData,
         {
           headers: {

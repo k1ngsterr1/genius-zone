@@ -10,7 +10,7 @@ export function useDeleteLesson(onSuccess: any) {
     try {
       const token = Cookies.get("accessToken");
       const response = await axios.delete(
-        `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/`,
+        `https://genzone.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

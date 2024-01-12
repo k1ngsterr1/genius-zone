@@ -6,7 +6,7 @@ const useDeleteCourse = (courseId: string) => {
     try {
       const token = Cookies.get("accessToken");
       const response = await axios.delete(
-        `https://inquisitive-creature-production.up.railway.app/api/courses/course/${courseId}/`,
+        `https://genzone.up.railway.app/api/courses/course/${courseId}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
