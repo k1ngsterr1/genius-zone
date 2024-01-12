@@ -34,3 +34,43 @@
     border-radius: 7px;
   }
 }
+
+@media screen and (max-width: 640px) {
+  .lesson-module-tab {
+    width: 100%;
+    padding: clamp(5px, 0.5208vw, 20px);
+    cursor: pointer;
+    transition: 0.3s all;
+    border-radius: 2px;
+    border-left: 2px solid;
+    @apply border-custom-blue;
+    @apply mt-10;
+    &:hover {
+      @apply bg-gray-200;
+    }
+
+    &:hover &__text {
+      text-decoration: underline;
+    }
+
+    &__text {
+      font-size: clamp(10.5px, 4.90644vw, 42px);
+      @apply ml-3;
+      @apply text-custom-black;
+    }
+
+    &__cross {
+      font-size: clamp(12px, 5.60736vw, 48px);
+      cursor: pointer;
+      transition: 0.3s all;
+      @apply text-gray-300;
+      &:hover {
+        @apply text-gray-500;
+      }
+    }
+
+    &__image {
+      display: none;
+    }
+  }
+}

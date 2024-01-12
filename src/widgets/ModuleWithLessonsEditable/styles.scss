@@ -25,3 +25,38 @@
   &__lessons {
   }
 }
+
+@media screen and (max-width: 640px) {
+  .module-tab {
+    width: 100%;
+    border-radius: clamp(4px, 0.41664vw, 16px);
+    border-left: 4px solid;
+    @apply border-custom-blue;
+    @apply bg-gray-100;
+    @apply mb-8;
+
+    &__inputs {
+      &__text {
+        width: 100%;
+        @apply text-xl;
+        @apply font-medium;
+        @apply text-custom-black;
+      }
+
+      &__upper-row {
+        width: 100%;
+
+        &__input {
+          height: clamp(27.5px, 12.8502vw, 110px);
+        }
+
+        &__number {
+          @apply text-custom-black;
+        }
+      }
+    }
+
+    &__lessons {
+    }
+  }
+}

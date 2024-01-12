@@ -56,7 +56,7 @@ export const CourseEditorScreen = () => {
         courseName={courseData.title}
         modules={transformedModules}
       />
-      <section className="w-[73%] course-edit-container flex flex-col items-center">
+      <section className="w-[73%] course-edit-container flex flex-col items-center max-[640px]:hidden">
         <h2 className="w-[70%] float-left text-3xl font-semibold mb-8">
           Редактирование курса
         </h2>
@@ -108,6 +108,79 @@ export const CourseEditorScreen = () => {
         })}
         <div className="course-edit-container__tab flex flex-col items-center justify-center">
           <p className="paragraph text-center w-[50%] text-gray-400">
+            {courseData.modules.length === 0 ? (
+              <>
+                Ваш курс пока абсолютно пустой. Создайте первый модуль, чтобы
+                добавить уроки
+              </>
+            ) : (
+              <>
+                В вашем курсе уже есть модули. Вы можете создать еще модули и
+                дополнить ваш курс
+              </>
+            )}
+          </p>
+          <UtilityButton
+            text="Новый модуль"
+            marginTop="mt-6"
+            type="filled-btn"
+            onClick={addNewModule}
+          />
+          <BasicDateCalendar />
+        </div>
+      </section>
+      <section className="w-full m-auto course-edit-container flex flex-col items-center min-[1024px]:hidden">
+        <h2 className="w-[70%] text-center text-3xl font-semibold mb-8">
+          Редактирование курса
+        </h2>
+        {modulesData.map((module: any, index: any) => {
+          if (module.lessons && module.lessons.length > 0) {
+            const lessonsForModule = module.lessons.map((lesson: any) => ({
+              lessonTitle: lesson.lesson_title,
+              lessonNum: lesson.lesson_num,
+            }));
+            return (
+              <ModuleWithLessons
+                key={module.id}
+                id={module.id}
+                number={index + 1}
+                title={module.module_title}
+                description={module.module_description}
+                image={courseData.preview}
+                lessons={lessonsForModule}
+                deleteFunction={() =>
+                  deleteModule(courseID.courseID, module.module_num)
+                }
+              />
+            );
+          } else {
+            return (
+              <LoadedModuleTab
+                key={module.id}
+                id={module.id}
+                image={courseData.preview}
+                title={module.module_title}
+                description={module.module_description}
+                number={module.module_num}
+                deleteFunction={() =>
+                  deleteModule(courseID.courseID, module.module_num)
+                }
+              />
+            );
+          }
+        })}
+        {moduleElements.map((module, index) => {
+          return (
+            <ModuleTab
+              lessonImage={courseData?.preview}
+              key={module.id}
+              id={module.id}
+              number={index + 1}
+            />
+          );
+        })}
+        <div className="course-edit-container__tab flex flex-col items-center justify-center">
+          <p className="paragraph text-center w-[80%] text-gray-400">
             {courseData.modules.length === 0 ? (
               <>
                 Ваш курс пока абсолютно пустой. Создайте первый модуль, чтобы

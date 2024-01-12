@@ -42,7 +42,7 @@ export const LessonForModule: React.FC<LessonForModuleProps> = ({
       <div className="lesson-module-tab__buttons flex items-center">
         <UtilityButton
           text="Редактировать"
-          type="filled-btn"
+          type="filled-btn max-[640px]:hidden"
           marginTop="mt-0"
           onClick={handleNavigateToLessonSettings}
         />

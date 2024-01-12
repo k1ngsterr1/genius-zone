@@ -7,3 +7,15 @@
     @apply bg-gray-100;
   }
 }
+
+@media screen and (max-width: 640px) {
+  .course-edit-container {
+    &__tab {
+      width: 100%;
+      height: auto;
+      padding: 32px;
+      border-radius: clamp(4px, 0.41664vw, 16px);
+      @apply bg-gray-100;
+    }
+  }
+}

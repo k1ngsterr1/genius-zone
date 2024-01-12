@@ -13,6 +13,8 @@ import { LessonInput } from "@shared/ui/LessonInput";
 import { useDeleteLesson } from "@shared/lib/hooks/useDeleteLesson";
 import { useAddLessonInput } from "@shared/lib/hooks/useAddLessonInput";
 
+import "./styles.scss";
+
 interface ModuleWithLessonsProps {
   id: string | number;
   number: any;
@@ -69,6 +71,7 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
             name="module_title"
             required
             value={module_title}
+            className="module-tab__inputs__upper-row__input"
             sx={{
               width: "95%",
               height: "clamp(20px,2.0832vw,80px)",
@@ -80,10 +83,10 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
           placeholder="Описание модуля"
           type="text"
           required
-          className="mt-4"
+          className="module-tab__inputs__upper-row__input mt-4"
           value={module_description}
           sx={{
-            width: "100%",
+            width: "95%",
             height: "clamp(20px,2.0832vw,80px)",
           }}
           onChange={(e) => setModuleDescription(e.target.value)}
@@ -98,13 +101,13 @@ export const ModuleWithLessons: React.FC<ModuleWithLessonsProps> = ({
               ? "filled-btn"
               : "filled-inactive-btn"
           }
-          marginTop="mt-6"
+          marginTop="mt-6 "
         />
         <UtilityButton
           buttonType={"button"}
           text="Удалить модуль"
           onClick={() => deleteFunction()}
-          type={"filled-btn bg-red-500 ml-4 hover:bg-red-600"}
+          type={"filled-btn bg-red-500 ml-4 hover:bg-red-600 max-[640px]:ml-0"}
           marginTop="mt-6"
         />
       </div>
