@@ -53,9 +53,9 @@ const TextEditor: React.FC<CreateStepProps> = ({
   const { createStep } = useCreateStep();
 
   useEffect(() => {
-    if (initialContent) {
-      const blocks = initialContent.contents.map((content: any) => ({
-        key: "content" + content.content_num,
+    if (initialContent.length > 0) {
+      const blocks = initialContent.map((content: any) => ({
+        key: `content-${content.content_num}`,
         text: content.text,
         type: "unstyled",
         depth: 0,
@@ -65,13 +65,17 @@ const TextEditor: React.FC<CreateStepProps> = ({
       }));
 
       const rawContentState = {
-        blocks: blocks,
+        blocks,
         entityMap: {},
       };
 
-      const contentState = convertFromRaw(rawContentState);
-      const newEditorState = EditorState.createWithContent(contentState);
-      setEditorState(newEditorState);
+      try {
+        const contentState = convertFromRaw(rawContentState);
+        const newEditorState = EditorState.createWithContent(contentState);
+        setEditorState(newEditorState);
+      } catch (error) {
+        console.error("Error converting raw content to editor state:", error);
+      }
     }
   }, [initialContent]);
 

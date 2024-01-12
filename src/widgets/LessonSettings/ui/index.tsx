@@ -8,10 +8,10 @@ import { EditCourseTab } from "@features/SidePanels/EditCourse/ui";
 import { InputLesson } from "@widgets/InputLesson/ui";
 import { UtilityButton } from "@shared/ui/UtilityButton";
 import { useAddNewStep } from "@shared/lib/hooks/useAddNewStep";
-import { useLoadStepData } from "@shared/lib/hooks/useLoadStepData";
 import TextEditor from "@features/TextEditor/ui";
 
 import cpp from "@assets/cpp.jpg";
+import useLoadSteps from "@shared/lib/hooks/useLoadSteps";
 
 export const LessonSettingsScreen = () => {
   const [lessonStepValue, setLessonStepValue] = useState("");
@@ -23,16 +23,15 @@ export const LessonSettingsScreen = () => {
   const stepNumber = useParams<{ stepNumber: string }>();
 
   const { courseData } = useLoadSpecificCourse(courseID.courseID);
-  const { loadStepData, stepData } = useLoadStepData();
+  const { loadSteps, steps, stepsContent, addNewLoadStep } = useLoadSteps();
 
   useEffect(() => {
-    loadStepData(
+    loadSteps(
       courseID.courseID,
       moduleNumber.moduleNumber,
-      lessonNumber.lessonNumber,
-      stepNumber.stepNumber
+      lessonNumber.lessonNumber
     );
-    console.log(stepData);
+    console.log(steps);
     const handleBeforeUnload = (e: any) => {
       e.preventDefault();
       e.returnValue = "";
@@ -43,7 +42,12 @@ export const LessonSettingsScreen = () => {
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, []);
+  }, [
+    courseID,
+    moduleNumber.moduleNumber,
+    lessonNumber.lessonNumber,
+    loadSteps,
+  ]);
 
   const lessonTitle = courseData?.modules
     .flatMap((mod) => mod.lessons)
@@ -69,7 +73,7 @@ export const LessonSettingsScreen = () => {
     );
   }
 
-  if (!stepData) {
+  if (!steps) {
     return (
       <div className="wrapper--row mb-12">
         <EditCourseTab
@@ -144,21 +148,18 @@ export const LessonSettingsScreen = () => {
         <InputLesson lessonImage={cpp} inputValue={lessonTitle} />
         <span className="text-2xl text-custom-black mt-8">Ваши Шаги</span>
         <div className="squares flex justify-start items-center mt-6">
-          <StepSquare number="1" />
-          {stepElements.map((step, index) => {
-            return (
-              <StepSquare
-                key={step.number}
-                number={index + 2}
-                marginLeft="ml-2"
-              />
-            );
-          })}
+          {steps.map((step: any, index: any) => (
+            <StepSquare
+              key={step.step_num}
+              number={step.step_num}
+              marginLeft={index > 0 ? "ml-2" : ""}
+            />
+          ))}
           <UtilityButton
             text="Добавить Шаг"
             type="outline-btn"
             marginTop="mt-7 ml-4"
-            onClick={addNewStep}
+            onClick={addNewLoadStep}
           />
         </div>
         <span className="text-2xl text-custom-black mt-8">Создание шага</span>
@@ -168,7 +169,7 @@ export const LessonSettingsScreen = () => {
             <OutlinedInput
               type="text"
               required
-              placeholder={stepData.stepTitle}
+              placeholder={"Название шага"}
               sx={{
                 width: "70%",
                 marginTop: "clamp(8px,0.83328vw,32px)",
@@ -179,7 +180,7 @@ export const LessonSettingsScreen = () => {
           </div>
           <TextEditor
             courseID={courseID.courseID}
-            initialContent={stepData}
+            initialContent={stepsContent}
             lessonNum={lessonNumber.lessonNumber}
             moduleNum={moduleNumber.moduleNumber}
             stepNum={stepNumber.stepNumber}
