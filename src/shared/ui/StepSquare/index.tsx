@@ -1,10 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./styles.scss";
 
 interface StepSquareData {
-  number: string | number;
+  number: string | number | any;
   marginLeft?: string;
 }
 
@@ -13,6 +13,9 @@ export const StepSquare: React.FC<StepSquareData> = ({
   marginLeft,
 }) => {
   const navigate = useNavigate();
+  const courseID = useParams<{ courseID: string }>();
+  const moduleNumber = useParams<{ moduleNumber: string }>();
+  const lessonNumber = useParams<{ lessonNumber: string }>();
 
   return (
     <div className={`step-square flex flex-col items-center ${marginLeft}`}>
@@ -20,7 +23,9 @@ export const StepSquare: React.FC<StepSquareData> = ({
       <div
         className="step-square__square rounded-sm"
         onClick={() =>
-          navigate(`/lesson-settings/39/1/2/lesson/step/${number}`)
+          navigate(
+            `/lesson-settings/${courseID.courseID}/module/${moduleNumber.moduleNumber}/lesson/${lessonNumber.lessonNumber}/step/${number} `
+          )
         }
       ></div>
     </div>

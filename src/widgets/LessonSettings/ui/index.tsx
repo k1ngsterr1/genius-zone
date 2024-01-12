@@ -23,14 +23,14 @@ export const LessonSettingsScreen = () => {
   const stepNumber = useParams<{ stepNumber: string }>();
 
   const { courseData } = useLoadSpecificCourse(courseID.courseID);
-  const { loadSteps, steps, stepsContent, addNewLoadStep } = useLoadSteps();
+  const { loadSteps, steps, stepsContent, addNewLoadStep } = useLoadSteps(
+    courseID.courseID,
+    moduleNumber.moduleNumber,
+    lessonNumber.lessonNumber
+  );
 
   useEffect(() => {
-    loadSteps(
-      courseID.courseID,
-      moduleNumber.moduleNumber,
-      lessonNumber.lessonNumber
-    );
+    loadSteps();
     console.log(steps);
     const handleBeforeUnload = (e: any) => {
       e.preventDefault();

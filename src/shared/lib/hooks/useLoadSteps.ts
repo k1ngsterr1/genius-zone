@@ -1,34 +1,64 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import axios from "axios";
 
-function useLoadSteps() {
-  const [steps, setSteps] = useState<any>([]);
-  const [stepsContent, setStepsContent] = useState<any>([]);
+function useLoadSteps(courseID: any, moduleNum: any, lessonNum: any) {
+  const [steps, setSteps] = useState<any[]>([]);
+  const [stepsContent, setStepsContent] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true); // A new state to track loading status
 
-  const loadSteps = useCallback(
-    async (courseID: any, moduleNum: any, lessonNum: any) => {
-      try {
-        const response = await axios.get(
-          `https://genzone.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/`
-        );
-        const steps = response.data.results.steps;
-        setSteps(steps);
-        const allContents = steps.flatMap((step: any) => step.contents);
+  const loadSteps = useCallback(async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        `https://genzone.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/`
+      );
+      const fetchedSteps = response.data.results.steps;
+      if (!localStorage.getItem("steps")) {
+        setSteps(fetchedSteps);
+        const allContents = fetchedSteps.flatMap((step: any) => step.contents);
         setStepsContent(allContents);
-      } catch (error) {
-        console.error("There was an error with loading steps:", error);
       }
-    },
-    []
-  );
+    } catch (error) {
+      console.error("There was an error with loading steps:", error);
+    }
+    setLoading(false);
+  }, [courseID, moduleNum, lessonNum]);
+
+  useEffect(() => {
+    const savedSteps = localStorage.getItem("steps");
+    if (savedSteps) {
+      setSteps(JSON.parse(savedSteps));
+    } else {
+      loadSteps();
+    }
+  }, [loadSteps]);
 
   const addNewLoadStep = useCallback(() => {
     const maxStepNum = Math.max(0, ...steps.map((s: any) => s.step_num));
     const newStep = {
       step_num: maxStepNum + 1,
+      // Initialize other properties for the new step as needed
     };
-    setSteps((prevSteps: any) => [...prevSteps, newStep]);
+
+    // Update the local state with the new step
+    setSteps((prevSteps: any) => {
+      const updatedSteps = [...prevSteps, newStep];
+
+      localStorage.setItem("steps", JSON.stringify(updatedSteps));
+      console.log(updatedSteps);
+
+      return updatedSteps;
+    });
   }, [steps]);
+
+  useEffect(() => {
+    const savedSteps = localStorage.getItem("steps");
+    if (savedSteps) {
+      setSteps(JSON.parse(savedSteps));
+    } else {
+      loadSteps();
+    }
+  }, [loadSteps]);
 
   return { loadSteps, addNewLoadStep, steps, stepsContent };
 }
