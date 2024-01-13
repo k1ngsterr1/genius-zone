@@ -1,0 +1,69 @@
+.chat_bar {
+  width: 70%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: 0.3s all;
+  @apply bg-custom-lightest-blue;
+  @apply rounded-md;
+  @apply p-4;
+  @apply mt-8;
+
+  &:hover {
+    @apply bg-custom-light-blue;
+  }
+
+  &__main {
+    width: 100%;
+    display: flex;
+
+    &__image {
+      width: clamp(32px, 3.33312vw, 128px);
+      height: clamp(32px, 3.33312vw, 128px);
+      border-radius: 60px;
+    }
+
+    &__content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      @apply ml-8;
+
+      &__name {
+        font-size: clamp(10.5px, 1.09368vw, 42px);
+        @apply font-bold;
+        @apply text-custom-black;
+      }
+
+      &__last_message {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: clamp(8px, 0.83328vw, 32px);
+        @apply text-gray-500;
+        @apply mt-1;
+      }
+    }
+  }
+
+  &__other {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    &__icon {
+      @apply text-gray-500;
+      @apply mb-1;
+    }
+
+    &__icon--checked {
+      @apply text-custom-blue;
+      @apply mb-1;
+    }
+  }
+}

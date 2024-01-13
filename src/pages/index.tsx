@@ -16,6 +16,7 @@ import { CourseSyllabus } from "./CourseSyllabus/ui";
 import { CourseEditorPage } from "./CourseEditor/ui";
 import { UserCoursesPage } from "./UserCourses/ui";
 import { LessonSettings } from "./LessonSettings/ui";
+import ChatsPage from "./Chats/ui";
 
 export const MyRoutes: FC = () => {
   return (
@@ -48,6 +49,7 @@ export const MyRoutes: FC = () => {
           path={ROUTE_CONSTANTS.COURSE_SYLLABUS}
           element={<CourseSyllabus />}
         />
+        <Route path={ROUTE_CONSTANTS.CHATS} element={<ChatsPage />} />
         <Route
           path={ROUTE_CONSTANTS.CREATE_COURSE_EDIT}
           element={<CourseEditorPage />}
