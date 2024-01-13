@@ -1,11 +1,11 @@
 import { Header } from "@features/Header/ui";
 import { Menu } from "@widgets/Menu";
-import { useSelector } from "react-redux";
 import { RootState } from "@shared/lib/redux/store";
-import { ChatsScreen } from "@widgets/Chats/ui";
+import { useSelector } from "react-redux";
 import { Footer } from "@features/Footer/ui";
+import { IndividualChat } from "@widgets/IndividualChat/ui";
 
-export const ChatsPage = () => {
+export const ConversationPage = () => {
   const isMenuOpen = useSelector((state: RootState) => state.menu.isOpen);
 
   return (
@@ -13,7 +13,7 @@ export const ChatsPage = () => {
       <div className="page">
         <Header />
         {isMenuOpen && <Menu />}
-        <ChatsScreen />
+        <IndividualChat />
       </div>
       <Footer />
     </>
