@@ -3,11 +3,13 @@ import { UserAside } from "@features/SidePanels/User/ui";
 import { ChatBar } from "@widgets/ChatBar/ui";
 import { faCheck, faCheckDouble } from "@fortawesome/free-solid-svg-icons";
 import useLoadConversations from "@shared/lib/hooks/useLoadConversations";
+import useStartConversation from "@shared/lib/hooks/useStartConversation";
 
 import noChats from "@assets/no_courses.svg";
 
 export const ChatsScreen = () => {
   const { conversations } = useLoadConversations();
+  const { startConversation } = useStartConversation();
   const [isRead, setIsRead] = useState(false);
 
   if (!conversations) {
@@ -39,6 +41,7 @@ export const ChatsScreen = () => {
               lastMessage={initiator.text}
               icon={isRead ? faCheckDouble : faCheck}
               isChecked={isRead ? "--checked" : ""}
+              onClick={() => startConversation()}
             />
           );
         })}

@@ -13,6 +13,7 @@ interface ChatBarProps {
   lastMessage: string;
   icon: IconProp;
   isChecked: string;
+  onClick: () => void;
 }
 
 export const ChatBar: React.FC<ChatBarProps> = ({
@@ -21,9 +22,10 @@ export const ChatBar: React.FC<ChatBarProps> = ({
   lastMessage,
   icon,
   isChecked,
+  onClick,
 }) => {
   return (
-    <div className="chat_bar">
+    <div className="chat_bar" onClick={onClick}>
       <div className="chat_bar__main">
         <img src={image} className="chat_bar__main__image" alt={name} />
         <div className="chat_bar__main__content">
