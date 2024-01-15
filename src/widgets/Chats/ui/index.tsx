@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { UserAside } from "@features/SidePanels/User/ui";
 import { ChatBar } from "@widgets/ChatBar/ui";
@@ -8,9 +9,14 @@ import useOpenConversation from "@shared/lib/hooks/useOpenConversation";
 import noChats from "@assets/no_courses.svg";
 
 export const ChatsScreen = () => {
+  const navigate = useNavigate();
   const { conversations } = useLoadConversations();
   const { openConversation } = useOpenConversation();
   const [isRead, setIsRead] = useState(false);
+
+  function openIndividualChat(conversationID: number) {
+    navigate(`/chats/${conversationID}`);
+  }
 
   if (!conversations) {
     return (
@@ -34,7 +40,6 @@ export const ChatsScreen = () => {
         {conversations.map((conversation: any, index: number) => {
           const initiator = conversation.initiator;
           const conversationID = index + 1;
-          const email = initiator.email;
           const lastMessage = conversation.last_message?.text;
           return (
             <ChatBar
@@ -44,7 +49,7 @@ export const ChatsScreen = () => {
               lastMessage={lastMessage}
               icon={isRead ? faCheckDouble : faCheck}
               isChecked={isRead ? "--checked" : ""}
-              onClick={() => openConversation(conversationID)}
+              onClick={() => openIndividualChat(conversationID)}
             />
           );
         })}

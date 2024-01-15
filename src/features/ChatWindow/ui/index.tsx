@@ -4,6 +4,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 interface ChatWindowProps {
   name: string;
   image: string;
+  lastMessages: [];
 }
 
 export const ChatWindow: React.FC<ChatWindowProps> = ({ name, image }) => {
