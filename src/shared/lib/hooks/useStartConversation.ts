@@ -4,10 +4,11 @@ import Cookies from "js-cookie";
 function useStartConversation() {
   const token = Cookies.get("accessToken");
 
-  async function startConversation() {
+  async function startConversation(email: string) {
     try {
       const response = await axios.post(
         "https://genzone.up.railway.app/api/conversations/start/",
+        email,
         {
           headers: {
             Authorization: `Bearer ${token}`,
