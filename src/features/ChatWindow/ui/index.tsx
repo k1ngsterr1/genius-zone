@@ -42,7 +42,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   useEffect(() => {
     if (conversationID) {
       connectWebSocket(conversationID);
-      console.log(receiverEmail);
     }
   }, [conversationID]);
 
@@ -64,7 +63,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
       </div>
       <div className="chat_window__main">
         {messages.map((message, index) => (
-          <Message key={index} text={message} />
+          <Message key={index} text={message.text} />
         ))}
       </div>
       <div className="chat_window__textfield">
