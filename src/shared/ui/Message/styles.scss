@@ -1,8 +1,57 @@
 .message {
-  width: 10%;
-  @apply p-2;
-  @apply mt-2;
-  @apply rounded-md;
-  @apply text-white;
-  @apply bg-custom-blue;
+  min-width: 12%;
+  width: fit-content;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-self: flex-start;
+  font-size: clamp(8.5px, 0.88536vw, 34px);
+  word-break: break-word;
+  border: 2px solid red;
+  @apply pr-4;
+  @apply pl-4;
+  @apply pt-2;
+  @apply pb-2;
+  @apply mt-3;
+  @apply rounded-full;
+  @apply text-custom-black;
+  @apply bg-custom-light-blue;
+
+  &__text {
+    flex-grow: 1;
+    @apply mr-2;
+  }
+
+  &__additional_data {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    right: 12px;
+    bottom: 5px;
+
+    &__time {
+      font-size: 12px;
+    }
+
+    &__check {
+      font-size: 12px;
+      @apply ml-2;
+    }
+  }
+
+  &--sender {
+    margin-left: auto;
+    align-self: flex-end;
+    @apply bg-custom-light-blue;
+    @apply text-custom-black;
+  }
+
+  &--recipient {
+    margin-right: auto;
+    align-self: flex-start;
+    @apply mr-4;
+    @apply bg-custom-lightest-blue;
+    @apply text-custom-black;
+  }
 }

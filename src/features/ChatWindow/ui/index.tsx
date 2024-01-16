@@ -63,7 +63,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
       </div>
       <div className="chat_window__main">
         {messages.map((message, index) => (
-          <Message key={index} text={message.text} />
+          <Message key={index} text={message.text} isSender={true} />
         ))}
       </div>
       <div className="chat_window__textfield">
