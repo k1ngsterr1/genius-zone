@@ -1,44 +1,52 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-function useConnectWebSocket() {
+function useConnectWebSocket(receiverEmail: string) {
   const [socket, setSocket] = useState<WebSocket | null>(null);
   const [messages, setMessages] = useState<string[]>([]);
   const [newMessage, setNewMessage] = useState("");
 
   const connectWebSocket = (conversationID: number) => {
-    useEffect(() => {
-      const ws = new WebSocket(
-        `'wss://genzone.up.railway.app/ws/chat/${conversationID}/`
-      );
-      setSocket(ws);
+    const ws = new WebSocket(
+      `ws://genzone.up.railway.app/ws/chat/${conversationID}/`
+    );
+    setSocket(ws);
 
-      ws.onopen = () => {
-        console.log("WebSocket Connected");
-      };
-      ws.onmessage = (event: any) => {
-        const message = event.data;
-        setMessages((prevMessages) => [...prevMessages, message]);
-      };
+    ws.onopen = () => {
+      console.log("WebSocket Connected");
+    };
+    ws.onmessage = (event: any) => {
+      const message = event.data;
+      setMessages((prevMessages) => [...prevMessages, message]);
+      console.log(message, newMessage);
+    };
 
-      ws.onerror = (event) => {
-        console.error("WebSocket Error", event);
-      };
+    ws.onerror = (event) => {
+      console.error("WebSocket Error", event);
+    };
 
-      ws.onclose = () => {
-        console.log("WebSocket Disconnected");
-        setSocket(null);
-      };
+    ws.onclose = () => {
+      console.log("WebSocket Disconnected");
+      setSocket(null);
+    };
 
-      return () => {
-        ws.close();
-      };
-    }, []);
+    return () => {
+      ws.close();
+    };
   };
 
   const sendMessage = () => {
-    if (socket && newMessage) {
-      socket.send(newMessage);
+    const mail = receiverEmail;
+
+    if (socket && newMessage && mail) {
+      const messageData = {
+        type: "chat_message",
+        message: newMessage,
+        email: mail,
+      };
+      socket.send(JSON.stringify(messageData));
       setNewMessage("");
+      console.log(messageData);
+      console.log("Message has been sent successfully!");
     }
   };
 

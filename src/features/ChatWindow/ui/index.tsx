@@ -9,14 +9,21 @@ import { useNavigate } from "react-router-dom";
 import useConnectWebSocket from "@shared/lib/hooks/useConnectWebSocket";
 
 import "./styles.scss";
+import { useEffect } from "react";
 
 interface ChatWindowProps {
   name: string;
   image: string;
-  lastMessages: [];
+  conversationID: number;
+  receiverEmail: string;
 }
 
-export const ChatWindow: React.FC<ChatWindowProps> = ({ name, image }) => {
+export const ChatWindow: React.FC<ChatWindowProps> = ({
+  name,
+  image,
+  conversationID,
+  receiverEmail,
+}) => {
   const navigate = useNavigate();
 
   const {
@@ -26,11 +33,18 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ name, image }) => {
     handleKeyPress,
     messages,
     newMessage,
-  } = useConnectWebSocket();
+  } = useConnectWebSocket(receiverEmail);
 
   function navigateBack() {
     navigate("/chats");
   }
+
+  useEffect(() => {
+    if (conversationID) {
+      connectWebSocket(conversationID);
+      console.log(receiverEmail);
+    }
+  }, [conversationID]);
 
   return (
     <div className="chat_window">
@@ -67,7 +81,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ name, image }) => {
         />
         <FontAwesomeIcon
           icon={faPaperPlane}
-          onClick={sendMessage}
+          onClick={() => sendMessage}
           className="chat_window__textfield__send"
         />
       </div>
