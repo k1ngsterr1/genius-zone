@@ -1,5 +1,8 @@
 .message {
-  @apply p-3;
-  @apply text-custom-black;
-  @apply bg-custom-lightest-blue;
+  width: 10%;
+  @apply p-2;
+  @apply mt-2;
+  @apply rounded-md;
+  @apply text-white;
+  @apply bg-custom-blue;
 }
