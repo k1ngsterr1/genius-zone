@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./styles.module.scss";
+import "./styles.scss";
 
 interface MessageProps {
   text: string;
