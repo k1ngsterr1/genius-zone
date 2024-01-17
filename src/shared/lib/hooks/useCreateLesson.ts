@@ -1,4 +1,3 @@
-import Cookies from "js-cookie";
 import axiosInstance from "@shared/lib/middleware";
 
 export interface LessonData {
@@ -13,7 +12,6 @@ export function useCreateLesson() {
     moduleNum: any
   ) => {
     try {
-      const token = Cookies.get("accessToken");
       const response = await axiosInstance.post(
         `/courses/course/${courseID}/module/${moduleNum}/lesson/`,
         data

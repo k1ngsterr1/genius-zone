@@ -1,11 +1,4 @@
-import Cookies from "js-cookie";
 import axiosInstance from "../middleware";
-
-// export interface StepData {
-//   content_num: any;
-//   content_type: any;
-//   step_title: string;
-// }
 
 export function useCreateStep() {
   const createStep = async (
