@@ -1,18 +1,12 @@
 import { useState } from "react";
 import axiosInstance from "@shared/lib/middleware";
-import Cookies from "js-cookie";
 
 function useOpenConversation() {
-  const token = Cookies.get("accessToken");
   const [conversationData, setConversationData] = useState();
 
   async function openConversation(id: number) {
     try {
-      const response = await axiosInstance.get(`/conversations/${id}/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axiosInstance.get(`/conversations/${id}/`);
       setConversationData(response.data.results);
       console.log("Conversation has opened successfully", response.data);
     } catch (error: any) {

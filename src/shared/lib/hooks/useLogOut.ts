@@ -8,7 +8,6 @@ function useLogOut() {
 
   const handleLogOut = () => {
     localStorage.removeItem("accessToken");
-    console.log("zhopa");
     dispatch(logOut());
     navigate("/login");
   };

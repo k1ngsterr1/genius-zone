@@ -7,6 +7,10 @@ const axiosInstance = axios.create({
 
 const refreshToken = Cookies.get("refreshToken");
 
+const refreshJSON = {
+  refresh: refreshToken,
+};
+
 axiosInstance.interceptors.response.use(
   (resonse) => {
     return resonse;
@@ -17,18 +21,13 @@ axiosInstance.interceptors.response.use(
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
-      return axios
-        .post("/account/refresh/", {
-          headers: {
-            Refresh: `Bearer ${refreshToken}`,
-          },
-        })
+      return axiosInstance
+        .post("/account/refresh/", refreshJSON)
         .then((res) => {
           if (res.status === 200) {
-            Cookies.set("accessToken", res.data.accessToken);
-            console.log("refreshed successfully!");
+            Cookies.set("accessToken", res.data.access);
             axios.defaults.headers.common["Authorization"] =
-              "Bearer " + res.data.accessToken;
+              "Bearer " + res.data.access;
             return axios(originalRequest);
           }
         });

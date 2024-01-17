@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { turnOffLoader, turnOnLoader } from "../redux/store/loaderSlice";
 import axiosInstance from "@shared/lib/middleware";
-import Cookies from "js-cookie";
 
 interface StepData {
   stepTitle: string;
@@ -21,14 +20,8 @@ export function useLoadStepData() {
   ) => {
     dispatch(turnOnLoader());
     try {
-      const token = Cookies.get("accessToken");
       const response = await axiosInstance.get(
-        `/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/step/${stepNum}/`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        `/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/step/${stepNum}/`
       );
       setStepData(response.data);
       console.log("Step Successfully Loaded!", response.data);

@@ -1,5 +1,4 @@
 import axiosInstance from "@shared/lib/middleware";
-import Cookies from "js-cookie";
 
 export interface ModuleData {
   module_title: string;
@@ -13,15 +12,9 @@ export const useUpdateModule = () => {
     moduleNum: string | any
   ) => {
     try {
-      const token = Cookies.get("accessToken");
       const response = await axiosInstance.put(
         `/courses/course/${courseID}/module/${moduleNum}/`,
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        data
       );
       console.log("Module Updated!", response.data);
     } catch (error: any) {

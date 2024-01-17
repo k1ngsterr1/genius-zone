@@ -1,5 +1,4 @@
 import axiosInstance from "@shared/lib/middleware";
-import Cookies from "js-cookie";
 
 const useDeleteModule = (onSuccess: any) => {
   const deleteModule = async (
@@ -7,14 +6,8 @@ const useDeleteModule = (onSuccess: any) => {
     moduleNum: string | number
   ) => {
     try {
-      const token = Cookies.get("accessToken");
       const response = await axiosInstance.delete(
-        `/courses/course/${courseId}/module/${moduleNum}/`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        `/courses/course/${courseId}/module/${moduleNum}/`
       );
 
       console.log("Module has been deleted successfully!", response.data);

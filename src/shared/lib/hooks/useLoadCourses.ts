@@ -22,6 +22,7 @@ function useLoadCourses() {
       const response = await axiosInstance.get("/courses/courses/");
       setCourses(response.data);
     } catch (error: any) {
+      console.log("error with courses loading:", error);
       setError(error);
     } finally {
       dispatch(turnOffLoader());

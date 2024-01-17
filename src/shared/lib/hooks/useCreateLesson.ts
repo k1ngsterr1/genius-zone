@@ -16,12 +16,7 @@ export function useCreateLesson() {
       const token = Cookies.get("accessToken");
       const response = await axiosInstance.post(
         `/courses/course/${courseID}/module/${moduleNum}/lesson/`,
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        data
       );
       console.log("Lesson Saved!", response.data);
     } catch (error: any) {

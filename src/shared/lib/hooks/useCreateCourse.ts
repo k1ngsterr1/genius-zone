@@ -1,5 +1,4 @@
 import axiosInstance from "@shared/lib/middleware";
-import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
 export interface CourseData {
@@ -20,12 +19,7 @@ export function useCreateCourse() {
         formData.append("preview", image, image.name);
       }
 
-      const token = Cookies.get("accessToken");
-      const response = await axiosInstance.post(`/courses/courses/`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axiosInstance.post(`/courses/courses/`, formData);
 
       const courseID = response.data.id;
 

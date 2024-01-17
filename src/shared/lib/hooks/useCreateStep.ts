@@ -16,24 +16,13 @@ export function useCreateStep() {
     stepNum: string
   ) => {
     try {
-      const token = Cookies.get("accessToken");
       const response = await axiosInstance.post(
         `courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/step/`,
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        data
       );
       const response2 = await axiosInstance.patch(
         `courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/step/${stepNum}/`,
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        data
       );
       console.log("Step Successfully Created!", response.data, response2.data);
     } catch (error: any) {
