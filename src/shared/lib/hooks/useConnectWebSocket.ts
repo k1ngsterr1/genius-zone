@@ -24,6 +24,7 @@ function useConnectWebSocket(receiverEmail: string) {
             return [...prevMessages, messageObject];
           }
         });
+        console.log(messageObject);
       } catch (error) {
         console.error("Error parsing the incoming message", error);
       }
@@ -53,6 +54,7 @@ function useConnectWebSocket(receiverEmail: string) {
         email: mail,
       };
       socket.send(JSON.stringify(messageData));
+      console.log(messageData);
       setNewMessage("");
       console.log("Message has been sent successfully!");
     }

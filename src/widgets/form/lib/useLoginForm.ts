@@ -34,14 +34,9 @@ export function useLoginForm() {
 
       const accessToken = response.data.access;
       const refreshToken = response.data.refresh;
+      const userID = response.data.user.userID;
 
-      if (accessToken) {
-        console.log("Cookies set");
-        Cookies.set("accessToken", accessToken);
-        Cookies.set("refreshToken", refreshToken);
-      }
-
-      console.log(response.data);
+      console.log(userID);
 
       const userData = {
         firstName: response.data.user.first_name,
@@ -50,7 +45,13 @@ export function useLoginForm() {
         userID: response.data.user.id,
       };
 
-      console.log("userdata:", userData);
+      if (accessToken) {
+        Cookies.set("accessToken", accessToken);
+        Cookies.set("refreshToken", refreshToken);
+        Cookies.set("userID", userData.userID);
+      }
+
+      console.log("userdata:", userData, userData.userID);
 
       localStorage.setItem("userData", JSON.stringify(userData));
       dispatch(logIn());

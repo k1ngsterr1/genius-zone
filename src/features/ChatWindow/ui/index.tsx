@@ -7,10 +7,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Message } from "@shared/ui/Message";
 import { useNavigate } from "react-router-dom";
-import { DateTab } from "@shared/ui/DateTab";
-
+import { useLoadUserData } from "@shared/lib/hooks/useLoadUserData";
 import useConnectWebSocket from "@shared/lib/hooks/useConnectWebSocket";
+
 import moment from "moment";
+import Cookies from "js-cookie";
 
 import "./styles.scss";
 
@@ -28,6 +29,9 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   receiverEmail,
 }) => {
   const navigate = useNavigate();
+  const userID = Cookies.get("userID");
+
+  const { loadUserData, userData } = useLoadUserData();
 
   const {
     connectWebSocket,
@@ -44,6 +48,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
 
   useEffect(() => {
     if (conversationID) {
+      loadUserData(userID);
       connectWebSocket(conversationID);
     }
   }, [conversationID]);
@@ -66,13 +71,14 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
       </div>
       <div className="chat_window__main">
         {messages.map((message, index) => {
-          // const isSender = message.senderEmail === currentUserEmail;
+          const isSender = message.sender == userID;
+          console.log(message.sender, userID);
           return (
             <Message
               key={index}
               text={message.text}
               time={moment(message.timestamp).format("LT")}
-              isSender={true}
+              isSender={isSender}
               isRead={true}
             />
           );
