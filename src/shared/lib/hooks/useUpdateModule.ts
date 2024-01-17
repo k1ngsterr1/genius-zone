@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "@shared/lib/middleware";
 import Cookies from "js-cookie";
 
 export interface ModuleData {
@@ -14,8 +14,8 @@ export const useUpdateModule = () => {
   ) => {
     try {
       const token = Cookies.get("accessToken");
-      const response = await axios.put(
-        `https://genzone.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/`,
+      const response = await axiosInstance.put(
+        `/courses/course/${courseID}/module/${moduleNum}/`,
         data,
         {
           headers: {

@@ -23,7 +23,7 @@ export const Message: React.FC<MessageProps> = ({
       <span className="message__text">{text}</span>
       <div className="message__additional_data">
         {" "}
-        <span className="message__additional_data__time">12:10</span>
+        <span className="message__additional_data__time">{time}</span>
         <FontAwesomeIcon
           className="message__additional_data__check"
           icon={isRead ? faCheckDouble : faCheck}

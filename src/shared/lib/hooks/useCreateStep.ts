@@ -1,5 +1,5 @@
-import axios from "axios";
 import Cookies from "js-cookie";
+import axiosInstance from "../middleware";
 
 // export interface StepData {
 //   content_num: any;
@@ -17,8 +17,8 @@ export function useCreateStep() {
   ) => {
     try {
       const token = Cookies.get("accessToken");
-      const response = await axios.post(
-        `https://genzone.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/step/`,
+      const response = await axiosInstance.post(
+        `courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/step/`,
         data,
         {
           headers: {
@@ -26,8 +26,8 @@ export function useCreateStep() {
           },
         }
       );
-      const response2 = await axios.patch(
-        `https://genzone.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/step/${stepNum}/`,
+      const response2 = await axiosInstance.patch(
+        `courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/step/${stepNum}/`,
         data,
         {
           headers: {

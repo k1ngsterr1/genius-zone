@@ -33,10 +33,12 @@ export function useLoginForm() {
       );
 
       const accessToken = response.data.access;
+      const refreshToken = response.data.refresh;
 
       if (accessToken) {
         console.log("Cookies set");
         Cookies.set("accessToken", accessToken);
+        Cookies.set("refreshToken", refreshToken);
       }
 
       console.log(response.data);

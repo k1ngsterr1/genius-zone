@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -6,10 +7,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Message } from "@shared/ui/Message";
 import { useNavigate } from "react-router-dom";
+import { DateTab } from "@shared/ui/DateTab";
+
 import useConnectWebSocket from "@shared/lib/hooks/useConnectWebSocket";
+import moment from "moment";
 
 import "./styles.scss";
-import { useEffect } from "react";
 
 interface ChatWindowProps {
   name: string;
@@ -62,9 +65,18 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
         <img src={image} className="chat_window__upper__image" alt={name} />
       </div>
       <div className="chat_window__main">
-        {messages.map((message, index) => (
-          <Message key={index} text={message.text} isSender={true} />
-        ))}
+        {messages.map((message, index) => {
+          // const isSender = message.senderEmail === currentUserEmail;
+          return (
+            <Message
+              key={index}
+              text={message.text}
+              time={moment(message.timestamp).format("LT")}
+              isSender={true}
+              isRead={true}
+            />
+          );
+        })}
       </div>
       <div className="chat_window__textfield">
         <FontAwesomeIcon
@@ -73,6 +85,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
         />
         <input
           type="text"
+          placeholder="Напишите сообщение..."
           value={newMessage}
           onChange={handleMessageChange}
           onKeyUp={handleKeyPress}
@@ -80,7 +93,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
         />
         <FontAwesomeIcon
           icon={faPaperPlane}
-          onClick={() => sendMessage}
+          onClick={sendMessage}
           className="chat_window__textfield__send"
         />
       </div>

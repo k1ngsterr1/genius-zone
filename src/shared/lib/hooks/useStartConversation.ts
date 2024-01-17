@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "@shared/lib/middleware";
 import Cookies from "js-cookie";
 
 function useStartConversation() {
@@ -6,8 +6,8 @@ function useStartConversation() {
 
   async function startConversation(email: string) {
     try {
-      const response = await axios.post(
-        "https://genzone.up.railway.app/api/conversations/start/",
+      const response = await axiosInstance.post(
+        "/conversations/start/",
         email,
         {
           headers: {

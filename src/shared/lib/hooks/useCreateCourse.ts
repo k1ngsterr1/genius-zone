@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "@shared/lib/middleware";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
@@ -21,15 +21,11 @@ export function useCreateCourse() {
       }
 
       const token = Cookies.get("accessToken");
-      const response = await axios.post(
-        `https://genzone.up.railway.app/api/courses/courses/`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axiosInstance.post(`/courses/courses/`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       const courseID = response.data.id;
 

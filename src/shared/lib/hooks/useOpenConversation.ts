@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import axiosInstance from "@shared/lib/middleware";
 import Cookies from "js-cookie";
 
 function useOpenConversation() {
@@ -8,15 +8,12 @@ function useOpenConversation() {
 
   async function openConversation(id: number) {
     try {
-      const response = await axios.get(
-        `https://genzone.up.railway.app/api/conversations/${id}/`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setConversationData(response.data);
+      const response = await axiosInstance.get(`/conversations/${id}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setConversationData(response.data.results);
       console.log("Conversation has opened successfully", response.data);
     } catch (error: any) {
       console.error("There was an error with chat open:", error);

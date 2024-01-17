@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { turnOffLoader, turnOnLoader } from "../redux/store/loaderSlice";
-import axios from "axios";
+import axiosInstance from "@shared/lib/middleware";
 import Cookies from "js-cookie";
 
 interface StepData {
@@ -22,8 +22,8 @@ export function useLoadStepData() {
     dispatch(turnOnLoader());
     try {
       const token = Cookies.get("accessToken");
-      const response = await axios.get(
-        `https://genzone.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/step/${stepNum}/`,
+      const response = await axiosInstance.get(
+        `/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/step/${stepNum}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

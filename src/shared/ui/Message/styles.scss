@@ -26,15 +26,15 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    right: 12px;
-    bottom: 5px;
+    right: clamp(5.5px, 0.5728800000000001vw, 22px);
+    bottom: clamp(2.5px, 0.2604vw, 10px);
 
     &__time {
-      font-size: 12px;
+      font-size: clamp(5.5px, 0.5728800000000001vw, 22px);
     }
 
     &__check {
-      font-size: 12px;
+      font-size: clamp(5.5px, 0.5728800000000001vw, 22px);
       @apply ml-2;
     }
   }
@@ -44,6 +44,7 @@
     align-self: flex-end;
     @apply bg-custom-light-blue;
     @apply text-custom-black;
+    @apply mr-4;
   }
 
   &--recipient {

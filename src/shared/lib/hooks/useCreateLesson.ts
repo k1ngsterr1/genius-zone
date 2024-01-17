@@ -1,5 +1,5 @@
-import axios from "axios";
 import Cookies from "js-cookie";
+import axiosInstance from "@shared/lib/middleware";
 
 export interface LessonData {
   lesson_title: string;
@@ -14,8 +14,8 @@ export function useCreateLesson() {
   ) => {
     try {
       const token = Cookies.get("accessToken");
-      const response = await axios.post(
-        `https://genzone.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/`,
+      const response = await axiosInstance.post(
+        `/courses/course/${courseID}/module/${moduleNum}/lesson/`,
         data,
         {
           headers: {

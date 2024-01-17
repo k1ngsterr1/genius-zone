@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { turnOffLoader, turnOnLoader } from "../redux/store/loaderSlice";
-import axios from "axios";
+import axiosInstance from "@shared/lib/middleware";
 
 interface CourseData {
   title: string;
@@ -20,9 +20,7 @@ export function useLoadSpecificCourse(courseID: string | any) {
   const fetchCourseData = useCallback(async () => {
     dispatch(turnOnLoader());
     try {
-      const response = await axios.get(
-        `https://genzone.up.railway.app/api/courses/course/${courseID}/`
-      );
+      const response = await axiosInstance.get(`/courses/course/${courseID}/`);
       setCourseData(response.data);
       setModulesData(response.data.modules);
       setError(null);

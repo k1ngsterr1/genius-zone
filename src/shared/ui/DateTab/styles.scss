@@ -1,0 +1,6 @@
+.date_tab {
+  font-size: clamp(6px, 0.62496vw, 24px);
+  background: rgba(11, 24, 135, 0.2);
+  @apply text-custom-black;
+  @apply p-1;
+}

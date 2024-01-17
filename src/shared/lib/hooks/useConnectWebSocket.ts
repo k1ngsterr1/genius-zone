@@ -17,7 +17,13 @@ function useConnectWebSocket(receiverEmail: string) {
     ws.onmessage = (event) => {
       try {
         const messageObject: any = JSON.parse(event.data);
-        setMessages((prevMessages) => [...prevMessages, messageObject]);
+        setMessages((prevMessages) => {
+          if (prevMessages.some((msg: any) => msg.id === messageObject.id)) {
+            return prevMessages;
+          } else {
+            return [...prevMessages, messageObject];
+          }
+        });
       } catch (error) {
         console.error("Error parsing the incoming message", error);
       }
@@ -48,7 +54,6 @@ function useConnectWebSocket(receiverEmail: string) {
       };
       socket.send(JSON.stringify(messageData));
       setNewMessage("");
-      console.log(messageData.message);
       console.log("Message has been sent successfully!");
     }
   };

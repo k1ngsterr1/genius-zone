@@ -1,7 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
+import axiosInstance from "@shared/lib/middleware";
 import Cookies from "js-cookie";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logIn } from "../redux/store/authSlice";
 
 export function useVerifyAuth() {
@@ -11,7 +11,7 @@ export function useVerifyAuth() {
   const verifyAuth = async () => {
     try {
       const accessToken = Cookies.get("accessToken");
-      const response = await axios.get(
+      const response = await axiosInstance.get(
         `https://genzone.up.railway.app/api/courses/courses/`,
         {
           headers: {

@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import axios from "axios";
+import axiosInstance from "@shared/lib/middleware";
 
 function useLoadSteps(courseID: any, moduleNum: any, lessonNum: any) {
   const [steps, setSteps] = useState<any[]>([]);
@@ -9,8 +9,8 @@ function useLoadSteps(courseID: any, moduleNum: any, lessonNum: any) {
   const loadSteps = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await axios.get(
-        `https://genzone.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/`
+      const response = await axiosInstance.get(
+        `/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/`
       );
       const fetchedSteps = response.data.results.steps;
       if (!localStorage.getItem("steps")) {

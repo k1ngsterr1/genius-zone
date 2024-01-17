@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { turnOffLoader, turnOnLoader } from "../redux/store/loaderSlice";
-import axios from "axios";
+import axiosInstance from "@shared/lib/middleware";
 
 interface Course {
   title: string;
@@ -19,9 +19,7 @@ function useLoadCourses() {
   async function fetchCourses() {
     try {
       dispatch(turnOnLoader());
-      const response = await axios.get(
-        "https://genzone.up.railway.app/api/courses/courses/"
-      );
+      const response = await axiosInstance.get("/courses/courses/");
       setCourses(response.data);
     } catch (error: any) {
       setError(error);

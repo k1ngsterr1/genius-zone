@@ -1,6 +1,6 @@
-import axios from "axios";
+import axiosInstance from "@shared/lib/middleware";
 import Cookies from "js-cookie";
-import { useLoadSpecificCourse } from "@shared/lib/hooks/useLoadSpecificCourse";
+
 export interface ModuleData {
   module_title: string;
   module_description: string;
@@ -10,8 +10,8 @@ export const useSaveModule = () => {
   const saveModule = async (data: ModuleData, courseID: string | any) => {
     try {
       const token = Cookies.get("accessToken");
-      const response = await axios.post(
-        `https://genzone.up.railway.app/api/courses/course/${courseID}/module/`,
+      const response = await axiosInstance.post(
+        `/courses/course/${courseID}/module/`,
         data,
         {
           headers: {

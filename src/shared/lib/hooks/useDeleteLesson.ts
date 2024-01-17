@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "@shared/lib/middleware";
 import Cookies from "js-cookie";
 
 export function useDeleteLesson(onSuccess: any) {
@@ -9,8 +9,8 @@ export function useDeleteLesson(onSuccess: any) {
   ) => {
     try {
       const token = Cookies.get("accessToken");
-      const response = await axios.delete(
-        `https://genzone.up.railway.app/api/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/`,
+      const response = await axiosInstance.delete(
+        `/courses/course/${courseID}/module/${moduleNum}/lesson/${lessonNum}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
