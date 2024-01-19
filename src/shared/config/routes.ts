@@ -5,9 +5,8 @@ export const ROUTE_CONSTANTS = {
   REGISTRATION: "/registration",
   LOGIN: "/login",
   VERIFICATION: "/verification",
-  // ! USER: "/:userID/user",
   // Users
-  USER: "/user",
+  USER: "/user/:userID",
   USER_EDIT: "/user/:userID/edit",
   USER_COURSES: "/user/courses",
   // Courses

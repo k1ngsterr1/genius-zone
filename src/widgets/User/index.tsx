@@ -1,21 +1,26 @@
-import { UtilityButton } from "@shared/ui/UtilityButton";
-import { Footer } from "@features/Footer/ui";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBriefcase, faStar } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 import { Separator } from "@shared/ui/Separator";
 import { CourseTab } from "@widgets/CourseTab";
-
-import image from "@assets/ruslan.jpg";
-
-import "./styles.scss";
 import { CategoryTab } from "@shared/ui/CategoryTab";
 import { UserAside } from "@features/SidePanels/User/ui";
+import { useLoadUserData } from "@shared/lib/hooks/useLoadUserData";
+import Cookies from "js-cookie";
+
+import "./styles.scss";
 
 export const UserScreen = () => {
+  const userID = Cookies.get("userID");
+  const { loadUserData, userData } = useLoadUserData();
+
+  useEffect(() => {
+    loadUserData(userID);
+    console.log(userData);
+  }, [userID]);
+
   return (
     <>
       <main className="wrapper--row mb-12">
-        <UserAside />
+        <UserAside username={userData.username} image={userData.photo} />
         <div className="w-[73%] courses-container flex flex-col">
           <h1 className="main-heading">Моё обучение</h1>
           <div className="w-full flex items-center justify-between mt-8">

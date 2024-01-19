@@ -1,14 +1,19 @@
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBriefcase, faStar } from "@fortawesome/free-solid-svg-icons";
-import image from "@assets/ruslan.jpg";
 
 import "./styles.scss";
 
-export const UserProfile = () => {
+interface UserProfileData {
+  username: string;
+  image: string;
+}
+
+export const UserProfile: React.FC<UserProfileData> = ({ username, image }) => {
   return (
     <div className="user-profile flex flex-col items-start ">
       <img src={image} alt="user-image" className="user-profile__image" />
-      <span className="user-profile__name mt-4">Ruslan Makhmatov</span>
+      <span className="user-profile__name mt-4">{username}</span>
       <address className="user-profile__location">Алматы, Казахстан</address>
       <div className="user-profile__tab flex items-center mt-4">
         <FontAwesomeIcon

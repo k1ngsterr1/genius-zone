@@ -1,3 +1,4 @@
+import React from "react";
 import { UtilityButton } from "@shared/ui/UtilityButton";
 import { Separator } from "@shared/ui/Separator";
 import { UserProfile } from "@shared/ui/UserProfile";
@@ -5,13 +6,18 @@ import useLogOut from "@shared/lib/hooks/useLogOut";
 
 import "./styles.scss";
 
-export const UserAside = () => {
+interface UserTabData {
+  username: string;
+  image: string;
+}
+
+export const UserAside: React.FC<UserTabData> = ({ username, image }) => {
   const handleLogOut = useLogOut();
 
   return (
     <aside className="user-profile-whole w-auto h-full sticky top-20">
       <div className="user-profile flex flex-col items-start ">
-        <UserProfile />
+        <UserProfile username={username} image={image} />
         <UtilityButton
           text="Изменить"
           marginTop="mt-6"
