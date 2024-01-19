@@ -1,16 +1,39 @@
-import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState, FormEvent, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { UserAside } from "@features/SidePanels/User/ui";
 import { useLoadUserData } from "@shared/lib/hooks/useLoadUserData";
 import { Button } from "@shared/ui/Button";
+import { useImageUpload } from "@shared/lib/hooks/useUploadImage";
 import { TextField } from "@mui/material";
+import { useUpdateUser } from "@shared/lib/hooks/useUpdateUser";
 
 import notFound from "@assets/404.svg";
 
 export const EditUserProfileScreen = () => {
+  const [fullName, setFullName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [userPhoto, setUserPhoto] = useState<any>();
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const userID = useParams<{ userID: string }>();
   const { loadUserData, userData } = useLoadUserData();
+  const { updateUserData } = useUpdateUser();
+  const { image, previewUrl, handleImageChange, clearImage } = useImageUpload();
+
+  const handleButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    await updateUserData(
+      { username, first_name, last_name, photo },
+      userID.userID
+    );
+  };
 
   useEffect(() => {
     loadUserData(userID.userID);
@@ -37,6 +60,20 @@ export const EditUserProfileScreen = () => {
       <section className="w-[73%] new-courses-container flex flex-col max-[640px]:hidden">
         <h1 className="main-heading">Редактировать профиль</h1>
         <form className="flex flex-col">
+          <div className="w-[50%] flex items-center justify-between">
+            <span className="text-xl text-custom-black mt-5">Ваш Никнейм*</span>
+            <TextField
+              required
+              name="title"
+              variant="outlined"
+              placeholder={userData.username}
+              type="text"
+              sx={{
+                width: "70%",
+              }}
+              className="new-courses-container__input mt-8"
+            />
+          </div>
           <div className="w-[50%] flex items-center justify-between">
             <span className="text-xl text-custom-black mt-5">Ваше имя*</span>
             <TextField
@@ -69,6 +106,43 @@ export const EditUserProfileScreen = () => {
               className="new-courses-container__input mt-8"
             />
           </div>
+          <div className="w-[50%] flex items-center justify-between">
+            <span className="text-xl text-custom-black mt-5">Ваш город*</span>
+            <TextField
+              required
+              name="description"
+              variant="outlined"
+              multiline
+              maxRows={4}
+              size={"medium"}
+              placeholder={"Начните вводить свой город"}
+              type="text"
+              sx={{
+                width: "70%",
+              }}
+              className="new-courses-container__input mt-8"
+            />
+          </div>
+          <div className="w-[50%] flex items-center justify-between">
+            <span className="text-xl text-custom-black mt-5">
+              Ваша должность*
+            </span>
+
+            <TextField
+              required
+              name="description"
+              variant="outlined"
+              multiline
+              maxRows={4}
+              size={"medium"}
+              placeholder="Напишите вашу должность"
+              type="text"
+              sx={{
+                width: "70%",
+              }}
+              className="new-courses-container__input mt-8"
+            />
+          </div>
           <input
             accept="image/*"
             style={{ display: "none" }}
@@ -77,19 +151,22 @@ export const EditUserProfileScreen = () => {
             name="preview"
             className="regular-button blue"
             type="file"
+            onChange={handleImageChange}
+            ref={fileInputRef}
           />
           <label htmlFor="raised-button-file">
             <Button
-              text="Добавить фото"
+              text="Изменить фото"
               className="regular-button blue mt-8"
               type="button"
+              onClick={handleButtonClick}
             />
           </label>
-          {/* {previewUrl && (
+          {previewUrl && (
             <div>
               <div className="w-[23%] border-custom-blue border-2 rounded flex flex-col items-center justify-center bg-custom-lightest-blue mt-8">
                 <p className="text-lg text-custom-black font-medium p-4 text-center">
-                  Фотография для вашего курса:
+                  Новая фотография для вашего профиля:
                 </p>
                 <img
                   src={previewUrl}
@@ -104,19 +181,13 @@ export const EditUserProfileScreen = () => {
                 onClick={clearImage}
               />
             </div>
-          )} */}
+          )}
           <Button
             text="Сохранить"
             className="regular-button blue mt-8"
             type={"submit"}
           />
         </form>
-        <p className="paragraph w-[60%] text-left text-xl mt-8">
-          Присоединяйтесь к нашему сообществу экспертов и начните своё
-          путешествие в мире онлайн-обучения сегодня. Наша интуитивно понятная
-          платформа позволит вам легко и быстро начать работу над черновиком
-          вашего курса.
-        </p>
       </section>
       <section className="w-[90%] new-courses-container m-auto flex flex-col items-center min-[1024px]:hidden">
         <h1 className="main-heading">Редактировать профиль</h1>
@@ -155,17 +226,17 @@ export const EditUserProfileScreen = () => {
           />
           <label htmlFor="raised-button-file">
             <Button
-              text="Добавить фото"
+              text="Изменить фото"
               className="regular-button blue mt-8"
               type="button"
-              //   onClick={handleButtonClick}
+              onClick={handleButtonClick}
             />
           </label>
-          {/* {previewUrl && (
+          {previewUrl && (
             <div className="flex flex-col items-center">
               <div className="w-[100%] border-custom-blue border-2 rounded flex flex-col items-center justify-center bg-custom-lightest-blue mt-8">
                 <p className="text-lg text-custom-black font-medium p-4 text-center">
-                  Фотография для вашего курса:
+                  Фотография вашего профиля:
                 </p>
                 <img
                   src={previewUrl}
@@ -180,7 +251,7 @@ export const EditUserProfileScreen = () => {
                 onClick={clearImage}
               />
             </div>
-          )} */}
+          )}
           <Button
             text="Сохранить"
             className="regular-button blue mt-8"
