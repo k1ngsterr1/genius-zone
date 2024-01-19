@@ -1,21 +1,37 @@
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Separator } from "@shared/ui/Separator";
 import { CourseTab } from "@widgets/CourseTab";
 import { CategoryTab } from "@shared/ui/CategoryTab";
 import { UserAside } from "@features/SidePanels/User/ui";
 import { useLoadUserData } from "@shared/lib/hooks/useLoadUserData";
-import Cookies from "js-cookie";
+
+import notFound from "@assets/404.svg";
 
 import "./styles.scss";
 
 export const UserScreen = () => {
-  const userID = Cookies.get("userID");
+  const userID = useParams<{ userID: string }>();
   const { loadUserData, userData } = useLoadUserData();
 
   useEffect(() => {
     loadUserData(userID);
     console.log(userData);
   }, [userID]);
+
+  if (!userData) {
+    return (
+      <>
+        <main className="wrapper--row mb-12">
+          <div className="w-full courses-container flex flex-col items-center">
+            <h1 className="main-heading">Такого пользователя не существует</h1>
+            <img className="w-[40%] mt-20" src={notFound} alt="404" />
+          </div>
+        </main>
+        ;
+      </>
+    );
+  }
 
   return (
     <>
