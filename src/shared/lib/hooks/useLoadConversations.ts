@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { turnOffLoader, turnOnLoader } from "../redux/store/loaderSlice";
 import axiosInstance from "@shared/lib/middleware";
+import Cookies from "js-cookie";
 
 function useLoadConversations() {
   const dispatch = useDispatch();
@@ -11,6 +12,10 @@ function useLoadConversations() {
     try {
       dispatch(turnOnLoader());
 
+      const refresh = Cookies.get("refreshToken");
+      const accessToken = Cookies.get("accessToken");
+      console.log(refresh);
+      console.log(accessToken);
       const response = await axiosInstance.get("/conversations/");
 
       setConversations(response.data.results);

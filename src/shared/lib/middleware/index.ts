@@ -26,7 +26,9 @@ axiosInstance.interceptors.response.use(
         .then((res) => {
           if (res.status === 200) {
             Cookies.set("accessToken", res.data.access);
-            axios.defaults.headers.common["Authorization"] =
+            console.log(refreshJSON);
+            console.log(res.data.access);
+            axiosInstance.defaults.headers.common["Authorization"] =
               "Bearer " + res.data.access;
             return axios(originalRequest);
           }
