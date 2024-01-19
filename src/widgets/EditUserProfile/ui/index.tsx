@@ -13,6 +13,8 @@ export const EditUserProfileScreen = () => {
   const [fullName, setFullName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [userPosition, setUserPosition] = useState("");
+  const [userCity, setUserCity] = useState("");
   const [userPhoto, setUserPhoto] = useState<any>();
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -64,7 +66,7 @@ export const EditUserProfileScreen = () => {
             <span className="text-xl text-custom-black mt-5">Ваш Никнейм*</span>
             <TextField
               required
-              name="title"
+              name="username"
               variant="outlined"
               placeholder={userData.username}
               type="text"
@@ -72,13 +74,14 @@ export const EditUserProfileScreen = () => {
                 width: "70%",
               }}
               className="new-courses-container__input mt-8"
+              onChange={(e) => setFullName(e.target.value)}
             />
           </div>
           <div className="w-[50%] flex items-center justify-between">
             <span className="text-xl text-custom-black mt-5">Ваше имя*</span>
             <TextField
               required
-              name="title"
+              name="first_name"
               variant="outlined"
               placeholder={userData.first_name}
               type="text"
@@ -86,6 +89,7 @@ export const EditUserProfileScreen = () => {
                 width: "70%",
               }}
               className="new-courses-container__input mt-8"
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
           <div className="w-[50%] flex items-center justify-between">
@@ -93,7 +97,7 @@ export const EditUserProfileScreen = () => {
 
             <TextField
               required
-              name="description"
+              name="last_name"
               variant="outlined"
               multiline
               maxRows={4}
@@ -104,13 +108,14 @@ export const EditUserProfileScreen = () => {
                 width: "70%",
               }}
               className="new-courses-container__input mt-8"
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
           <div className="w-[50%] flex items-center justify-between">
             <span className="text-xl text-custom-black mt-5">Ваш город*</span>
             <TextField
               required
-              name="description"
+              name="city"
               variant="outlined"
               multiline
               maxRows={4}
@@ -121,6 +126,7 @@ export const EditUserProfileScreen = () => {
                 width: "70%",
               }}
               className="new-courses-container__input mt-8"
+              onChange={(e) => setUserCity(e.target.value)}
             />
           </div>
           <div className="w-[50%] flex items-center justify-between">
@@ -130,7 +136,7 @@ export const EditUserProfileScreen = () => {
 
             <TextField
               required
-              name="description"
+              name="position"
               variant="outlined"
               multiline
               maxRows={4}
@@ -141,6 +147,7 @@ export const EditUserProfileScreen = () => {
                 width: "70%",
               }}
               className="new-courses-container__input mt-8"
+              onChange={(e) => setUserPosition(e.target.value)}
             />
           </div>
           <input
