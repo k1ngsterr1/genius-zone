@@ -37,25 +37,38 @@ export const EditUserProfileScreen = () => {
       <section className="w-[73%] new-courses-container flex flex-col max-[640px]:hidden">
         <h1 className="main-heading">Редактировать профиль</h1>
         <form className="flex flex-col">
-          <TextField
-            required
-            name="title"
-            variant="outlined"
-            placeholder="Введите название вашего курса*"
-            type="text"
-            className="new-courses-container__input mt-8"
-          />
-          <TextField
-            required
-            name="description"
-            variant="outlined"
-            multiline
-            maxRows={4}
-            size={"medium"}
-            placeholder="Введите описание вашего курса*"
-            type="text"
-            className="new-courses-container__input mt-8"
-          />
+          <div className="w-[50%] flex items-center justify-between">
+            <span className="text-xl text-custom-black mt-5">Ваше имя*</span>
+            <TextField
+              required
+              name="title"
+              variant="outlined"
+              placeholder={userData.first_name}
+              type="text"
+              sx={{
+                width: "70%",
+              }}
+              className="new-courses-container__input mt-8"
+            />
+          </div>
+          <div className="w-[50%] flex items-center justify-between">
+            <span className="text-xl text-custom-black mt-5">Фамилия*</span>
+
+            <TextField
+              required
+              name="description"
+              variant="outlined"
+              multiline
+              maxRows={4}
+              size={"medium"}
+              placeholder={userData.last_name}
+              type="text"
+              sx={{
+                width: "70%",
+              }}
+              className="new-courses-container__input mt-8"
+            />
+          </div>
           <input
             accept="image/*"
             style={{ display: "none" }}
@@ -93,7 +106,7 @@ export const EditUserProfileScreen = () => {
             </div>
           )} */}
           <Button
-            text="Создать курс"
+            text="Сохранить"
             className="regular-button blue mt-8"
             type={"submit"}
           />
@@ -169,7 +182,7 @@ export const EditUserProfileScreen = () => {
             </div>
           )} */}
           <Button
-            text="Создать курс"
+            text="Сохранить"
             className="regular-button blue mt-8"
             type={"submit"}
           />
