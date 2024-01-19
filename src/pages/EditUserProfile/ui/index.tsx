@@ -3,7 +3,7 @@ import { RootState } from "@shared/lib/redux/store";
 import { Header } from "@features/Header/ui";
 import { Footer } from "@features/Footer/ui";
 import { Menu } from "@widgets/Menu";
-import { CreateNewCourseScreen } from "@widgets/CreateNewCourse/ui";
+import { EditUserProfileScreen } from "@widgets/EditUserProfile/ui";
 
 export const EditUserProfilePage = () => {
   const isMenuOpen = useSelector((state: RootState) => state.menu.isOpen);
@@ -14,7 +14,7 @@ export const EditUserProfilePage = () => {
       <div className="page">
         <Header />
         {isMenuOpen && <Menu />}
-        <CreateNewCourseScreen />
+        <EditUserProfileScreen />
       </div>
       <Footer />
     </>

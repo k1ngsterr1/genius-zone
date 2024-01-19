@@ -15,7 +15,7 @@ export const UserScreen = () => {
   const { loadUserData, userData } = useLoadUserData();
 
   useEffect(() => {
-    loadUserData(userID);
+    loadUserData(userID.userID);
     console.log(userData);
   }, [userID]);
 
@@ -36,7 +36,11 @@ export const UserScreen = () => {
   return (
     <>
       <main className="wrapper--row mb-12">
-        <UserAside username={userData.username} image={userData.photo} />
+        <UserAside
+          username={userData.username}
+          image={userData.photo}
+          userID={userID.userID}
+        />
         <div className="w-[73%] courses-container flex flex-col">
           <h1 className="main-heading">Моё обучение</h1>
           <div className="w-full flex items-center justify-between mt-8">

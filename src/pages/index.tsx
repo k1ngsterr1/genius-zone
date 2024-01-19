@@ -18,6 +18,7 @@ import { UserCoursesPage } from "./UserCourses/ui";
 import { LessonSettings } from "./LessonSettings/ui";
 import { ChatsPage } from "./Chats/ui";
 import { ConversationPage } from "./ConversationPage/ui";
+import { EditUserProfilePage } from "./EditUserProfile/ui";
 
 export const MyRoutes: FC = () => {
   return (
@@ -53,6 +54,10 @@ export const MyRoutes: FC = () => {
         <Route
           path={ROUTE_CONSTANTS.CHAT_CONVERSATION}
           element={<ConversationPage />}
+        />
+        <Route
+          path={ROUTE_CONSTANTS.USER_EDIT}
+          element={<EditUserProfilePage />}
         />
         <Route path={ROUTE_CONSTANTS.CHATS} element={<ChatsPage />} />
         <Route

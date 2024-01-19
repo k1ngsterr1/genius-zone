@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { UtilityButton } from "@shared/ui/UtilityButton";
 import { Separator } from "@shared/ui/Separator";
 import { UserProfile } from "@shared/ui/UserProfile";
@@ -9,10 +10,16 @@ import "./styles.scss";
 interface UserTabData {
   username: string;
   image: string;
+  userID: string;
 }
 
-export const UserAside: React.FC<UserTabData> = ({ username, image }) => {
+export const UserAside: React.FC<UserTabData> = ({
+  username,
+  image,
+  userID,
+}) => {
   const handleLogOut = useLogOut();
+  const navigate = useNavigate();
 
   return (
     <aside className="user-profile-whole w-auto h-full sticky top-20">
@@ -21,7 +28,7 @@ export const UserAside: React.FC<UserTabData> = ({ username, image }) => {
         <UtilityButton
           text="Изменить"
           marginTop="mt-6"
-          onClick={() => console.log("LOL")}
+          onClick={() => navigate(`/user/${userID}/edit`)}
           type={"filled-btn"}
         />
         <UtilityButton
