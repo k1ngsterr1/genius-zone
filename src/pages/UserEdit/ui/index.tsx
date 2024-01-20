@@ -4,5 +4,5 @@ import { useParams } from "react-router-dom";
 export const UserEditPage = () => {
   let { userID } = useParams();
 
-  return <div>index</div>;
+  return <div></div>;
 };
