@@ -10,9 +10,9 @@ import { useUpdateUser } from "@shared/lib/hooks/useUpdateUser";
 import notFound from "@assets/404.svg";
 
 export const EditUserProfileScreen = () => {
-  const [fullName, setFullName] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [username, setUsername] = useState("");
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
   // const [userPosition, setUserPosition] = useState("");
   // const [userCity, setUserCity] = useState("");
   // const [userPhoto, setUserPhoto] = useState<any>();
@@ -31,8 +31,7 @@ export const EditUserProfileScreen = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("zhopa");
-    await updateUserData(userID.userID, { fullName, firstName, lastName });
+    await updateUserData({ username, first_name, last_name }, userID.userID);
   };
 
   useEffect(() => {
@@ -72,7 +71,7 @@ export const EditUserProfileScreen = () => {
                 width: "70%",
               }}
               className="new-courses-container__input mt-8"
-              onChange={(e) => setFullName(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div className="w-[50%] flex items-center justify-between">

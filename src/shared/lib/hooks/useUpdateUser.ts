@@ -10,10 +10,12 @@ export interface UpdatedUserData {
 }
 
 export function useUpdateUser() {
-  const updateUserData = async (userID: any, data: any) => {
+  const updateUserData = async (data: any, userID: any) => {
     try {
+      console.log(JSON.stringify(data));
+
       const response = await axiosInstance.put(`/account/${userID}/`, data);
-      console.log("User Data Updated Successfully:", response.data);
+      console.log("User Data Updated Successfully:", response.data, userID);
     } catch (error: any) {
       console.error("There is an error with user data updating:", error);
     }

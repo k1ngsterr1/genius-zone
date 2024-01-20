@@ -8,6 +8,7 @@ import { Logo } from "@shared/ui/Logo";
 import Hamburger from "hamburger-react";
 
 import "./styles.scss";
+import { useEffect } from "react";
 
 export const Header = () => {
   const userID = useParams<{ userID: string }>();
@@ -21,7 +22,6 @@ export const Header = () => {
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLogggedIn);
 
   const userDataString = localStorage.getItem("userData");
-
   const userData = userDataString ? JSON.parse(userDataString) : null;
 
   return (
