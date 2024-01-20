@@ -13,9 +13,9 @@ export const EditUserProfileScreen = () => {
   const [fullName, setFullName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [userPosition, setUserPosition] = useState("");
-  const [userCity, setUserCity] = useState("");
-  const [userPhoto, setUserPhoto] = useState<any>();
+  // const [userPosition, setUserPosition] = useState("");
+  // const [userCity, setUserCity] = useState("");
+  // const [userPhoto, setUserPhoto] = useState<any>();
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const userID = useParams<{ userID: string }>();
@@ -31,10 +31,8 @@ export const EditUserProfileScreen = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await updateUserData(
-      { username, first_name, last_name, photo },
-      userID.userID
-    );
+    console.log("zhopa");
+    await updateUserData(userID.userID, { fullName, firstName, lastName });
   };
 
   useEffect(() => {
@@ -61,7 +59,7 @@ export const EditUserProfileScreen = () => {
       <UserAside username={userData.username} image={userData.photo} />
       <section className="w-[73%] new-courses-container flex flex-col max-[640px]:hidden">
         <h1 className="main-heading">Редактировать профиль</h1>
-        <form className="flex flex-col">
+        <form className="flex flex-col" onSubmit={handleSubmit}>
           <div className="w-[50%] flex items-center justify-between">
             <span className="text-xl text-custom-black mt-5">Ваш Никнейм*</span>
             <TextField
@@ -114,7 +112,6 @@ export const EditUserProfileScreen = () => {
           <div className="w-[50%] flex items-center justify-between">
             <span className="text-xl text-custom-black mt-5">Ваш город*</span>
             <TextField
-              required
               name="city"
               variant="outlined"
               multiline
@@ -135,7 +132,6 @@ export const EditUserProfileScreen = () => {
             </span>
 
             <TextField
-              required
               name="position"
               variant="outlined"
               multiline
@@ -191,8 +187,9 @@ export const EditUserProfileScreen = () => {
           )}
           <Button
             text="Сохранить"
+            type="submit"
             className="regular-button blue mt-8"
-            type={"submit"}
+            onClick={() => handleSubmit}
           />
         </form>
       </section>
@@ -261,8 +258,9 @@ export const EditUserProfileScreen = () => {
           )}
           <Button
             text="Сохранить"
+            type="submit"
             className="regular-button blue mt-8"
-            type={"submit"}
+            onClick={() => handleSubmit}
           />
         </form>
         <p className="paragraph w-[100%] text-center text-xl mt-8">

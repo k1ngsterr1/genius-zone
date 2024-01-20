@@ -56,7 +56,7 @@ export function useLoginForm() {
       localStorage.setItem("userData", JSON.stringify(userData));
       dispatch(logIn());
 
-      navigate("/user");
+      navigate(`/user/${userData.userID}`);
     } catch (error: any) {
       if (error.response) {
         console.error("Login failed with status:", error.response.status);

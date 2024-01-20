@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button } from "@shared/ui/Button";
 import { UserTab } from "@shared/ui/UserTab";
 import { useOpenMenu } from "@shared/lib/hooks/useOpenMenu";
@@ -10,6 +10,7 @@ import Hamburger from "hamburger-react";
 import "./styles.scss";
 
 export const Header = () => {
+  const userID = useParams<{ userID: string }>();
   const navigate = useNavigate();
 
   // Redux Open Menu
