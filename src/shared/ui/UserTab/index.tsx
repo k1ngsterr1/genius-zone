@@ -5,17 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./styles.scss";
 
-interface UserTabProps {
-  firstName: string;
-  lastName: string;
-  userImage: string;
-}
-
-export const UserTab: React.FC<UserTabProps> = ({
-  firstName,
-  lastName,
-  userImage,
-}) => {
+export const UserTab = () => {
   const userID = Cookies.get("userID");
   const navigate = useNavigate();
 
@@ -36,7 +26,11 @@ export const UserTab: React.FC<UserTabProps> = ({
           className="user-tab flex items-center justify-between"
           onClick={() => navigateToUserPage()}
         >
-          <img className="user-tab__image mr-2" src={userImage} alt="user" />
+          <img
+            className="user-tab__image mr-2"
+            src={userData.photo}
+            alt="user"
+          />
           <span className="user-tab__name">{userData.username} </span>
         </div>
       )}

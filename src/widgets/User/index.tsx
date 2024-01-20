@@ -9,6 +9,7 @@ import { useLoadUserData } from "@shared/lib/hooks/useLoadUserData";
 import notFound from "@assets/404.svg";
 
 import "./styles.scss";
+import { Loader } from "@shared/ui/Loader";
 
 export const UserScreen = () => {
   const userID = useParams<{ userID: string }>();
@@ -16,10 +17,18 @@ export const UserScreen = () => {
 
   useEffect(() => {
     loadUserData(userID.userID);
-    console.log(userData);
+    console.log(userID.userID);
   }, [userID]);
 
   if (!userData) {
+    return (
+      <>
+        <Loader />
+      </>
+    );
+  }
+
+  if (userData == undefined) {
     return (
       <>
         <main className="wrapper--row mb-12">

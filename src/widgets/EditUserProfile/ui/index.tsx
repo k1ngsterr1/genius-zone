@@ -6,6 +6,7 @@ import { Button } from "@shared/ui/Button";
 import { useImageUpload } from "@shared/lib/hooks/useUploadImage";
 import { TextField } from "@mui/material";
 import { useUpdateUser } from "@shared/lib/hooks/useUpdateUser";
+import { Loader } from "@shared/ui/Loader";
 
 import notFound from "@assets/404.svg";
 
@@ -13,9 +14,8 @@ export const EditUserProfileScreen = () => {
   const [username, setUsername] = useState("");
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
-  // const [userPosition, setUserPosition] = useState("");
-  // const [userCity, setUserCity] = useState("");
-  // const [userPhoto, setUserPhoto] = useState<any>();
+  const [userPosition, setUserPosition] = useState("");
+  const [userCity, setUserCity] = useState("");
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const userID = useParams<{ userID: string }>();
@@ -31,7 +31,11 @@ export const EditUserProfileScreen = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await updateUserData({ username, first_name, last_name }, userID.userID);
+    await updateUserData(
+      { username, first_name, last_name },
+      image,
+      userID.userID
+    );
   };
 
   useEffect(() => {
@@ -40,6 +44,14 @@ export const EditUserProfileScreen = () => {
   }, [userID]);
 
   if (!userData) {
+    return (
+      <>
+        <Loader />
+      </>
+    );
+  }
+
+  if (userData == undefined) {
     return (
       <>
         <main className="wrapper--row mb-12">

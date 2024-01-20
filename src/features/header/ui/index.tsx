@@ -8,10 +8,8 @@ import { Logo } from "@shared/ui/Logo";
 import Hamburger from "hamburger-react";
 
 import "./styles.scss";
-import { useEffect } from "react";
 
 export const Header = () => {
-  const userID = useParams<{ userID: string }>();
   const navigate = useNavigate();
 
   // Redux Open Menu
@@ -20,9 +18,6 @@ export const Header = () => {
 
   // Redux isLoggedIn
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLogggedIn);
-
-  const userDataString = localStorage.getItem("userData");
-  const userData = userDataString ? JSON.parse(userDataString) : null;
 
   return (
     <header className="header flex items-center justify-between">
@@ -44,12 +39,8 @@ export const Header = () => {
           <Link to="/chats" className="header__links--link">
             Чаты
           </Link>
-          {isLoggedIn && userData ? (
-            <UserTab
-              firstName={userData.firstName}
-              lastName={userData.lastName}
-              userImage={userData.userImage}
-            />
+          {isLoggedIn ? (
+            <UserTab />
           ) : (
             <div className="buttons flex items-center justify-between ml-4">
               <Button
@@ -68,13 +59,7 @@ export const Header = () => {
       </div>
       <div className="header__mob-container flex items-center justify-between max-[640px]:flex min-[640px]:hidden">
         <Logo />
-        {isLoggedIn && userData ? (
-          <UserTab
-            firstName={userData.firstName}
-            lastName={userData.lastName}
-            userImage={userData.userImage}
-          />
-        ) : null}
+        {isLoggedIn ? <UserTab /> : null}
         <Hamburger color="#0B1887" onToggle={openMenu} />
       </div>
     </header>
