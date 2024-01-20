@@ -4,13 +4,15 @@ import { UserAside } from "@features/SidePanels/User/ui";
 import { useLoadUserData } from "@shared/lib/hooks/useLoadUserData";
 import { Button } from "@shared/ui/Button";
 import { useImageUpload } from "@shared/lib/hooks/useUploadImage";
-import { TextField } from "@mui/material";
+import { Autocomplete, TextField } from "@mui/material";
 import { useUpdateUser } from "@shared/lib/hooks/useUpdateUser";
 import { Loader } from "@shared/ui/Loader";
+import useFetchCities from "@shared/lib/hooks/useFetchCities";
 
 import notFound from "@assets/404.svg";
 
 export const EditUserProfileScreen = () => {
+  const [inputValue, setInputValue] = useState("");
   const [username, setUsername] = useState("");
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
@@ -22,6 +24,7 @@ export const EditUserProfileScreen = () => {
   const { loadUserData, userData } = useLoadUserData();
   const { updateUserData } = useUpdateUser();
   const { image, previewUrl, handleImageChange, clearImage } = useImageUpload();
+  const { cities, fetchCities } = useFetchCities();
 
   const handleButtonClick = () => {
     if (fileInputRef.current) {
@@ -40,8 +43,11 @@ export const EditUserProfileScreen = () => {
 
   useEffect(() => {
     loadUserData(userID.userID);
-    console.log(userData);
   }, [userID]);
+
+  useEffect(() => {
+    fetchCities(inputValue);
+  }, [inputValue]);
 
   if (!userData) {
     return (
@@ -122,19 +128,31 @@ export const EditUserProfileScreen = () => {
           </div>
           <div className="w-[50%] flex items-center justify-between">
             <span className="text-xl text-custom-black mt-5">Ваш город*</span>
-            <TextField
-              name="city"
-              variant="outlined"
-              multiline
-              maxRows={4}
-              size={"medium"}
-              placeholder={"Начните вводить свой город"}
-              type="text"
-              sx={{
+            <Autocomplete
+              freeSolo
+              options={cities}
+              getOptionLabel={(option) => option.label}
+              style={{
                 width: "70%",
               }}
-              className="new-courses-container__input mt-8"
-              onChange={(e) => setUserCity(e.target.value)}
+              onInputChange={(event, newInputValue) => {
+                setInputValue(newInputValue);
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  name="city"
+                  variant="outlined"
+                  multiline
+                  maxRows={4}
+                  size={"medium"}
+                  placeholder={"Начните вводить свой город"}
+                  type="text"
+                  sx={{ width: "100%" }}
+                  className="new-courses-container__input mt-8"
+                  onChange={(e) => setUserCity(e.target.value)}
+                />
+              )}
             />
           </div>
           <div className="w-[50%] flex items-center justify-between">
