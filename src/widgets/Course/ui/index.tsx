@@ -2,12 +2,20 @@ import { CoursesAside } from "@features/SidePanels/Courses/ui";
 import { CourseTab } from "@widgets/CourseTab";
 import { CourseSwiper } from "@features/CourseSwiper/ui";
 import SearchBar from "@features/SearchBar/ui";
+import useLoadCourses from "@shared/lib/hooks/useLoadCourses";
 
 import offer from "@assets/genius-zone.webp";
 
 import "./styles.scss";
+import { useEffect } from "react";
 
 export const CourseScreen = () => {
+  const { reloadCourseData, courses } = useLoadCourses();
+
+  useEffect(() => {
+    reloadCourseData();
+  }, [courses]);
+
   return (
     <>
       <main className="wrapper--row mb-12">

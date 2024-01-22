@@ -5,11 +5,11 @@ import { CourseTab } from "@widgets/CourseTab";
 import { CategoryTab } from "@shared/ui/CategoryTab";
 import { UserAside } from "@features/SidePanels/User/ui";
 import { useLoadUserData } from "@shared/lib/hooks/useLoadUserData";
+import { Loader } from "@shared/ui/Loader";
 
 import notFound from "@assets/404.svg";
 
 import "./styles.scss";
-import { Loader } from "@shared/ui/Loader";
 
 export const UserScreen = () => {
   const userID = useParams<{ userID: string }>();

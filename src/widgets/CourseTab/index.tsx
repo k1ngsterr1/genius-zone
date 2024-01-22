@@ -23,15 +23,10 @@ export const CourseTab: React.FC<CourseTabProps> = ({
   return (
     <div className={`course-tab ${margin}`}>
       <div className="course-tab__row flex items-center justify-between ">
-        <h1 className="course-tab__row__heading">
-          Введние в программирование (C++)
-        </h1>
-        <img className="course-tab__row__image" src={courseImagez} />
+        <h1 className="course-tab__row__heading">{courseName}</h1>
+        <img className="course-tab__row__image" src={courseImage} />
       </div>
-      <p className="course-tab__description mt-4">
-        Тесты, прилагаемые к условиям задач, даны только для примера. Их
-        успешное прохождение ещё не гарантия правильной работы вашего кода и
-      </p>
+      <p className="course-tab__description mt-4">{courseDescription}</p>
       <div className="flex items-center justify-between mt-4">
         <UtilityButton
           type="filled-btn"
