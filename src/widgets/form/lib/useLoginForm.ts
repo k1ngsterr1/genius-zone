@@ -36,7 +36,7 @@ export function useLoginForm() {
       const refreshToken = response.data.refresh;
       const userID = response.data.user.userID;
 
-      console.log(userID);
+      console.log(userID, accessToken);
 
       const userData = {
         firstName: response.data.user.first_name,

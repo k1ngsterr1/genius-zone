@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -30,7 +30,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
 }) => {
   const navigate = useNavigate();
   const userID = Cookies.get("userID");
-
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const { loadUserData, userData } = useLoadUserData();
 
   const {
@@ -41,6 +41,12 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
     messages,
     newMessage,
   } = useConnectWebSocket(receiverEmail);
+
+  const handleButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
 
   function navigateBack() {
     navigate("/chats");
@@ -87,7 +93,18 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
       <div className="chat_window__textfield">
         <FontAwesomeIcon
           icon={faPaperclip}
+          onClick={handleButtonClick}
           className="chat_window__textfield__attachment"
+        />
+        <input
+          accept="image/*"
+          style={{ display: "none" }}
+          id="raised-button-file"
+          multiple
+          name="preview"
+          className="regular-button blue"
+          type="file"
+          ref={fileInputRef}
         />
         <input
           type="text"

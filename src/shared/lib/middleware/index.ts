@@ -23,42 +23,32 @@ axiosInstance.interceptors.response.use(
           .post("/account/refresh/", { refresh: refreshToken })
           .then((res) => {
             if (res.status === 200) {
-              // Update the access token in cookies
               Cookies.set("accessToken", res.data.access, { expires: 7 }); // Set cookie to expire in 7 days or your preferred duration
+              console.log("refresh:", refreshToken);
 
-              // Update the authorization header
               axiosInstance.defaults.headers.common["Authorization"] =
                 "Bearer " + res.data.access;
 
-              // Update the authorization header for the original request
               originalRequest.headers["Authorization"] =
                 "Bearer " + res.data.access;
 
-              // Retry the original request with the new access token
               return axiosInstance(originalRequest);
             }
           })
           .catch((refreshError) => {
-            // Handle failed refresh here (e.g., redirect to login or clear cookies)
             console.error("Unable to refresh token:", refreshError);
-            // Potentially redirect to login or clear cookies
             Cookies.remove("accessToken");
             Cookies.remove("refreshToken");
-            // Add any additional cleanup or redirects here
             return Promise.reject(refreshError);
           });
       } else {
-        // No refresh token available; you might want to redirect to login
         console.error("No refresh token available");
-        // Potentially redirect to login or clear cookies
         Cookies.remove("accessToken");
         Cookies.remove("refreshToken");
-        // Add any additional cleanup or redirects here
         return Promise.reject(error);
       }
     }
 
-    // If the error is not due to a 401 Unauthorized response, just reject the promise
     return Promise.reject(error);
   }
 );
