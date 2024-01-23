@@ -51,6 +51,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
     sendMessage,
     handleMessageChange,
     handleKeyPress,
+    attachment,
     setAttachment,
     messages,
     newMessage,
@@ -60,9 +61,9 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
     const file = event.target.files[0];
     if (file) {
       setSelectedImage(file);
-      console.log("image:", file);
+      setAttachment(file); // You should update the attachment state here.
+      console.log("Image selected:", file);
       dispatch(turnOnModal());
-      sendMessage(file);
     }
   };
 

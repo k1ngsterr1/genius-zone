@@ -26,10 +26,15 @@ export const ImageUploadModal: React.FC<ImageUploadProps> = ({
     newMessage,
   } = useConnectWebSocket(receiverEmail);
 
+  const handleSendImage = () => {
+    console.log("image before sending", image);
+    sendMessage(image);
+    onClose();
+  };
+
   useEffect(() => {
     if (conversationID) {
       connectWebSocket(conversationID);
-      console.log("images");
     }
   }, [conversationID]);
 
@@ -63,7 +68,7 @@ export const ImageUploadModal: React.FC<ImageUploadProps> = ({
             />
             <FontAwesomeIcon
               icon={faPaperPlane}
-              onClick={sendMessage}
+              onClick={handleSendImage}
               className="image-upload-modal__content__lower__button"
             />
           </div>

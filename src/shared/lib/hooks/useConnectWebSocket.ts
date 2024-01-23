@@ -45,38 +45,37 @@ function useConnectWebSocket(receiverEmail: string) {
     };
   };
 
-  const sendMessage = (attachmentFile: any) => {
+  const sendMessage = () => {
     const mail = receiverEmail;
 
-    if (socket && newMessage && mail) {
-      const messageData = {
-        type: "chat_message",
-        message: newMessage,
-        email: mail,
-      };
-      socket.send(JSON.stringify(messageData));
-      console.log(messageData);
-      setNewMessage("");
-      console.log("Message has been sent successfully!");
-      console.log(attachmentFile, attachment);
-      if (attachmentFile) {
-        console.log("attachment is here!");
+    if (socket && mail) {
+      if (newMessage) {
+        const messageData = {
+          type: "chat_message",
+          message: newMessage,
+          email: mail,
+        };
+        socket.send(JSON.stringify(messageData));
+        console.log("Text message has been sent successfully!");
+      }
+
+      if (attachment) {
         const reader = new FileReader();
         reader.onloadend = () => {
           const base64data = reader.result;
-          const messageData = {
-            type: "chat_message",
-            message: newMessage,
-            email: mail,
+          const attachmentData = {
+            type: "chat_attachment",
             attachment: base64data,
+            email: mail,
           };
-          socket.send(JSON.stringify(messageData));
+          socket.send(JSON.stringify(attachmentData));
           console.log("Image has been sent successfully");
         };
-        reader.readAsDataURL(attachmentFile);
+        reader.readAsDataURL(attachment);
+        setAttachment(null); // Reset attachment state after sending
       }
-      setNewMessage("");
-      setAttachment(null);
+
+      setNewMessage(""); // Reset new message state after sending
     }
   };
 
