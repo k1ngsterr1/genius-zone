@@ -39,7 +39,7 @@ export const ImageUploadModal: React.FC<ImageUploadProps> = ({
           <div className="image-upload-modal__content__lower">
             <input
               type="text"
-              placeholder="Add a caption..."
+              placeholder="Напишите сообщение..."
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
               className="image-upload-modal__content__lower__input"

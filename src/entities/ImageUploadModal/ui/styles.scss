@@ -11,7 +11,11 @@
   width: clamp(200px, 20.832vw, 800px);
   min-height: clamp(150px, 15.624vw, 600px);
   position: absolute;
-  top: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @apply shadow-md;
   @apply bg-custom-lightest-blue;
   @apply rounded-md;
 
@@ -21,6 +25,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: auto;
+
     @apply p-4;
 
     &__upper {
@@ -49,10 +55,13 @@
     &__preview {
       width: 90%;
       height: 80%;
+      @apply mt-4;
+      @apply mb-4;
       @apply rounded-md;
     }
 
     &__lower {
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -60,10 +69,14 @@
       &__input {
         width: 60%;
         height: clamp(27.5px, 2.8644000000000003vw, 110px);
+        background: none;
+        outline: none;
+        @apply text-custom-black;
       }
 
       &__button {
         font-size: clamp(12px, 1.24992vw, 48px);
+        cursor: pointer;
         transition: 0.3s all;
         @apply text-custom-blue;
         &:hover {
