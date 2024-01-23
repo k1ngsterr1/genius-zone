@@ -26,14 +26,14 @@
     align-items: center;
     justify-content: center;
     margin: auto;
-
     @apply p-4;
 
     &__upper {
-      width: 84%;
+      width: 90%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      @apply mt-2;
+      @apply mb-2;
 
       &__icon {
         font-size: clamp(14px, 1.45824vw, 56px);
@@ -46,9 +46,10 @@
       }
 
       &__text {
-        font-size: clamp(12px, 1.24992vw, 48px);
+        font-size: clamp(9.5px, 0.9895200000000001vw, 38px);
         @apply font-bold;
         @apply text-custom-blue;
+        @apply ml-5;
       }
     }
 
@@ -67,11 +68,14 @@
       justify-content: space-between;
 
       &__input {
-        width: 60%;
+        width: 80%;
         height: clamp(27.5px, 2.8644000000000003vw, 110px);
         background: none;
         outline: none;
         @apply text-custom-black;
+        &:focus {
+          outline: none;
+        }
       }
 
       &__button {

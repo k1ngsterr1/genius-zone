@@ -77,7 +77,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
 
   useEffect(() => {
     if (conversationID) {
-      loadUserData(userID);
+      loadUserData();
       connectWebSocket(conversationID);
     }
   }, [conversationID]);
@@ -147,6 +147,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
       {isModalImageShown && (
         <ImageUploadModal
           image={selectedImage}
+          value={newMessage}
+          onChange={() => handleMessageChange}
           onSend={sendMessage}
           onClose={handleClose}
         />

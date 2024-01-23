@@ -1,21 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { faClose, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useConnectWebSocket from "@shared/lib/hooks/useConnectWebSocket";
 
 import "./styles.scss";
 
 interface ImageUploadProps {
   image: any;
-  onSend: () => void;
+  receiverEmail: string;
+  conversationID: any;
   onClose: () => void;
 }
 
 export const ImageUploadModal: React.FC<ImageUploadProps> = ({
   image,
+  receiverEmail,
+  conversationID,
   onClose,
-  onSend,
 }) => {
-  const [caption, setCaption] = useState("");
+  const {
+    connectWebSocket,
+    sendMessage,
+    handleMessageChange,
+    handleKeyPress,
+    newMessage,
+  } = useConnectWebSocket(receiverEmail);
+
+  useEffect(() => {
+    if (conversationID) {
+      connectWebSocket(conversationID);
+    }
+  }, [conversationID]);
 
   return (
     <div className="background_black">
@@ -40,13 +55,14 @@ export const ImageUploadModal: React.FC<ImageUploadProps> = ({
             <input
               type="text"
               placeholder="Напишите сообщение..."
-              value={caption}
-              onChange={(e) => setCaption(e.target.value)}
+              value={newMessage}
+              onChange={handleMessageChange}
+              onKeyUp={handleKeyPress}
               className="image-upload-modal__content__lower__input"
             />
             <FontAwesomeIcon
               icon={faPaperPlane}
-              onClick={onSend}
+              onClick={sendMessage}
               className="image-upload-modal__content__lower__button"
             />
           </div>
