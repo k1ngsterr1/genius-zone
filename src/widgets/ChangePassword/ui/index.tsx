@@ -1,4 +1,4 @@
-import { ChangePasswordForm } from "@widgets/form/ui/changePasswordForm";
+import { ChangePasswordForm } from "@widgets/Form/ui/changePasswordForm";
 
 export const ChangePasswordScreen = () => {
   return (

@@ -1,5 +1,5 @@
 import { MenuLink } from "@shared/ui/Link";
-import { Button } from "@shared/ui/button";
+import { Button } from "@shared/ui/Button";
 import { Slide } from "react-awesome-reveal";
 import { useNavigate } from "react-router-dom";
 

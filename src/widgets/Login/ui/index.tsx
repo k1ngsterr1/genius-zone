@@ -1,4 +1,4 @@
-import { LoginForm } from "@widgets/form/ui/loginForm";
+import { LoginForm } from "@widgets/Form/ui/loginForm";
 
 export const LoginScreen = () => {
   return (

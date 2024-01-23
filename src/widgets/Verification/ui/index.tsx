@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@shared/lib/redux/store";
-import { Button } from "@shared/ui/button";
-import { useVerifyEmail } from "@widgets/form/lib/useVerifyEmail";
+import { Button } from "@shared/ui/Button";
+import { useVerifyEmail } from "@widgets/Form/lib/useVerifyEmail";
 import { ErrorTab } from "@shared/ui/ErrorTab";
 
 import illustration from "@assets/secure.svg";

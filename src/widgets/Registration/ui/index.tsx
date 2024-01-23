@@ -1,4 +1,4 @@
-import SignUpForm from "@widgets/form/ui";
+import SignUpForm from "@widgets/Form/ui";
 
 export const RegistrationScreen = () => {
   return (

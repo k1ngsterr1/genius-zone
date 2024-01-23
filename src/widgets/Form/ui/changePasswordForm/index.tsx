@@ -3,7 +3,7 @@ import { RegistrationButton } from "@shared/ui/RegistrationButton";
 import { usePasswordVisibility } from "@shared/lib/hooks/usePasswordVisibility";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { usePasswordChange } from "@widgets/form/lib/useChangePassword";
+import { usePasswordChange } from "@widgets/Form/lib/useChangePassword";
 import { Link } from "react-router-dom";
 
 import "../styles.scss";
