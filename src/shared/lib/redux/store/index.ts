@@ -4,6 +4,7 @@ import emailReducer from "./emailSlice";
 import menuReducer from "./menuSlice";
 import authReducer from "./authSlice";
 import loadReducer from "./loaderSlice";
+import modalImageReducer from "./modalImageSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     menu: menuReducer,
     auth: authReducer,
     loader: loadReducer,
+    imageModal: modalImageReducer,
   },
 });
 

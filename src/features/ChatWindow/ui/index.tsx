@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -8,6 +8,14 @@ import {
 import { Message } from "@shared/ui/Message";
 import { useNavigate } from "react-router-dom";
 import { useLoadUserData } from "@shared/lib/hooks/useLoadUserData";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@shared/lib/redux/store";
+import { ImageUploadModal } from "@entities/ImageUploadModal/ui";
+import {
+  turnOffModal,
+  turnOnModal,
+} from "@shared/lib/redux/store/modalImageSlice";
+
 import useConnectWebSocket from "@shared/lib/hooks/useConnectWebSocket";
 
 import moment from "moment";
@@ -28,10 +36,15 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   conversationID,
   receiverEmail,
 }) => {
+  const dispatch = useDispatch();
+  const isModalImageShown = useSelector(
+    (state: RootState) => state.imageModal.isShown
+  );
   const navigate = useNavigate();
   const userID = Cookies.get("userID");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { loadUserData, userData } = useLoadUserData();
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const {
     connectWebSocket,
@@ -42,10 +55,20 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
     newMessage,
   } = useConnectWebSocket(receiverEmail);
 
-  const handleButtonClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setSelectedImage(file);
+      dispatch(turnOnModal());
     }
+  };
+
+  const handleClose = () => {
+    dispatch(turnOffModal());
+  };
+
+  const handleButtonClick = () => {
+    fileInputRef.current?.click();
   };
 
   function navigateBack() {
@@ -105,6 +128,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
           className="regular-button blue"
           type="file"
           ref={fileInputRef}
+          onChange={handleFileChange}
         />
         <input
           type="text"
@@ -120,6 +144,13 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
           className="chat_window__textfield__send"
         />
       </div>
+      {isModalImageShown && (
+        <ImageUploadModal
+          image={selectedImage}
+          onSend={sendMessage}
+          onClose={handleClose}
+        />
+      )}
     </div>
   );
 };
