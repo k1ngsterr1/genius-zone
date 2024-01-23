@@ -3,6 +3,7 @@ import { useState } from "react";
 function useConnectWebSocket(receiverEmail: string) {
   const [socket, setSocket] = useState<WebSocket | null>(null);
   const [messages, setMessages] = useState<string[]>([]);
+  const [attachment, setAttachment] = useState<any>();
   const [newMessage, setNewMessage] = useState("");
 
   const connectWebSocket = (conversationID: number) => {
@@ -44,7 +45,7 @@ function useConnectWebSocket(receiverEmail: string) {
     };
   };
 
-  const sendMessage = () => {
+  const sendMessage = (attachmentFile: any) => {
     const mail = receiverEmail;
 
     if (socket && newMessage && mail) {
@@ -57,6 +58,25 @@ function useConnectWebSocket(receiverEmail: string) {
       console.log(messageData);
       setNewMessage("");
       console.log("Message has been sent successfully!");
+      console.log(attachmentFile, attachment);
+      if (attachmentFile) {
+        console.log("attachment is here!");
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const base64data = reader.result;
+          const messageData = {
+            type: "chat_message",
+            message: newMessage,
+            email: mail,
+            attachment: base64data,
+          };
+          socket.send(JSON.stringify(messageData));
+          console.log("Image has been sent successfully");
+        };
+        reader.readAsDataURL(attachmentFile);
+      }
+      setNewMessage("");
+      setAttachment(null);
     }
   };
 
@@ -77,6 +97,8 @@ function useConnectWebSocket(receiverEmail: string) {
     handleKeyPress,
     messages,
     newMessage,
+    attachment,
+    setAttachment,
   };
 }
 

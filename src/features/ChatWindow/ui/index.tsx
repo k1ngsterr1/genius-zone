@@ -51,15 +51,18 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
     sendMessage,
     handleMessageChange,
     handleKeyPress,
+    setAttachment,
     messages,
     newMessage,
   } = useConnectWebSocket(receiverEmail);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+  const handleFileChange = (event: any) => {
+    const file = event.target.files[0];
     if (file) {
       setSelectedImage(file);
+      console.log("image:", file);
       dispatch(turnOnModal());
+      sendMessage(file);
     }
   };
 
@@ -147,9 +150,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
       {isModalImageShown && (
         <ImageUploadModal
           image={selectedImage}
-          value={newMessage}
-          onChange={() => handleMessageChange}
-          onSend={sendMessage}
+          conversationID={conversationID}
+          receiverEmail={receiverEmail}
           onClose={handleClose}
         />
       )}

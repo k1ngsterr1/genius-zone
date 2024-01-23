@@ -29,6 +29,7 @@ export const ImageUploadModal: React.FC<ImageUploadProps> = ({
   useEffect(() => {
     if (conversationID) {
       connectWebSocket(conversationID);
+      console.log("images");
     }
   }, [conversationID]);
 
