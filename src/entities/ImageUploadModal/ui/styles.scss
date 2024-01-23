@@ -1,7 +1,18 @@
+.background_black {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.2);
+}
+
 .image-upload-modal {
-  width: clamp(150px, 15.624vw, 600px);
+  width: clamp(200px, 20.832vw, 800px);
   min-height: clamp(150px, 15.624vw, 600px);
   position: absolute;
+  top: 0;
+  @apply bg-custom-lightest-blue;
   @apply rounded-md;
 
   &__content {
@@ -13,14 +24,15 @@
     @apply p-4;
 
     &__upper {
-      width: 40%;
+      width: 84%;
       display: flex;
       align-items: center;
       justify-content: space-between;
 
       &__icon {
-        font-size: clamp(11px, 1.1457600000000001vw, 44px);
+        font-size: clamp(14px, 1.45824vw, 56px);
         transition: 0.3s all;
+        cursor: pointer;
         @apply text-custom-blue;
         &:hover {
           @apply text-custom-hover-blue;
@@ -28,7 +40,8 @@
       }
 
       &__text {
-        font-size: clamp(11px, 1.1457600000000001vw, 44px);
+        font-size: clamp(12px, 1.24992vw, 48px);
+        @apply font-bold;
         @apply text-custom-blue;
       }
     }
