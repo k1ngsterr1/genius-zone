@@ -6,7 +6,7 @@ import "./styles.scss";
 
 interface MessageProps {
   text: string;
-  attachment: string;
+  attachment: any;
   time: string;
   isSender: boolean;
   isRead: boolean;
@@ -17,7 +17,6 @@ export const Message: React.FC<MessageProps> = ({
   isSender,
   isRead,
   time,
-  attachment,
 }) => {
   const messageClass = isSender ? "message--sender" : "message--recipient";
 
@@ -27,7 +26,31 @@ export const Message: React.FC<MessageProps> = ({
 
   return (
     <div className={`message ${messageClass}`}>
-      <span>{attachment}</span>
+      <span className="message__text">{text}</span>
+      <div className="message__additional_data">
+        {" "}
+        <span className="message__additional_data__time">{time}</span>
+        <FontAwesomeIcon
+          className="message__additional_data__check"
+          icon={isRead ? faCheckDouble : faCheck}
+        />
+      </div>{" "}
+    </div>
+  );
+};
+
+export const AttachmentMessage: React.FC<MessageProps> = ({
+  text,
+  attachment,
+  isSender,
+  isRead,
+  time,
+}) => {
+  const messageClass = isSender ? "message--sender" : "message--recipient";
+
+  return (
+    <div className={`message ${messageClass}`}>
+      <img className="message__attachment" src={attachment} alt="attachment" />
       <span className="message__text">{text}</span>
       <div className="message__additional_data">
         {" "}

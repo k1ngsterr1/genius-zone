@@ -67,7 +67,7 @@ function useConnectWebSocket(receiverEmail: string) {
         const attachmentData = {
           type: "chat_attachment",
           attachment: base64data,
-          message: newMessage, // Include the message if any
+          message: newMessage,
           email: receiverEmail,
         };
         socket.send(JSON.stringify(attachmentData));
@@ -76,7 +76,6 @@ function useConnectWebSocket(receiverEmail: string) {
       reader.readAsDataURL(attachmentFile);
     }
 
-    // Reset states after sending message or attachment
     setNewMessage("");
     setAttachment(null);
   };
