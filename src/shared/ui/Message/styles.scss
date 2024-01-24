@@ -16,6 +16,11 @@
   @apply text-custom-black;
   @apply bg-custom-light-blue;
 
+  &__image {
+    width: 90%;
+    height: 90%;
+  }
+
   &__text {
     flex-grow: 1;
     @apply mr-20;

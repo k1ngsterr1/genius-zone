@@ -108,6 +108,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
           return (
             <Message
               key={index}
+              attachment={message.attachment}
               text={message.text}
               time={moment(message.timestamp).format("LT")}
               isSender={isSender}

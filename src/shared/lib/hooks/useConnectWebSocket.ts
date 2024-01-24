@@ -19,12 +19,14 @@ function useConnectWebSocket(receiverEmail: string) {
     ws.onmessage = (event) => {
       try {
         const messageObject = JSON.parse(event.data);
+        console.log(messageObject);
         setMessages((prevMessages) => {
           if (!prevMessages.some((msg) => msg.id === messageObject.id)) {
             return [...prevMessages, messageObject];
           }
           return prevMessages;
         });
+        console.log(messageObject);
       } catch (error) {
         console.error("Error parsing the incoming message", error);
       }
@@ -45,35 +47,38 @@ function useConnectWebSocket(receiverEmail: string) {
   };
 
   const sendMessage = (attachmentFile) => {
-    if (socket && (newMessage || attachmentFile)) {
-      if (newMessage) {
-        const messageData = {
-          type: "chat_message",
-          message: newMessage,
+    if (!socket) return;
+
+    if (newMessage && attachmentFile !== File) {
+      const messageData = {
+        type: "chat_message",
+        message: newMessage,
+        email: receiverEmail,
+      };
+      socket.send(JSON.stringify(messageData));
+      console.log("Text message has been sent successfully!");
+    }
+
+    if (attachmentFile instanceof File) {
+      console.log("attachment File:", attachmentFile);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64data = reader.result;
+        const attachmentData = {
+          type: "chat_attachment",
+          attachment: base64data,
+          message: newMessage, // Include the message if any
           email: receiverEmail,
         };
-        socket.send(JSON.stringify(messageData));
-        console.log("Text message has been sent successfully!");
-      }
-
-      if (attachmentFile) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          const base64data = reader.result;
-          const attachmentData = {
-            type: "chat_attachment",
-            attachment: base64data,
-            email: receiverEmail,
-          };
-          socket.send(JSON.stringify(attachmentData));
-          console.log("Image has been sent successfully", attachmentData);
-        };
-        reader.readAsDataURL(attachmentFile);
-        setAttachment(null);
-      }
-
-      setNewMessage("");
+        socket.send(JSON.stringify(attachmentData));
+        console.log("Image has been sent successfully", attachmentData);
+      };
+      reader.readAsDataURL(attachmentFile);
     }
+
+    // Reset states after sending message or attachment
+    setNewMessage("");
+    setAttachment(null);
   };
 
   const handleMessageChange = (event) => {
@@ -86,7 +91,6 @@ function useConnectWebSocket(receiverEmail: string) {
     }
   };
 
-  // Return statement should be here
   return {
     connectWebSocket,
     sendMessage,
