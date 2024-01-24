@@ -15,17 +15,16 @@ function useConnectWebSocket(receiverEmail: string) {
     ws.onopen = () => {
       console.log("WebSocket Connected");
     };
+
     ws.onmessage = (event) => {
       try {
-        const messageObject: any = JSON.parse(event.data);
+        const messageObject = JSON.parse(event.data);
         setMessages((prevMessages) => {
-          if (prevMessages.some((msg: any) => msg.id === messageObject.id)) {
-            return prevMessages;
-          } else {
+          if (!prevMessages.some((msg) => msg.id === messageObject.id)) {
             return [...prevMessages, messageObject];
           }
+          return prevMessages;
         });
-        console.log(messageObject);
       } catch (error) {
         console.error("Error parsing the incoming message", error);
       }
@@ -45,50 +44,49 @@ function useConnectWebSocket(receiverEmail: string) {
     };
   };
 
-  const sendMessage = () => {
-    const mail = receiverEmail;
-
-    if (socket && mail) {
+  const sendMessage = (attachmentFile) => {
+    if (socket && (newMessage || attachmentFile)) {
       if (newMessage) {
         const messageData = {
           type: "chat_message",
           message: newMessage,
-          email: mail,
+          email: receiverEmail,
         };
         socket.send(JSON.stringify(messageData));
         console.log("Text message has been sent successfully!");
       }
 
-      if (attachment) {
+      if (attachmentFile) {
         const reader = new FileReader();
         reader.onloadend = () => {
           const base64data = reader.result;
           const attachmentData = {
             type: "chat_attachment",
             attachment: base64data,
-            email: mail,
+            email: receiverEmail,
           };
           socket.send(JSON.stringify(attachmentData));
-          console.log("Image has been sent successfully");
+          console.log("Image has been sent successfully", attachmentData);
         };
-        reader.readAsDataURL(attachment);
-        setAttachment(null); // Reset attachment state after sending
+        reader.readAsDataURL(attachmentFile);
+        setAttachment(null);
       }
 
-      setNewMessage(""); // Reset new message state after sending
+      setNewMessage("");
     }
   };
 
-  const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMessageChange = (event) => {
     setNewMessage(event.target.value);
   };
 
-  const handleKeyPress = (event: React.KeyboardEvent) => {
+  const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      sendMessage();
+      sendMessage(attachment);
     }
   };
 
+  // Return statement should be here
   return {
     connectWebSocket,
     sendMessage,

@@ -51,19 +51,18 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
     sendMessage,
     handleMessageChange,
     handleKeyPress,
-    attachment,
-    setAttachment,
     messages,
     newMessage,
   } = useConnectWebSocket(receiverEmail);
 
-  const handleFileChange = (event: any) => {
+  const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       setSelectedImage(file);
-      setAttachment(file); // You should update the attachment state here.
       console.log("Image selected:", file);
       dispatch(turnOnModal());
+
+      sendMessage(file);
     }
   };
 
