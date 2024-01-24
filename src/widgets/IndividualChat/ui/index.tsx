@@ -9,6 +9,7 @@ export const IndividualChat = () => {
   const { openConversation, conversationData } = useOpenConversation();
 
   useEffect(() => {
+    console.log("conversation data", conversationData);
     if (conversationID.conversationID) {
       openConversation(conversationID.conversationID);
     }

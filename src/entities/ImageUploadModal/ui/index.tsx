@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useConnectWebSocket from "@shared/lib/hooks/useConnectWebSocket";
 
 import "./styles.scss";
+import { useDispatch } from "react-redux";
+import { turnOffModal } from "@shared/lib/redux/store/modalImageSlice";
 
 interface ImageUploadProps {
   image: any;
@@ -18,6 +20,7 @@ export const ImageUploadModal: React.FC<ImageUploadProps> = ({
   conversationID,
   onClose,
 }) => {
+  const dispatch = useDispatch();
   const {
     connectWebSocket,
     sendMessage,
@@ -27,8 +30,8 @@ export const ImageUploadModal: React.FC<ImageUploadProps> = ({
   } = useConnectWebSocket(receiverEmail);
 
   const handleSendImage = () => {
-    console.log("image before sending", image);
     sendMessage(image);
+    dispatch(turnOffModal);
     onClose();
   };
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { turnOffModal } from "../redux/store/modalImageSlice";
 
 function useConnectWebSocket(receiverEmail: string) {
   const [socket, setSocket] = useState<WebSocket | null>(null);
@@ -19,6 +20,7 @@ function useConnectWebSocket(receiverEmail: string) {
     ws.onmessage = (event) => {
       try {
         const messageObject = JSON.parse(event.data);
+        console.log("event_data:", event.data);
         console.log(messageObject);
         setMessages((prevMessages) => {
           if (!prevMessages.some((msg) => msg.id === messageObject.id)) {
@@ -26,7 +28,7 @@ function useConnectWebSocket(receiverEmail: string) {
           }
           return prevMessages;
         });
-        console.log(messageObject);
+        console.log("original message object:", messageObject);
       } catch (error) {
         console.error("Error parsing the incoming message", error);
       }
@@ -39,7 +41,7 @@ function useConnectWebSocket(receiverEmail: string) {
     ws.onclose = () => {
       console.log("WebSocket Disconnected");
       setSocket(null);
-      // connectWebSocket(conversationID);
+      connectWebSocket(conversationID);
     };
 
     return () => {
@@ -57,11 +59,11 @@ function useConnectWebSocket(receiverEmail: string) {
         email: receiverEmail,
       };
       socket.send(JSON.stringify(messageData));
-      console.log("Text message has been sent successfully!");
+      console.log("Text message has been sent successfully!", messageData);
     }
 
     if (attachmentFile instanceof File) {
-      console.log("attachment File:", attachmentFile);
+      console.log("attachment File is working properly here:", attachmentFile);
       const reader = new FileReader();
       reader.onloadend = () => {
         const base64data = reader.result;

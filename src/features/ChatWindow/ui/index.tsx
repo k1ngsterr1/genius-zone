@@ -104,7 +104,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
       <div className="chat_window__main">
         {messages.map((message, index) => {
           const isSender = message.sender == userID;
-          console.log(message.sender, userID);
           return (
             <Message
               key={index}

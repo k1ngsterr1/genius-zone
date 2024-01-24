@@ -1,5 +1,7 @@
 .course-tab {
-  width: clamp(225px, 23.436vw, 900px);
+  flex: 0 0 calc(33.333% - 12px); /* Adjusts each tab to take up a third of the container width, minus the gap */
+  margin-bottom: 12px;
+  // width: clamp(225px, 23.436vw, 900px);
   height: auto;
   padding: clamp(10px, 1.0416vw, 40px);
   border-radius: 8px;

@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 export function useLoadUserData() {
   const dispatch = useDispatch();
   const [userData, setUserData] = useState();
-  const [courses, setCourses] = useState();
+  const [userCourses, setUsersCourses] = useState();
 
   const userID = Cookies.get("userID");
 
@@ -17,15 +17,14 @@ export function useLoadUserData() {
         dispatch(logOut());
       } else {
         const response = await axiosInstance.get(`/account/${userID}/`);
-        console.log(`/account/12/`);
         setUserData(response.data);
-        if (userData) {
-          setCourses(response.data.user.courses);
+        if (userData.courses) {
+          setUsersCourses(userData.courses);
         }
         console.log(
-          "User Data has been loaded successfylly!",
-          response.data,
-          courses
+          "User Data has been loaded successfully!",
+          userData,
+          userCourses
         );
       }
     } catch (error: any) {
@@ -34,5 +33,5 @@ export function useLoadUserData() {
     }
   };
 
-  return { loadUserData, userData, courses };
+  return { loadUserData, userData, userCourses };
 }

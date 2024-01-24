@@ -13,12 +13,24 @@ import "./styles.scss";
 
 export const UserScreen = () => {
   const userID = useParams<{ userID: string }>();
-  const { loadUserData, userData } = useLoadUserData();
+  const { loadUserData, userData, userCourses } = useLoadUserData();
 
   useEffect(() => {
     loadUserData(userID.userID);
-    console.log(userID.userID);
+    console.log(userID.userID, userCourses);
   }, [userID]);
+
+  const chunkArray = (array, size) => {
+    const chuckedArr = [];
+    if (array && array.length > 0) {
+      for (let i = 0; i < array.length; i += size) {
+        chuckedArr.push(array.slice(i, i + size));
+      }
+    }
+    return chuckedArr;
+  };
+
+  const courseChunks = userCourses ? chunkArray(userCourses, 3) : [];
 
   if (!userData) {
     return (
@@ -50,17 +62,28 @@ export const UserScreen = () => {
           image={userData.photo}
           userID={userID.userID}
         />
-        <div className="w-[73%] courses-container flex flex-col">
-          <h1 className="main-heading">Моё обучение</h1>
-          <div className="w-full flex items-center justify-between mt-8">
-            <CourseTab buttonText={"Продолжить"} />
-            <CourseTab margin={"ml-12"} buttonText={"Продолжить"} />
-            <CourseTab margin={"ml-12"} buttonText={"Продолжить"} />
+        <div className="w-[73%] courses-container flex flex-wrap gap-3 flex-col">
+          <h1 className="main-heading">Мои курсы</h1>
+          <div className="flex flex-wrap gap-3 mt-8">
+            {courseChunks.map((courseChunk, chunkIndex) => (
+              <div key={chunkIndex} className="w-[100%] flex justify-between">
+                {courseChunk.map((course, index) => (
+                  <CourseTab
+                    key={course.id} // Make sure 'course.id' exists
+                    courseImage={course.preview}
+                    courseName={course.title}
+                    courseDescription={course.description}
+                    margin={index > 0 ? "ml-12" : "ml-0"} // Adjust margin as necessary
+                    buttonText={"Продолжить"}
+                  />
+                ))}
+              </div>
+            ))}
           </div>
           <div className="w-full flex items-center justify-between mt-8">
-            <CourseTab buttonText={"Продолжить"} />
+            {/* <CourseTab buttonText={"Продолжить"} />
             <CourseTab margin={"ml-12"} buttonText={"Продолжить"} />
-            <CourseTab margin={"ml-12"} buttonText={"Продолжить"} />
+            <CourseTab margin={"ml-12"} buttonText={"Продолжить"} /> */}
           </div>
           <Separator width="w-[100%]" margin="mt-12 mb-12" color="" />
           <h2 className="main-heading">Вам может понравится</h2>
