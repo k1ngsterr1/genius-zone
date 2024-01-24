@@ -5,7 +5,7 @@ import {
   faPaperPlane,
   faPaperclip,
 } from "@fortawesome/free-solid-svg-icons";
-import { Message } from "@shared/ui/Message";
+import { AttachmentMessage, Message } from "@shared/ui/Message";
 import { useNavigate } from "react-router-dom";
 import { useLoadUserData } from "@shared/lib/hooks/useLoadUserData";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,8 @@ import {
   turnOffModal,
   turnOnModal,
 } from "@shared/lib/redux/store/modalImageSlice";
+
+import TestExample from "@assets/cpp.jpg";
 
 import useConnectWebSocket from "@shared/lib/hooks/useConnectWebSocket";
 
@@ -61,8 +63,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
       setSelectedImage(file);
       console.log("Image selected:", file);
       dispatch(turnOnModal());
-
-      sendMessage(file);
     }
   };
 
@@ -109,6 +109,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
             <Message
               key={index}
               text={message.text}
+              attachment={message.attachment}
               time={moment(message.timestamp).format("LT")}
               isSender={isSender}
               isRead={true}
@@ -127,7 +128,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
           style={{ display: "none" }}
           id="raised-button-file"
           multiple
-          name="preview"
+          name="attachment"
           className="regular-button blue"
           type="file"
           ref={fileInputRef}
@@ -143,7 +144,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
         />
         <FontAwesomeIcon
           icon={faPaperPlane}
-          onClick={sendMessage}
+          onClick={() => sendMessage(selectedImage)}
           className="chat_window__textfield__send"
         />
       </div>

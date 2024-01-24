@@ -39,6 +39,7 @@ function useConnectWebSocket(receiverEmail: string) {
     ws.onclose = () => {
       console.log("WebSocket Disconnected");
       setSocket(null);
+      // connectWebSocket(conversationID);
     };
 
     return () => {
@@ -49,7 +50,7 @@ function useConnectWebSocket(receiverEmail: string) {
   const sendMessage = (attachmentFile) => {
     if (!socket) return;
 
-    if (newMessage && attachmentFile !== File) {
+    if (newMessage) {
       const messageData = {
         type: "chat_message",
         message: newMessage,
@@ -65,7 +66,7 @@ function useConnectWebSocket(receiverEmail: string) {
       reader.onloadend = () => {
         const base64data = reader.result;
         const attachmentData = {
-          type: "chat_attachment",
+          type: "chat_message",
           attachment: base64data,
           message: newMessage,
           email: receiverEmail,
@@ -74,10 +75,10 @@ function useConnectWebSocket(receiverEmail: string) {
         console.log("Image has been sent successfully", attachmentData);
       };
       reader.readAsDataURL(attachmentFile);
+      setAttachment(null);
     }
 
     setNewMessage("");
-    setAttachment(null);
   };
 
   const handleMessageChange = (event) => {
