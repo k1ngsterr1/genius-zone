@@ -20,18 +20,6 @@ export const UserScreen = () => {
     console.log(userID.userID, userCourses);
   }, [userID]);
 
-  const chunkArray = (array, size) => {
-    const chuckedArr = [];
-    if (array && array.length > 0) {
-      for (let i = 0; i < array.length; i += size) {
-        chuckedArr.push(array.slice(i, i + size));
-      }
-    }
-    return chuckedArr;
-  };
-
-  const courseChunks = userCourses ? chunkArray(userCourses, 3) : [];
-
   if (!userData) {
     return (
       <>
@@ -65,19 +53,15 @@ export const UserScreen = () => {
         <div className="w-[73%] courses-container flex flex-wrap gap-3 flex-col">
           <h1 className="main-heading">Мои курсы</h1>
           <div className="flex flex-wrap gap-3 mt-8">
-            {courseChunks.map((courseChunk, chunkIndex) => (
-              <div key={chunkIndex} className="w-[100%] flex justify-between">
-                {courseChunk.map((course, index) => (
-                  <CourseTab
-                    key={course.id} // Make sure 'course.id' exists
-                    courseImage={course.preview}
-                    courseName={course.title}
-                    courseDescription={course.description}
-                    margin={index > 0 ? "ml-12" : "ml-0"} // Adjust margin as necessary
-                    buttonText={"Продолжить"}
-                  />
-                ))}
-              </div>
+            {userCourses.map((course, index) => (
+              <CourseTab
+                key={course.id} // Make sure 'course.id' exists
+                courseImage={course.preview}
+                courseName={course.title}
+                courseDescription={course.description}
+                margin={index > 0 ? "ml-12" : "ml-0"} // Adjust margin as necessary
+                buttonText={"Продолжить"}
+              />
             ))}
           </div>
           <div className="w-full flex items-center justify-between mt-8">
