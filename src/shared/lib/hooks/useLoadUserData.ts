@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 export function useLoadUserData() {
   const dispatch = useDispatch();
   const [userData, setUserData] = useState();
-  const [userCourses, setUsersCourses] = useState();
+  const [userCourses, setUsersCourses] = useState([]);
 
   const userID = Cookies.get("userID");
 
