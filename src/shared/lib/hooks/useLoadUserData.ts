@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { logOut } from "../redux/store/authSlice";
 import axiosInstance from "../middleware";
 import Cookies from "js-cookie";
+import { turnOffLoader, turnOnLoader } from "../redux/store/loaderSlice";
 
 export function useLoadUserData() {
   const dispatch = useDispatch();
@@ -11,16 +12,18 @@ export function useLoadUserData() {
 
   const userID = Cookies.get("userID");
 
-  const loadUserData = async () => {
+  const loadUserData = async (userID: any) => {
     try {
       if (userID === undefined) {
         dispatch(logOut());
       } else {
         const response = await axiosInstance.get(`/account/${userID}/`);
+        const userCoursesResponse = await axiosInstance.get(
+          `/account/${userID}/`
+        );
         setUserData(response.data);
-        if (userData && userData.courses) {
-          setUsersCourses(userData.courses);
-        }
+        setUsersCourses(userCoursesResponse.data.courses);
+
         console.log(
           "User Data has been loaded successfully!",
           userData,

@@ -1,7 +1,7 @@
 import React from "react";
-import courseImagez from "@assets/cpp.jpg";
 import { UtilityButton } from "@shared/ui/UtilityButton";
 import { FavoriteButton } from "@shared/ui/FavoriteButton";
+import { useNavigate } from "react-router-dom";
 
 import "./styles.scss";
 
@@ -10,6 +10,7 @@ interface CourseTabProps {
   courseDescription: string;
   courseImage: string;
   margin?: string;
+  courseID: string;
   buttonText: string;
 }
 
@@ -19,9 +20,15 @@ export const CourseTab: React.FC<CourseTabProps> = ({
   courseImage,
   margin,
   buttonText,
+  courseID,
 }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className={`course-tab ${margin}`}>
+    <div
+      className={`course-tab ${margin}`}
+      onClick={() => navigate(`/course/${courseID}`)}
+    >
       <div className="course-tab__row flex items-center justify-between ">
         <h1 className="course-tab__row__heading">{courseName}</h1>
         <img className="course-tab__row__image" src={courseImage} />

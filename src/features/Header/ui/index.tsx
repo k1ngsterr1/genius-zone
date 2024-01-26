@@ -8,6 +8,7 @@ import { Logo } from "@shared/ui/Logo";
 import Hamburger from "hamburger-react";
 
 import "./styles.scss";
+import { Skeleton } from "@mui/material";
 
 export const Header = () => {
   const navigate = useNavigate();

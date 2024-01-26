@@ -26,7 +26,8 @@
   }
 
   &__image {
-    width: clamp(15px, 1.5624vw, 60px);
+    width: clamp(200px, 20.832vw, 800px);
     height: clamp(125px, 13.02vw, 500px);
+    @apply rounded-md;
   }
 }

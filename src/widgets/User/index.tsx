@@ -10,6 +10,7 @@ import { Loader } from "@shared/ui/Loader";
 import notFound from "@assets/404.svg";
 
 import "./styles.scss";
+import { Skeleton } from "@mui/material";
 
 export const UserScreen = () => {
   const userID = useParams<{ userID: string }>();
@@ -21,11 +22,7 @@ export const UserScreen = () => {
   }, [userID]);
 
   if (!userData) {
-    return (
-      <>
-        <Loader />
-      </>
-    );
+    return <Loader />;
   }
 
   if (userData == undefined) {
@@ -46,19 +43,20 @@ export const UserScreen = () => {
     <>
       <main className="wrapper--row mb-12">
         <UserAside
-          username={userData.username}
-          image={userData.photo}
+          username={userData.username || <Skeleton />}
+          image={userData.photo || <Skeleton />}
           userID={userID.userID}
         />
         <div className="w-[73%] courses-container flex flex-wrap gap-3 flex-col">
           <h1 className="main-heading">Мои курсы</h1>
           <div className="flex flex-wrap gap-4 mt-8">
-            {userCourses.map((course, index) => (
+            {userCourses.map((course) => (
               <CourseTab
                 key={course.id}
-                courseImage={course.preview}
-                courseName={course.title}
-                courseDescription={course.description}
+                courseID={course.id}
+                courseImage={course.preview || <Skeleton />}
+                courseName={course.title || <Skeleton />}
+                courseDescription={course.description || <Skeleton />}
                 buttonText={"Продолжить"}
               />
             ))}
