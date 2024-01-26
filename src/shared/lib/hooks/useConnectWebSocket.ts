@@ -49,7 +49,7 @@ function useConnectWebSocket(receiverEmail: string) {
     };
   };
 
-  const sendMessage = (attachmentFile) => {
+  const sendMessage = (attachmentFile: File) => {
     if (!socket) return;
 
     if (newMessage) {

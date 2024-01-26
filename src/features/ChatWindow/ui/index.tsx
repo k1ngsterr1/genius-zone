@@ -27,6 +27,7 @@ import "./styles.scss";
 import { Skeleton } from "@mui/material";
 
 import basicUser from "@assets/basic_user.png";
+import { UtilityButton } from "@shared/ui/UtilityButton";
 
 interface ChatWindowProps {
   name: string;
@@ -40,6 +41,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   name,
   image,
   conversationID,
+  previousMessages,
   receiverEmail,
 }) => {
   const dispatch = useDispatch();
@@ -59,6 +61,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
     messages,
     newMessage,
   } = useConnectWebSocket(receiverEmail);
+
+  const updatedMessages = previousMessages.concat(messages);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -127,7 +131,12 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
             ) || <Skeleton />}
       </div>
       <div className="chat_window__main">
-        {messages.map((message, index) => {
+        <UtilityButton
+          text="Предыдущие сообщения"
+          onClick={() => console.log("loaded")}
+          className="utility-button__filled-btn w-[10%] !text-xs p-1 m-auto mt-4 rounded-full"
+        />
+        {updatedMessages.map((message, index) => {
           const isSender = message.sender == userID;
           return (
             <Message

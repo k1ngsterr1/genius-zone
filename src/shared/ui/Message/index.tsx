@@ -23,13 +23,13 @@ export const Message: React.FC<MessageProps> = ({
 
   return (
     <div className={`message ${messageClass}`}>
-      {attachment && (
+      {/* {attachment && (
         <img
           className="message__attachment border-2"
           src={attachment}
           alt="attachment"
         />
-      )}
+      )} */}
       <span className="message__text">{text}</span>
       <div className="message__additional_data">
         {" "}

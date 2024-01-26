@@ -6,7 +6,8 @@ import { useParams } from "react-router-dom";
 
 export const IndividualChat = () => {
   const conversationID = useParams<{ conversationID: any }>();
-  const { openConversation, conversationData } = useOpenConversation();
+  const { openConversation, conversationData, lastPreviousMessages } =
+    useOpenConversation();
 
   useEffect(() => {
     console.log("conversation data", conversationData);
@@ -29,6 +30,7 @@ export const IndividualChat = () => {
           image={photo}
           name={name}
           receiverEmail={receiverEmail}
+          previousMessages={lastPreviousMessages}
           conversationID={conversationID.conversationID}
         />
       </section>
