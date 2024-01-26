@@ -52,14 +52,13 @@ export const UserScreen = () => {
         />
         <div className="w-[73%] courses-container flex flex-wrap gap-3 flex-col">
           <h1 className="main-heading">Мои курсы</h1>
-          <div className="flex flex-wrap gap-3 mt-8">
+          <div className="flex flex-wrap gap-4 mt-8">
             {userCourses.map((course, index) => (
               <CourseTab
-                key={course.id} // Make sure 'course.id' exists
+                key={course.id}
                 courseImage={course.preview}
                 courseName={course.title}
                 courseDescription={course.description}
-                margin={index > 0 ? "ml-12" : "ml-0"} // Adjust margin as necessary
                 buttonText={"Продолжить"}
               />
             ))}

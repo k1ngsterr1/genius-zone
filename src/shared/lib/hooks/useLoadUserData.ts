@@ -18,7 +18,7 @@ export function useLoadUserData() {
       } else {
         const response = await axiosInstance.get(`/account/${userID}/`);
         setUserData(response.data);
-        if (userData.courses) {
+        if (userData && userData.courses) {
           setUsersCourses(userData.courses);
         }
         console.log(
