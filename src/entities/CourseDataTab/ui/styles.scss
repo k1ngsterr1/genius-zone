@@ -1,0 +1,17 @@
+.course_data_tab {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  @apply p-3;
+  @apply bg-custom-lightest-blue;
+
+  &__text {
+    font-size: clamp(9px, 0.93744vw, 36px);
+    @apply font-medium;
+    @apply text-custom-black;
+  }
+
+  &__additional {
+    font-size: clamp(7.5px, 0.7812vw, 30px);
+  }
+}

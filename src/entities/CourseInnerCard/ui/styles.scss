@@ -1,0 +1,32 @@
+.course_inner_card {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  @apply p-4;
+  @apply rounded-md;
+  @apply bg-custom-lightest-blue;
+
+  &__text_content {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    &__heading {
+      font-size: clamp(14px, 1.45824vw, 56px);
+      @apply text-custom-black;
+    }
+
+    &__paragraph {
+      font-size: clamp(8px, 0.83328vw, 32px);
+      @apply mt-4;
+      @apply text-custom-black;
+    }
+  }
+
+  &__image {
+    width: clamp(15px, 1.5624vw, 60px);
+    height: clamp(125px, 13.02vw, 500px);
+  }
+}

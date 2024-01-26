@@ -14,6 +14,7 @@ export const ROUTE_CONSTANTS = {
   CREATE_COURSE: "/create-course/new",
   COURSE_SYLLABUS: "/create-course/:courseID/syllabus",
   CREATE_COURSE_EDIT: "/create-course/:courseID/edit",
+  COURSE_INNER: "/course/:courseID",
   // Chats
   CHATS: "/chats",
   CHAT_CONVERSATION: "/chats/:conversationID",

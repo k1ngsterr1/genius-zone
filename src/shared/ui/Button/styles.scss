@@ -4,11 +4,11 @@
   background-color: #0b1887 !important;
   font-size: clamp(9px, 0.93744vw, 36px);
   color: white !important;
-  @apply border-custom-blue;
   transition: 0.3s all;
   margin-right: 16px;
+  @apply border-custom-blue;
   &:hover {
-    background-color: #0f20b9;
+    background-color: #0f20b9 !important;
   }
 }
 
