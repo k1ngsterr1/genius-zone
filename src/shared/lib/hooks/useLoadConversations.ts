@@ -10,8 +10,6 @@ function useLoadConversations() {
 
   async function loadConversations() {
     try {
-      dispatch(turnOnLoader());
-
       const refresh = Cookies.get("refreshToken");
       const accessToken = Cookies.get("accessToken");
       console.log(refresh);
@@ -23,8 +21,6 @@ function useLoadConversations() {
       console.log("Conversations loaded successfully:", response.data);
     } catch (error: any) {
       console.log("There is an error with loading conversations:", error);
-    } finally {
-      dispatch(turnOffLoader());
     }
   }
 

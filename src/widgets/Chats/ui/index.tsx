@@ -7,6 +7,8 @@ import useLoadConversations from "@shared/lib/hooks/useLoadConversations";
 import useOpenConversation from "@shared/lib/hooks/useOpenConversation";
 
 import noChats from "@assets/no_courses.svg";
+import { Loader } from "@shared/ui/Loader";
+import { Skeleton } from "@mui/material";
 
 export const ChatsScreen = () => {
   const navigate = useNavigate();
@@ -32,6 +34,12 @@ export const ChatsScreen = () => {
     );
   }
 
+  if (conversations.length === 0) {
+    <>
+      <Loader />
+    </>;
+  }
+
   return (
     <div className="wrapper--row mb-12">
       <UserAside />
@@ -44,9 +52,9 @@ export const ChatsScreen = () => {
           return (
             <ChatBar
               key={initiator.id}
-              image={initiator.photo}
-              name={initiator.username}
-              lastMessage={lastMessage}
+              image={initiator.photo || <Skeleton />}
+              name={initiator.username || <Skeleton />}
+              lastMessage={lastMessage || <Skeleton />}
               icon={isRead ? faCheckDouble : faCheck}
               isChecked={isRead ? "--checked" : ""}
               onClick={() => openIndividualChat(conversationID)}

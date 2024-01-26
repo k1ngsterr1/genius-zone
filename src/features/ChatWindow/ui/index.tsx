@@ -24,12 +24,16 @@ import moment from "moment";
 import Cookies from "js-cookie";
 
 import "./styles.scss";
+import { Skeleton } from "@mui/material";
+
+import basicUser from "@assets/basic_user.png";
 
 interface ChatWindowProps {
   name: string;
   image: string;
   conversationID: number;
   receiverEmail: string;
+  previousMessages: any[];
 }
 
 export const ChatWindow: React.FC<ChatWindowProps> = ({
@@ -45,7 +49,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   const navigate = useNavigate();
   const userID = Cookies.get("userID");
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { loadUserData, userData } = useLoadUserData();
   const [selectedImage, setSelectedImage] = useState(null);
 
   const {
@@ -80,7 +83,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
 
   useEffect(() => {
     if (conversationID) {
-      loadUserData();
       connectWebSocket(conversationID);
     }
   }, [conversationID]);
@@ -98,8 +100,31 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
           />
           Назад
         </button>
-        <span className="chat_window__upper__name">{name}</span>
-        <img src={image} className="chat_window__upper__image" alt={name} />
+        <span className="chat_window__upper__name">
+          {name || (
+            <Skeleton
+              className="!w-[50%]"
+              sx={{
+                width: 210,
+              }}
+            />
+          )}
+        </span>
+        {image === undefined
+          ? (
+              <img
+                className="chat_window__upper__image"
+                src={image}
+                alt="user"
+              />
+            ) || <Skeleton />
+          : (
+              <img
+                className="chat_window__upper__image"
+                src={basicUser}
+                alt="user"
+              />
+            ) || <Skeleton />}
       </div>
       <div className="chat_window__main">
         {messages.map((message, index) => {
@@ -107,8 +132,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
           return (
             <Message
               key={index}
-              text={message.text}
-              attachment={message.attachment}
+              text={message.text || <Skeleton />}
+              attachment={message.attachment || <Skeleton />}
               time={moment(message.timestamp).format("LT")}
               isSender={isSender}
               isRead={true}

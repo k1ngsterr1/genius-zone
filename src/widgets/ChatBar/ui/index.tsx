@@ -3,9 +3,11 @@ import {
   FontAwesomeIcon,
   FontAwesomeIconProps,
 } from "@fortawesome/react-fontawesome";
+import { FontawesomeObject, IconProp } from "@fortawesome/fontawesome-svg-core";
+
+import basicUser from "@assets/basic_user.png";
 
 import "./styles.scss";
-import { FontawesomeObject, IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface ChatBarProps {
   image: string;
@@ -27,7 +29,12 @@ export const ChatBar: React.FC<ChatBarProps> = ({
   return (
     <div className="chat_bar" onClick={onClick}>
       <div className="chat_bar__main">
-        <img src={image} className="chat_bar__main__image" alt={name} />
+        {image === undefined ? (
+          <img src={image} className="chat_bar__main__image" alt={name} />
+        ) : (
+          <img src={basicUser} className="chat_bar__main__image" alt={name} />
+        )}
+
         <div className="chat_bar__main__content">
           <span className="chat_bar__main__content__name">{name}</span>
           <span className="chat_bar__main__content__last_message">
