@@ -134,7 +134,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
         <UtilityButton
           text="Предыдущие сообщения"
           onClick={() => console.log("loaded")}
-          className="utility-button__filled-btn w-[10%] !text-xs p-1 m-auto mt-4 rounded-full"
+          marginTop="mt-4"
+          type="filled-btn w-[10%] !text-xs p-1 m-auto rounded-full"
         />
         {updatedMessages.map((message, index) => {
           const isSender = message.sender == userID;
